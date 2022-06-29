@@ -6,22 +6,12 @@
 
         <title inertia>{{ config('app.name', 'Laravel') }}</title>
 
-        <!-- Fonts -->
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
-
-        <!-- Styles -->
-        <link rel="stylesheet" href="{{ mix('css/app.css') }}">
-
+        @vite(['resources/css/app.css', 'resources/js/app.js'])
         <!-- Scripts -->
         @routes
-        <script src="{{ mix('js/app.js') }}" defer></script>
         @inertiaHead
     </head>
     <body class="font-sans antialiased">
         @inertia
-
-        @env ('local')
-            <script src="http://localhost:8080/js/bundle.js"></script>
-        @endenv
     </body>
 </html>
