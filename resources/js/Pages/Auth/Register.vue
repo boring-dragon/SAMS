@@ -7,6 +7,7 @@ import BreezeValidationErrors from '@/Components/ValidationErrors.vue';
 import { Head, Link, useForm } from '@inertiajs/inertia-vue3';
 
 
+
 const form = useForm({
     name: '',
     email: '',
