@@ -24,8 +24,19 @@ Route::get('/', function () {
     ]);
 });
 
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
 
-require __DIR__.'/auth.php';
+Route::group(['middleware' => ['auth:sanctum', 'role:student'], 'prefix' => 'dashboard', 'as' => 'student.'], function () {
+    Route::get('/', function () {
+        return Inertia::render('Student/Dashboard');
+    })->name('dashboard');
+});
+
+
+Route::group(['middleware' => ['auth:sanctum', 'role:admin,teacher'], 'prefix' => 'admin', 'as' => 'admin.'], function () {
+
+    Route::get('/', function () {
+        return Inertia::render('Admin/Dashboard');
+    })->name('dashboard');
+});
+
+require __DIR__ . '/auth.php';
