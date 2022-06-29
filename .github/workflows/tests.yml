@@ -1,11 +1,5 @@
-name: Test Laravel Github action
-on:
-  pull_request:
-    branches:
-      - master
-  push:
-    branches:
-      - master
+name: Run Tests
+on: [push, pull_request]
 
 jobs:
   laravel-tests:
