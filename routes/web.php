@@ -32,7 +32,7 @@ Route::group(['middleware' => ['auth:sanctum', 'role:student'], 'prefix' => 'das
 });
 
 
-Route::group(['middleware' => ['auth:sanctum', 'role:admin,teacher'], 'prefix' => 'admin', 'as' => 'admin.'], function () {
+Route::group(['middleware' => ['auth:sanctum', 'role:teacher|admin'], 'prefix' => 'admin', 'as' => 'admin.'], function () {
 
     Route::get('/', function () {
         return Inertia::render('Admin/Dashboard');
