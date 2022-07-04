@@ -6,6 +6,8 @@ use App\Models\Teacher;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use App\Filters\TeachersFilters;
+use Illuminate\Support\Facades\Hash;
+use App\Models\User;
 
 class TeacherController extends Controller
 {
@@ -44,11 +46,21 @@ class TeacherController extends Controller
             'first_name' => 'required',
             'last_name' => 'required',
             'phone_number' => 'required',
+            'password' => 'required',
             'email' => 'required|unique:teachers',
             'bio' => 'nullable',
         ]);
 
-        Teacher::create($request->all());
+        $teacher = Teacher::create($request->all());
+
+        $user = User::create([
+            'name' => $teacher->full_name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'role' => 'teacher',
+        ]);
+
+        $teacher->user()->save($user);
 
         return redirect()->route('admin.teachers.index')->with('success', 'Teacher created successfully.');
     }
@@ -92,11 +104,18 @@ class TeacherController extends Controller
             'first_name' => 'required',
             'last_name' => 'required',
             'phone_number' => 'required',
+            'password' => 'nullable',
             'email' => 'required|unique:teachers,email,' . $teacher->id,
             'bio' => 'nullable',
         ]);
 
         $teacher->update($request->all());
+
+        $teacher->user->update([
+            'name' => $teacher->full_name,
+            'email' => $teacher->email,
+            'password' => Hash::make($request->password),
+        ]);
 
         return back()->with('success', 'Teacher updated successfully.');
     }

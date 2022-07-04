@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Student;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 use App\Filters\StudentsFilters;
 
 class StudentController extends Controller
@@ -50,7 +52,16 @@ class StudentController extends Controller
             'bio' => 'nullable',
         ]);
 
-        Student::create($request->all());
+        $student = Student::create($request->all());
+
+        $user = User::create([
+            'name' => $student->full_name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'role' => 'student',
+        ]);
+
+        $student->user()->save($user);
 
         return redirect()->route('admin.students.index')->with('success', 'Student created successfully.');
     }

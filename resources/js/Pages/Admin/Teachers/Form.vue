@@ -2,7 +2,7 @@
 import { reactive, onMounted, onBeforeMount } from "vue";
 import BreezeAuthenticatedLayout from "@/Layouts/Authenticated.vue";
 import Loader from "@/Shared/Loader.vue";
-import DateInput from "@/Shared/DateInput.vue"
+import DateInput from "@/Shared/DateInput.vue";
 import { Head } from "@inertiajs/inertia-vue3";
 import { useForm } from "@inertiajs/inertia-vue3";
 
@@ -20,7 +20,8 @@ const state = reactive({
       email: null,
       phone_number: null,
       profile_photo_url: null,
-      bio: null
+      bio: null,
+      password: null,
     },
     { resetOnSuccess: false }
   ),
@@ -54,23 +55,22 @@ onBeforeMount(() => {
 	<div class="py-12">
 		<div class="p-8 bg-white rounded-lg shadow-lg lg:p-12 lg:col-span-3">
 			<form @submit.prevent="onSubmit" class="space-y-4">
-            	<div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
-				<div>
-					<label class="sr-only" for="first_name">First Name</label>
-					<input class="w-full p-3 text-sm border-gray-200 rounded-lg focus:border-green-500 focus:ring-green-500"  placeholder="First Name" type="text" v-model="state.form.first_name" />
-					<p class="mt-2 text-sm text-red-600" v-if="props.errors.first_name">{{ props.errors.first_name }}</p>
-				</div>
+				<div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+					<div>
+						<label class="sr-only" for="first_name">First Name</label>
+						<input class="w-full p-3 text-sm border-gray-200 rounded-lg focus:border-green-500 focus:ring-green-500" placeholder="First Name" type="text" v-model="state.form.first_name" />
+						<p class="mt-2 text-sm text-red-600" v-if="props.errors.first_name">{{ props.errors.first_name }}</p>
+					</div>
 
-                <div>
-					<label class="sr-only" for="last_name">Last Name</label>
-					<input class="w-full p-3 text-sm border-gray-200 rounded-lg focus:border-green-500 focus:ring-green-500" placeholder="Last Name" type="text" v-model="state.form.last_name" />
-					<p class="mt-2 text-sm text-red-600" v-if="props.errors.last_name">{{ props.errors.last_name }}</p>
+					<div>
+						<label class="sr-only" for="last_name">Last Name</label>
+						<input class="w-full p-3 text-sm border-gray-200 rounded-lg focus:border-green-500 focus:ring-green-500" placeholder="Last Name" type="text" v-model="state.form.last_name" />
+						<p class="mt-2 text-sm text-red-600" v-if="props.errors.last_name">{{ props.errors.last_name }}</p>
+					</div>
 				</div>
-                </div>
 
 				<div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
-
-                    	<div>
+					<div>
 						<label class="sr-only" for="email">Email</label>
 						<input class="w-full p-3 text-sm border-gray-200 rounded-lg focus:border-green-500 focus:ring-green-500" placeholder="Email" type="text" v-model="state.form.email" />
 						<p class="mt-2 text-sm text-red-600" v-if="props.errors.email">{{ props.errors.email }}</p>
@@ -80,11 +80,13 @@ onBeforeMount(() => {
 						<input class="w-full p-3 text-sm border-gray-200 rounded-lg focus:border-green-500 focus:ring-green-500" placeholder="Phone Number" type="text" v-model="state.form.phone_number" />
 						<p class="mt-2 text-sm text-red-600" v-if="props.errors.phone_number">{{ props.errors.phone_number }}</p>
 					</div>
-
-
 				</div>
 
-
+				<div>
+					<label class="sr-only" for="passwords">Password</label>
+					<input class="w-full p-3 text-sm border-gray-200 rounded-lg focus:border-green-500 focus:ring-green-500" placeholder="Password" type="password" v-model="state.form.password" />
+					<p class="mt-2 text-sm text-red-600" v-if="props.errors.password">{{ props.errors.password }}</p>
+				</div>
 
 				<div>
 					<label class="sr-only" for="description">Bio</label>

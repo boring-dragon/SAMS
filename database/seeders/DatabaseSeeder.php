@@ -19,11 +19,14 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         User::factory()->create(['email' => 'dev@sams.com', 'role' => 'admin']);
-        User::factory()->create(['email' => 'teacher@sams.com', 'role' => 'teacher']);
-        User::factory()->create(['email' => 'student@sams.com', 'role' => 'student']);
 
-        Student::factory(20)->create();
-        Teacher::factory(20)->create();
+        $student = Student::factory()->create();
+        User::factory()->forModel($student)->create(['email' => 'student@sams.com', 'role' => 'student']);
+
+        $teacher = Teacher::factory()->create();
+        User::factory()->forModel($teacher)->create(['email' => 'teacher@sams.com', 'role' => 'teacher']);
+
+
         Module::factory(10)->create();
     }
 }
