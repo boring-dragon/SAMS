@@ -43,6 +43,8 @@ Route::group(['middleware' => ['auth:sanctum', 'role:teacher|admin'], 'prefix' =
     Route::get('/', function () {
         return Inertia::render('Admin/Dashboard', [
             'total_students' => Student::count(),
+            'students_today' => Student::whereDate('created_at', today())->count(),
+            'modules_today' => Module::whereDate('created_at', today())->count(),
             'total_teachers' => Teacher::count(),
             'total_modules' => Module::count(),
         ]);
