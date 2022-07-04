@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Filters\ModulesFilters;
 use App\Models\Module;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -13,11 +14,11 @@ class ModuleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request, ModulesFilters $filters)
     {
-        $modules = Module::all();
         return Inertia::render('Admin/Modules/Index', [
-            'modules' => $modules,
+            'modules' => Module::orderBy('updated_at', 'desc')->filter($filters)->paginate(8),
+            "filters" => $request->all($filters->filterNames()),
         ]);
     }
 
@@ -49,7 +50,7 @@ class ModuleController extends Controller
 
         Module::create($request->all());
 
-        return redirect()->route('modules.index')->with('success', 'Module created successfully.');
+        return redirect()->route('admin.modules.index')->with('success', 'Module created successfully.');
     }
 
     /**
@@ -97,7 +98,7 @@ class ModuleController extends Controller
 
         $module->update($request->all());
 
-        return redirect()->route('modules.index')->with('success', 'Module updated successfully.');
+        return redirect()->route('admin.modules.index')->with('success', 'Module updated successfully.');
     }
 
     /**
@@ -110,6 +111,6 @@ class ModuleController extends Controller
     {
         $module->delete();
 
-        return redirect()->route('modules.index')->with('success', 'Module deleted successfully.');
+        return redirect()->route('admin.modules.index')->with('success', 'Module deleted successfully.');
     }
 }

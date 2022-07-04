@@ -5,6 +5,7 @@ import BreezeDropdown from "@/Components/Dropdown.vue";
 import BreezeDropdownLink from "@/Components/DropdownLink.vue";
 import BreezeNavLink from "@/Components/NavLink.vue";
 import BreezeResponsiveNavLink from "@/Components/ResponsiveNavLink.vue";
+import FlashMessages from '@/Shared/FlashMessages.vue'
 import { Link } from "@inertiajs/inertia-vue3";
 
 const showingNavigationDropdown = ref(false);
@@ -83,7 +84,7 @@ const showingNavigationDropdown = ref(false);
 							<p class="px-4 pt-4 font-medium uppercase text-neutral-200">Actions</p>
 							<ul>
 								<li>
-									<Link :href="route('logout')" class="inline-flex items-center w-full px-4 py-2 mt-1 text-base transition duration-500 ease-in-out transform border rounded-lg text-neutral-200 border-neutral-800 hover:border-neutral-800 focus:shadow-outline hover:bg-neutral-900" method="post">
+									<Link :href="route('logout')" class="inline-flex items-center w-full px-4 py-2 mt-1 text-base transition duration-500 ease-in-out transform border rounded-lg text-neutral-200 border-neutral-800 hover:border-neutral-800 focus:shadow-outline hover:bg-neutral-900" method="post" as="button">
 										<span class="ml-4">Logout</span>
 									</Link>
 								</li>
@@ -112,6 +113,7 @@ const showingNavigationDropdown = ref(false);
 						<slot name="header" />
 					</div>
 					<div class="px-4 mx-auto max-w-7xl sm:px-6 md:px-8">
+                        <flash-messages />
 						<slot />
 					</div>
 				</div>
