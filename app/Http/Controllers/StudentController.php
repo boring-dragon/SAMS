@@ -101,7 +101,7 @@ class StudentController extends Controller
 
         $student->update($request->all());
 
-        return redirect()->route('admin.students.index')->with('success', 'Student updated successfully.');
+        return back()->with('success', 'Student updated successfully.');
     }
 
     /**

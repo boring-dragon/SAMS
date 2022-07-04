@@ -19,6 +19,6 @@ const props = defineProps({
 
 		<Link :href="route('admin.students.index')" class="text-sm text-gray-600">&#8592; Go back to Students</Link>
 
-		<StudentForm :student="student" :errors="props.errors" />
+		<StudentForm :student="props.student" :errors="props.errors" />
 	</BreezeAuthenticatedLayout>
 </template>

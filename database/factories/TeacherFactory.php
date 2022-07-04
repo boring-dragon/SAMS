@@ -19,7 +19,12 @@ class TeacherFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'first_name' => $this->faker->name(),
+            'last_name' => $this->faker->name(),
+            'email' => $this->faker->unique()->safeEmail(),
+            'phone_number' => $this->faker->phoneNumber(),
+            'profile_photo_url' => $this->faker->imageUrl(100, 100),
+            'bio' => $this->faker->text(),
         ];
     }
 }

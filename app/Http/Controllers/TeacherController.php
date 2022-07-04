@@ -44,12 +44,13 @@ class TeacherController extends Controller
             'first_name' => 'required',
             'last_name' => 'required',
             'phone_number' => 'required',
+            'email' => 'required|unique:teachers',
             'bio' => 'nullable',
         ]);
 
         Teacher::create($request->all());
 
-        return redirect()->route('teachers.index')->with('success', 'Teacher created successfully.');
+        return redirect()->route('admin.teachers.index')->with('success', 'Teacher created successfully.');
     }
 
     /**
@@ -91,12 +92,13 @@ class TeacherController extends Controller
             'first_name' => 'required',
             'last_name' => 'required',
             'phone_number' => 'required',
+            'email' => 'required|unique:teachers,email,' . $teacher->id,
             'bio' => 'nullable',
         ]);
 
         $teacher->update($request->all());
 
-        return redirect()->route('teachers.index')->with('success', 'Teacher updated successfully.');
+        return back()->with('success', 'Teacher updated successfully.');
     }
 
     /**
@@ -109,6 +111,6 @@ class TeacherController extends Controller
     {
         $teacher->delete();
 
-        return redirect()->route('teachers.index')->with('success', 'Teacher deleted successfully.');
+        return back()->with('success', 'Teacher deleted successfully.');
     }
 }

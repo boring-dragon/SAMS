@@ -7,6 +7,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\User;
 use App\Models\Module;
+use App\Models\Teacher;
 
 class DatabaseSeeder extends Seeder
 {
@@ -22,6 +23,7 @@ class DatabaseSeeder extends Seeder
         User::factory()->create(['email' => 'student@sams.com', 'role' => 'student']);
 
         Student::factory(20)->create();
+        Teacher::factory(20)->create();
         Module::factory(10)->create();
     }
 }

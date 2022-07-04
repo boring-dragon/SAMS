@@ -94,7 +94,7 @@ watch(
 									</tbody>
 								</table>
 							</div>
-							<pagination :links="students.links" class="mt-6" />
+							<pagination :links="props.students.links" class="mt-6" />
 						</div>
 					</div>
 				</div>

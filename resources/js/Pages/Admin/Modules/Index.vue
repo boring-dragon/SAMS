@@ -92,7 +92,7 @@ watch(
 									</tbody>
 								</table>
 							</div>
-							<pagination :links="modules.links" class="mt-6" />
+							<pagination :links="props.modules.links" class="mt-6" />
 						</div>
 					</div>
 				</div>
