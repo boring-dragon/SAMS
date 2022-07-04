@@ -44,6 +44,7 @@ class StudentController extends Controller
             'first_name' => 'required',
             'last_name' => 'required',
             'email' => 'required|unique:students',
+            'dob' => 'required|date',
             'phone_number' => 'required',
             'profile_photo_url' => 'nullable',
             'bio' => 'nullable',
@@ -51,7 +52,7 @@ class StudentController extends Controller
 
         Student::create($request->all());
 
-        return redirect()->route('students.index')->with('success', 'Student created successfully.');
+        return redirect()->route('admin.students.index')->with('success', 'Student created successfully.');
     }
 
     /**
@@ -100,7 +101,7 @@ class StudentController extends Controller
 
         $student->update($request->all());
 
-        return redirect()->route('students.index')->with('success', 'Student updated successfully.');
+        return redirect()->route('admin.students.index')->with('success', 'Student updated successfully.');
     }
 
     /**
@@ -113,6 +114,6 @@ class StudentController extends Controller
     {
         $student->delete();
 
-        return redirect()->route('students.index')->with('success', 'Student deleted successfully.');
+        return back()->with('success', 'Student deleted successfully.');
     }
 }

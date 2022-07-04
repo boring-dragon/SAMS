@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('phone_number');
             $table->string('email')->unique();
             $table->text('bio')->nullable();
+            $table->dateTime('dob');
             $table->timestamps();
         });
     }
