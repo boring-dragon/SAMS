@@ -60,6 +60,11 @@ watch(
 						<div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
 							<div class="overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
 								<table class="min-w-full divide-y divide-gray-300">
+									<div v-show="props.modules.total == 0">
+										<div class="flex items-center justify-start ml-2 my-2">
+											<p class="ml-3 text-sm leading-7 text-gray-500">No Modules found..</p>
+										</div>
+									</div>
 									<thead class="bg-gray-50">
 										<tr>
 											<th class="py-3 pl-4 pr-3 text-left text-xs font-medium uppercase tracking-wide text-gray-500 sm:pl-6" scope="col">Name</th>
