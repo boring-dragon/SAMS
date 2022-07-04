@@ -67,9 +67,9 @@ onMounted(() => {
 					<div>
 						<label class="sr-only" for="type">Type</label>
 						<select class="py-3 px-4 pr-9 block w-full border-gray-200 rounded-md text-sm focus:border-green-500 focus:ring-green-500" placeholder="Type" v-model="state.form.type">
-							<option>Core</option>
-							<option>Tutorial</option>
-							<option>Practical</option>
+							<option value="core">Core</option>
+							<option value="tutorial">Tutorial</option>
+							<option value="practical">Practical</option>
 						</select>
 
 						<p class="mt-2 text-sm text-red-600" v-if="props.errors.type">{{ props.errors.type }}</p>

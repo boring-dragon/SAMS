@@ -23,7 +23,7 @@ class ModuleFactory extends Factory
             'name' => $this->faker->name,
             'module_code' => $this->faker->unique()->numberBetween(1000, 9999),
             'description' => $this->faker->text,
-            'type' => $this->faker->randomElement(['Core', 'Lab', 'Tutorial']),
+            'type' => $this->faker->randomElement(['core', 'practical', 'tutorial']),
         ];
     }
 }
