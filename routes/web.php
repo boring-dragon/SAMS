@@ -5,6 +5,9 @@ use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TeacherController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\Module;
 use Inertia\Inertia;
 
 /*
@@ -38,7 +41,11 @@ Route::group(['middleware' => ['auth:sanctum', 'role:student'], 'prefix' => 'das
 Route::group(['middleware' => ['auth:sanctum', 'role:teacher|admin'], 'prefix' => 'admin', 'as' => 'admin.'], function () {
 
     Route::get('/', function () {
-        return Inertia::render('Admin/Dashboard');
+        return Inertia::render('Admin/Dashboard', [
+            'total_students' => Student::count(),
+            'total_teachers' => Teacher::count(),
+            'total_modules' => Module::count(),
+        ]);
     })->name('dashboard');
 
 
