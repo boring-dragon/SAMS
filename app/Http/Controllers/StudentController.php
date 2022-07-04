@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Student;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class StudentController extends Controller
 {
@@ -14,7 +15,10 @@ class StudentController extends Controller
      */
     public function index()
     {
-        //
+        $students = Student::all();
+        return Inertia::render('Admin/Students/Index', [
+            'students' => $students,
+        ]);
     }
 
     /**
@@ -24,7 +28,7 @@ class StudentController extends Controller
      */
     public function create()
     {
-        //
+        return Inertia::render('Admin/Students/Create');
     }
 
     /**
@@ -35,7 +39,18 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'email' => 'required|unique:students',
+            'phone_number' => 'required',
+            'profile_photo_url' => 'nullable',
+            'bio' => 'nullable',
+        ]);
+
+        Student::create($request->all());
+
+        return redirect()->route('students.index')->with('success', 'Student created successfully.');
     }
 
     /**
@@ -46,7 +61,9 @@ class StudentController extends Controller
      */
     public function show(Student $student)
     {
-        //
+        return Inertia::render('Admin/Students/Show', [
+            'student' => $student,
+        ]);
     }
 
     /**
@@ -57,7 +74,9 @@ class StudentController extends Controller
      */
     public function edit(Student $student)
     {
-        //
+        return Inertia::render('Admin/Students/Edit', [
+            'student' => $student,
+        ]);
     }
 
     /**
@@ -69,7 +88,18 @@ class StudentController extends Controller
      */
     public function update(Request $request, Student $student)
     {
-        //
+        $request->validate([
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'email' => 'required|unique:students,email,' . $student->id,
+            'phone_number' => 'required',
+            'profile_photo_url' => 'nullable',
+            'bio' => 'nullable',
+        ]);
+
+        $student->update($request->all());
+
+        return redirect()->route('students.index')->with('success', 'Student updated successfully.');
     }
 
     /**
@@ -80,6 +110,8 @@ class StudentController extends Controller
      */
     public function destroy(Student $student)
     {
-        //
+        $student->delete();
+
+        return redirect()->route('students.index')->with('success', 'Student deleted successfully.');
     }
 }

@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\ModuleController;
+use App\Http\Controllers\StudentController;
+use App\Http\Controllers\TeacherController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -37,6 +40,11 @@ Route::group(['middleware' => ['auth:sanctum', 'role:teacher|admin'], 'prefix' =
     Route::get('/', function () {
         return Inertia::render('Admin/Dashboard');
     })->name('dashboard');
+
+
+    Route::resource('modules', ModuleController::class);
+    Route::resource('students', StudentController::class);
+    Route::resource('teachers', TeacherController::class);
 });
 
 require __DIR__ . '/auth.php';

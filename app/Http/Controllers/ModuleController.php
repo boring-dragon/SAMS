@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Module;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class ModuleController extends Controller
 {
@@ -14,7 +15,10 @@ class ModuleController extends Controller
      */
     public function index()
     {
-        //
+        $modules = Module::all();
+        return Inertia::render('Admin/Modules/Index', [
+            'modules' => $modules,
+        ]);
     }
 
     /**
@@ -24,7 +28,7 @@ class ModuleController extends Controller
      */
     public function create()
     {
-        //
+        return Inertia::render('Admin/Modules/Create');
     }
 
     /**
@@ -35,7 +39,17 @@ class ModuleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'module_code' => 'required|unique:modules',
+            'description' => 'required',
+            'teacher_id' => 'nullable',
+            'type' => 'required',
+        ]);
+
+        Module::create($request->all());
+
+        return redirect()->route('modules.index')->with('success', 'Module created successfully.');
     }
 
     /**
@@ -46,7 +60,9 @@ class ModuleController extends Controller
      */
     public function show(Module $module)
     {
-        //
+        return Inertia::render('Admin/Modules/Show', [
+            'module' => $module,
+        ]);
     }
 
     /**
@@ -57,7 +73,9 @@ class ModuleController extends Controller
      */
     public function edit(Module $module)
     {
-        //
+        return Inertia::render('Admin/Modules/Edit', [
+            'module' => $module,
+        ]);
     }
 
     /**
@@ -69,7 +87,17 @@ class ModuleController extends Controller
      */
     public function update(Request $request, Module $module)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'module_code' => 'required|unique:modules,module_code,'.$module->id,
+            'description' => 'required',
+            'teacher_id' => 'nullable',
+            'type' => 'required',
+        ]);
+
+        $module->update($request->all());
+
+        return redirect()->route('modules.index')->with('success', 'Module updated successfully.');
     }
 
     /**
@@ -80,6 +108,8 @@ class ModuleController extends Controller
      */
     public function destroy(Module $module)
     {
-        //
+        $module->delete();
+
+        return redirect()->route('modules.index')->with('success', 'Module deleted successfully.');
     }
 }

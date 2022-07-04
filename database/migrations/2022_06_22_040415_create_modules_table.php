@@ -15,6 +15,12 @@ return new class extends Migration
     {
         Schema::create('modules', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->unsignedBigInteger('teacher_id')->nullable();
+            $table->string('module_code');
+            $table->text('description')->nullable();
+            $table->string('type')->default('core');
+            $table->string('attendance_code')->nullable();
             $table->timestamps();
         });
     }

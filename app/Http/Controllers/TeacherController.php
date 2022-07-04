@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Teacher;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class TeacherController extends Controller
 {
@@ -14,7 +15,9 @@ class TeacherController extends Controller
      */
     public function index()
     {
-        //
+        return Inertia::render('Admin/Teachers/Index', [
+            'teachers' => Teacher::all(),
+        ]);
     }
 
     /**
@@ -24,7 +27,7 @@ class TeacherController extends Controller
      */
     public function create()
     {
-        //
+        return Inertia::render('Admin/Teachers/Create');
     }
 
     /**
@@ -35,7 +38,16 @@ class TeacherController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'phone_number' => 'required',
+            'bio' => 'nullable',
+        ]);
+
+        Teacher::create($request->all());
+
+        return redirect()->route('teachers.index')->with('success', 'Teacher created successfully.');
     }
 
     /**
@@ -46,7 +58,9 @@ class TeacherController extends Controller
      */
     public function show(Teacher $teacher)
     {
-        //
+        return Inertia::render('Admin/Teachers/Show', [
+            'teacher' => $teacher,
+        ]);
     }
 
     /**
@@ -57,7 +71,9 @@ class TeacherController extends Controller
      */
     public function edit(Teacher $teacher)
     {
-        //
+        return Inertia::render('Admin/Teachers/Edit', [
+            'teacher' => $teacher,
+        ]);
     }
 
     /**
@@ -69,7 +85,16 @@ class TeacherController extends Controller
      */
     public function update(Request $request, Teacher $teacher)
     {
-        //
+        $request->validate([
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'phone_number' => 'required',
+            'bio' => 'nullable',
+        ]);
+
+        $teacher->update($request->all());
+
+        return redirect()->route('teachers.index')->with('success', 'Teacher updated successfully.');
     }
 
     /**
@@ -80,6 +105,8 @@ class TeacherController extends Controller
      */
     public function destroy(Teacher $teacher)
     {
-        //
+        $teacher->delete();
+
+        return redirect()->route('teachers.index')->with('success', 'Teacher deleted successfully.');
     }
 }
