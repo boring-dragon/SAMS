@@ -10,7 +10,7 @@
 					<path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="1" />
 				</svg>
 			</div>
-			<flatpickr :config="options" class="block w-full pl-10 border border-gray-300 form-input rounded-md sm:text-sm focus:ring-0 focus:border-green-500" ref="input" v-model="dataValue" />
+			<flatpickr :config="options" class="block w-full pl-10 border border-gray-300 form-input rounded-md sm:text-sm focus:ring-blue-2 focus:border-blue-2" ref="input" v-model="dataValue" />
 		</div>
 
 		<div v-if="error">
@@ -72,14 +72,19 @@ export default {
         wrap: true, // set wrap to true only when using 'input-group'
         altFormat: "Y-m-d",
         altInput: true,
-        defaultDate: null,
         enableTime: true,
         dateFormat: "Y-m-d",
       });
     },
   },
+  created() {
+    if(this.modelValue) {
+        this.dataValue = this.modelValue;
+    }
+  }
 };
 </script>
+
 <style>
 .flatpickr-day.selected,
 .flatpickr-day.selected:hover {

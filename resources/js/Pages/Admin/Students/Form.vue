@@ -1,5 +1,5 @@
 <script setup>
-import { reactive, onMounted } from "vue";
+import { reactive, onMounted, onBeforeMount } from "vue";
 import BreezeAuthenticatedLayout from "@/Layouts/Authenticated.vue";
 import Loader from "@/Shared/Loader.vue";
 import DateInput from "@/Shared/DateInput.vue"
@@ -44,7 +44,7 @@ function onSubmit() {
   }
 }
 
-onMounted(() => {
+onBeforeMount(() => {
   if (props.student) {
     _.assign(state.form, props.student);
   }
