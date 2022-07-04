@@ -5,6 +5,7 @@ import Pagination from "@/Shared/Pagination.vue";
 import Search from "@/Shared/Search.vue";
 import { Link, Head } from "@inertiajs/inertia-vue3";
 import { Inertia } from "@inertiajs/inertia";
+import moment from "moment";
 
 const props = defineProps({
   modules: {
@@ -70,7 +71,7 @@ watch(
 											<th class="py-3 pl-4 pr-3 text-left text-xs font-medium uppercase tracking-wide text-gray-500 sm:pl-6" scope="col">Name</th>
 											<th class="px-3 py-3 text-left text-xs font-medium uppercase tracking-wide text-gray-500" scope="col">Module Code</th>
 											<th class="px-3 py-3 text-left text-xs font-medium uppercase tracking-wide text-gray-500" scope="col">Type</th>
-											<th class="px-3 py-3 text-left text-xs font-medium uppercase tracking-wide text-gray-500" scope="col">Created</th>
+											<th class="px-3 py-3 text-left text-xs font-medium uppercase tracking-wide text-gray-500" scope="col">Created At</th>
 											<th class="relative py-3 pl-3 pr-4 sm:pr-6" scope="col">
 												<span class="sr-only">Edit</span>
 											</th>
@@ -81,7 +82,7 @@ watch(
 											<td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">{{ module.name }}</td>
 											<td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ module.module_code }}</td>
 											<td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ module.type }}</td>
-											<td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ module.created_at }}</td>
+											<td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ moment(module.created_at).format("YYYY-MM-DD HH:mm") }}</td>
 											<td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
 												<Link :href="route('admin.modules.edit', module)" class="text-green-600 hover:text-green-900">Edit</Link>
 
