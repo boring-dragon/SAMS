@@ -6,6 +6,7 @@ use App\Filters\ModulesFilters;
 use App\Models\Module;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use App\Models\Teacher;
 
 class ModuleController extends Controller
 {
@@ -29,7 +30,9 @@ class ModuleController extends Controller
      */
     public function create()
     {
-        return Inertia::render('Admin/Modules/Create');
+        return Inertia::render('Admin/Modules/Create', [
+            'teachers' => Teacher::select('id', 'first_name', 'last_name')->get(),
+        ]);
     }
 
     /**
@@ -76,6 +79,7 @@ class ModuleController extends Controller
     {
         return Inertia::render('Admin/Modules/Edit', [
             'module' => $module,
+            'teachers' => Teacher::select('id', 'first_name', 'last_name')->get()
         ]);
     }
 

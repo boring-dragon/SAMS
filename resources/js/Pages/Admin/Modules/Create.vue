@@ -5,6 +5,7 @@ import ModuleForm from "./Form.vue";
 
 const props = defineProps({
   errors: Object,
+  teachers: Object,
 });
 </script>
 
@@ -18,6 +19,6 @@ const props = defineProps({
 
 		<Link :href="route('admin.modules.index')" class="text-sm text-gray-600">&#8592; Go back to Modules</Link>
 
-		<ModuleForm :errors="props.errors" />
+		<ModuleForm :errors="props.errors" :teachers="props.teachers" />
 	</BreezeAuthenticatedLayout>
 </template>

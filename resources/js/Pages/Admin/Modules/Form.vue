@@ -7,6 +7,7 @@ import { useForm } from "@inertiajs/inertia-vue3";
 
 const props = defineProps({
   module: Object,
+  teachers: Object,
   errors: Object,
 });
 
@@ -18,6 +19,7 @@ const state = reactive({
       module_code: null,
       description: null,
       type: null,
+      teacher_id: null
     },
     { resetOnSuccess: false }
   ),
@@ -75,6 +77,15 @@ onMounted(() => {
 						<p class="mt-2 text-sm text-red-600" v-if="props.errors.type">{{ props.errors.type }}</p>
 					</div>
 				</div>
+
+                	<div>
+						<label class="sr-only" for="teacher">Teacher</label>
+						<select class="py-3 px-4 pr-9 block w-full border-gray-200 rounded-md text-sm focus:border-green-500 focus:ring-green-500" placeholder="Type" v-model="state.form.teacher_id">
+                                    <option :value="teacher.id" :key="teacher.id" v-for="teacher in props.teachers">{{ teacher.full_name }}</option>
+						</select>
+
+						<p class="mt-2 text-sm text-red-600" v-if="props.errors.teacher">{{ props.errors.teacher }}</p>
+					</div>
 
 				<div>
 					<label class="sr-only" for="description">Description</label>
