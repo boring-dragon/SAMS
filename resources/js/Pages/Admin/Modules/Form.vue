@@ -66,7 +66,7 @@ onMounted(() => {
 
 					<div>
 						<label class="sr-only" for="type">Type</label>
-						<select class="py-3 px-4 pr-9 block w-full border-gray-200 rounded-md text-sm focus:border-green-500 focus:ring-green-500 " v-model="state.form.type">
+						<select class="py-3 px-4 pr-9 block w-full border-gray-200 rounded-md text-sm focus:border-green-500 focus:ring-green-500" placeholder="Type" v-model="state.form.type">
 							<option>Core</option>
 							<option>Tutorial</option>
 							<option>Practical</option>
