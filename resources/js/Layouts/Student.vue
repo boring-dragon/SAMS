@@ -19,9 +19,9 @@ const showingNavigationDropdown = ref(false);
                     <div class="flex justify-between h-16">
                         <div class="flex">
                             <!-- Logo -->
-                            <div class="shrink-0 flex items-center">
+                            <div class="shrink-0 flex items-center uppercase">
                                 <Link :href="route('student.dashboard')">
-                                    <BreezeApplicationLogo class="block h-9 w-auto" />
+                                    Sams
                                 </Link>
                             </div>
 
