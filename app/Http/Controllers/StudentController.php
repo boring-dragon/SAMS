@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Student;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use App\Filters\StudentsFilters;
 
 class StudentController extends Controller
 {
@@ -13,11 +14,11 @@ class StudentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request, StudentsFilters $filters)
     {
-        $students = Student::all();
         return Inertia::render('Admin/Students/Index', [
-            'students' => $students,
+            'students' => Student::orderBy('updated_at', 'desc')->filter($filters)->paginate(8),
+            "filters" => $request->all($filters->filterNames()),
         ]);
     }
 
