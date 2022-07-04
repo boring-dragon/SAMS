@@ -25,6 +25,11 @@ class Student extends Model
         'full_name',
     ];
 
+    public function user()
+    {
+        return $this->morphOne(User::class, 'typable', 'typable_type', 'typable_id', 'id');
+    }
+
 
     public function getFullNameAttribute()
     {

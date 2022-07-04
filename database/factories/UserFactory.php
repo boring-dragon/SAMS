@@ -27,6 +27,16 @@ class UserFactory extends Factory
         ];
     }
 
+    public function forModel($model)
+    {
+        return $this->state(function () use ($model){
+            return [
+                'typable_type' => $model->getMorphClass(),
+                'typable_id'   => $model->id,
+            ];
+        });
+    }
+
     /**
      * Indicate that the model's email address should be unverified.
      *

@@ -2,6 +2,8 @@
 
 namespace Tests;
 
+use App\Models\Student;
+use App\Models\Teacher;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
@@ -23,8 +25,12 @@ abstract class TestCase extends BaseTestCase
         parent::setUp();
 
         $this->admin = User::factory()->state(["role" => "admin"])->create();
-        $this->teacher = User::factory()->state(["role" => "teacher"])->create();
-        $this->student = User::factory()->state(["role" => "student"])->create();
+
+        $this->student = Student::factory()->create();
+        User::factory()->state(["role" => "student"])->forModel($this->student)->create();
+
+        $this->teacher = Teacher::factory()->create();
+        User::factory()->state(["role" => "teacher"])->forModel($this->teacher)->create();
 
         TestResponse::macro('props', function ($key = null) {
             $props = json_decode(json_encode($this->original->getData()['page']['props']), JSON_OBJECT_AS_ARRAY);
