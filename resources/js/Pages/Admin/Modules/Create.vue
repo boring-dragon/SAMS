@@ -1,23 +1,23 @@
 <script setup>
-import BreezeAuthenticatedLayout from '@/Layouts/Authenticated.vue';
-import { Head } from '@inertiajs/inertia-vue3';
-import ModuleForm from './Form.vue';
+import BreezeAuthenticatedLayout from "@/Layouts/Authenticated.vue";
+import { Head, Link } from "@inertiajs/inertia-vue3";
+import ModuleForm from "./Form.vue";
 
 const props = defineProps({
-    errors: Object
+  errors: Object,
 });
 </script>
 
 <template>
-    <Head title="Module Create" />
+	<Head title="Module Create" />
 
-    <BreezeAuthenticatedLayout>
-        <template #header>
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                Create Module
-            </h2>
-        </template>
+	<BreezeAuthenticatedLayout>
+		<template #header>
+			<h2 class="font-semibold text-xl text-gray-800 leading-tight mb-3">Create Module</h2>
+		</template>
 
-      <ModuleForm :errors="props.errors" />
-    </BreezeAuthenticatedLayout>
+		<Link :href="route('admin.modules.index')" class="text-sm text-gray-600">&#8592; Go back to Modules</Link>
+
+		<ModuleForm :errors="props.errors" />
+	</BreezeAuthenticatedLayout>
 </template>
