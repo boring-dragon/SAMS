@@ -98,7 +98,7 @@ class ModuleController extends Controller
 
         $module->update($request->all());
 
-        return redirect()->route('admin.modules.index')->with('success', 'Module updated successfully.');
+        return back()->with('success', 'Module updated successfully.');
     }
 
     /**

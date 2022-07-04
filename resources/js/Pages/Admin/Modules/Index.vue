@@ -78,7 +78,7 @@ watch(
 											<td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ module.type }}</td>
 											<td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ module.created_at }}</td>
 											<td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-												<a class="text-green-600 hover:text-green-900" href="#">Edit</a>
+												<Link :href="route('admin.modules.edit', module)" class="text-green-600 hover:text-green-900" href="#">Edit</Link>
 
 												<button @click.prevent="destroy(module)" class="text-red-600 hover:text-red-900 ml-4">Remove</button>
 											</td>
