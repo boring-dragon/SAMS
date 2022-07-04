@@ -20,7 +20,7 @@ class ModuleFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->name,
+            'name' => $this->faker->domainWord(),
             'module_code' => $this->faker->unique()->numberBetween(1000, 9999),
             'description' => $this->faker->text,
             'type' => $this->faker->randomElement(['core', 'practical', 'tutorial']),
