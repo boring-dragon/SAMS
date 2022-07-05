@@ -5,7 +5,7 @@ import BreezeDropdown from "@/Components/Dropdown.vue";
 import BreezeDropdownLink from "@/Components/DropdownLink.vue";
 import BreezeNavLink from "@/Components/NavLink.vue";
 import BreezeResponsiveNavLink from "@/Components/ResponsiveNavLink.vue";
-import FlashMessages from '@/Shared/FlashMessages.vue'
+import FlashMessages from "@/Shared/FlashMessages.vue";
 import { Link } from "@inertiajs/inertia-vue3";
 
 const showingNavigationDropdown = ref(false);
@@ -31,7 +31,7 @@ const showingNavigationDropdown = ref(false);
 						<nav class="flex-1 space-y-1 bg-neutral-800">
 							<ul>
 								<li>
-									<Link class="inline-flex items-center w-full px-4 py-2 mt-1 text-base transition duration-500 ease-in-out transform border rounded-lg  focus:shadow-outline hover:bg-neutral-900" :href="route('admin.dashboard')" :class="route().current('admin.dashboard') ? 'text-neutral-200 bg-neutral-900 border-neutral-900' : 'text-neutral-200 border-neutral-800 hover:border-neutral-800'">
+									<Link :class="route().current('admin.dashboard') ? 'text-neutral-200 bg-neutral-900 border-neutral-900' : 'text-neutral-200 border-neutral-800 hover:border-neutral-800'" :href="route('admin.dashboard')" class="inline-flex items-center w-full px-4 py-2 mt-1 text-base transition duration-500 ease-in-out transform border rounded-lg focus:shadow-outline hover:bg-neutral-900">
 										<svg class="w-6 h-6" fill="none" viewBox="0 0 24 24">
 											<path d="M4.75 6.75C4.75 5.64543 5.64543 4.75 6.75 4.75H17.25C18.3546 4.75 19.25 5.64543 19.25 6.75V17.25C19.25 18.3546 18.3546 19.25 17.25 19.25H6.75C5.64543 19.25 4.75 18.3546 4.75 17.25V6.75Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" />
 											<path d="M9.75 8.75V19" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" />
@@ -42,7 +42,7 @@ const showingNavigationDropdown = ref(false);
 									</Link>
 								</li>
 								<li>
-									<Link class="inline-flex items-center w-full px-4 py-2 mt-1 text-base transition duration-500 ease-in-out transform border rounded-lg  focus:shadow-outline hover:bg-neutral-900" :href="route('admin.modules.index')" :class="route().current('admin.modules.*') ? 'text-neutral-200 bg-neutral-900 border-neutral-900' : 'text-neutral-200 border-neutral-800 hover:border-neutral-800'">
+									<Link :class="route().current('admin.modules.*') ? 'text-neutral-200 bg-neutral-900 border-neutral-900' : 'text-neutral-200 border-neutral-800 hover:border-neutral-800'" :href="route('admin.modules.index')" class="inline-flex items-center w-full px-4 py-2 mt-1 text-base transition duration-500 ease-in-out transform border rounded-lg focus:shadow-outline hover:bg-neutral-900">
 										<svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
 											<path d="M19.25 15.25V5.75C19.25 5.19772 18.8023 4.75 18.25 4.75H6.75C5.64543 4.75 4.75 5.64543 4.75 6.75V16.75" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" />
 											<path d="M19.25 15.25H6.75C5.64543 15.25 4.75 16.1454 4.75 17.25C4.75 18.3546 5.64543 19.25 6.75 19.25H19.25V15.25Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" />
@@ -52,7 +52,7 @@ const showingNavigationDropdown = ref(false);
 									</Link>
 								</li>
 								<li>
-										<Link class="inline-flex items-center w-full px-4 py-2 mt-1 text-base transition duration-500 ease-in-out transform border rounded-lg  focus:shadow-outline hover:bg-neutral-900" :href="route('admin.teachers.index')" :class="route().current('admin.teachers.*') ? 'text-neutral-200 bg-neutral-900 border-neutral-900' : 'text-neutral-200 border-neutral-800 hover:border-neutral-800'">
+									<Link :class="route().current('admin.teachers.*') ? 'text-neutral-200 bg-neutral-900 border-neutral-900' : 'text-neutral-200 border-neutral-800 hover:border-neutral-800'" :href="route('admin.teachers.index')" class="inline-flex items-center w-full px-4 py-2 mt-1 text-base transition duration-500 ease-in-out transform border rounded-lg focus:shadow-outline hover:bg-neutral-900">
 										<svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
 											<path d="M4.75 10L12 5.75L19.2501 10L12 14.25L4.75 10Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" />
 											<path d="M12.5 10C12.5 10.2761 12.2761 10.5 12 10.5C11.7239 10.5 11.5 10.2761 11.5 10C11.5 9.72386 11.7239 9.5 12 9.5C12.2761 9.5 12.5 9.72386 12.5 10Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" />
@@ -63,11 +63,23 @@ const showingNavigationDropdown = ref(false);
 									</Link>
 								</li>
 								<li>
-										<Link class="inline-flex items-center w-full px-4 py-2 mt-1 text-base transition duration-500 ease-in-out transform border rounded-lg  focus:shadow-outline hover:bg-neutral-900" :href="route('admin.students.index')" :class="route().current('admin.students.*') ? 'text-neutral-200 bg-neutral-900 border-neutral-900' : 'text-neutral-200 border-neutral-800 hover:border-neutral-800'">
+									<Link :class="route().current('admin.students.*') ? 'text-neutral-200 bg-neutral-900 border-neutral-900' : 'text-neutral-200 border-neutral-800 hover:border-neutral-800'" :href="route('admin.students.index')" class="inline-flex items-center w-full px-4 py-2 mt-1 text-base transition duration-500 ease-in-out transform border rounded-lg focus:shadow-outline hover:bg-neutral-900">
 										<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
 											<path d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
 										</svg>
 										<span class="ml-4">Students</span>
+									</Link>
+								</li>
+
+								<li>
+									<Link class="inline-flex items-center w-full px-4 py-2 mt-1 text-base transition duration-500 ease-in-out transform border rounded-lg text-neutral-200 border-neutral-800 hover:border-neutral-800 focus:shadow-outline hover:bg-neutral-900" href="#">
+										<svg class="w-6 h-6" fill="none" viewBox="0 0 24 24">
+											<circle cx="12" cy="8" r="3.25" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" />
+											<path d="M12.25 19.25H6.94953C5.77004 19.25 4.88989 18.2103 5.49085 17.1954C6.36247 15.7234 8.23935 14 12.25 14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" />
+											<path d="M14.75 17.75L16 19.25L19.25 14.75" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" />
+										</svg>
+
+										<span class="ml-4">Enrollments</span>
 									</Link>
 								</li>
 								<li>
@@ -84,7 +96,7 @@ const showingNavigationDropdown = ref(false);
 							<p class="px-4 pt-4 font-medium uppercase text-neutral-200">Actions</p>
 							<ul>
 								<li>
-									<Link :href="route('logout')" class="inline-flex items-center w-full px-4 py-2 mt-1 text-base transition duration-500 ease-in-out transform border rounded-lg text-neutral-200 border-neutral-800 hover:border-neutral-800 focus:shadow-outline hover:bg-neutral-900" method="post" as="button">
+									<Link :href="route('logout')" as="button" class="inline-flex items-center w-full px-4 py-2 mt-1 text-base transition duration-500 ease-in-out transform border rounded-lg text-neutral-200 border-neutral-800 hover:border-neutral-800 focus:shadow-outline hover:bg-neutral-900" method="post">
 										<span class="ml-4">Logout</span>
 									</Link>
 								</li>
@@ -113,7 +125,7 @@ const showingNavigationDropdown = ref(false);
 						<slot name="header" />
 					</div>
 					<div class="px-4 mx-auto max-w-7xl sm:px-6 md:px-8">
-                        <flash-messages />
+						<flash-messages />
 						<slot />
 					</div>
 				</div>

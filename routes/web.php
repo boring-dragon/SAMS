@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\EnrollmentController;
 use App\Http\Controllers\ModuleController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TeacherController;
@@ -54,6 +55,7 @@ Route::group(['middleware' => ['auth:sanctum', 'role:teacher|admin'], 'prefix' =
     Route::resource('modules', ModuleController::class);
     Route::resource('students', StudentController::class);
     Route::resource('teachers', TeacherController::class);
+    Route::resource('enrollments', EnrollmentController::class);
 });
 
 require __DIR__ . '/auth.php';
