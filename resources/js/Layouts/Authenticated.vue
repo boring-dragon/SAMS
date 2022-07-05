@@ -18,7 +18,7 @@ const showingNavigationDropdown = ref(false);
 				<div class="flex flex-col flex-grow pt-5 overflow-y-auto border-r bg-green-700">
 					<div class="flex flex-col items-center flex-shrink-0 px-4">
 						<Link :href="route('admin.dashboard')" class="px-8 text-left focus:outline-none">
-							<h2 class="block p-2 text-xl font-medium tracking-tighter transition duration-500 ease-in-out transform cursor-pointer text-neutral-200 hover:text-neutral-200 uppercase">Sams Management</h2>
+							<h2 class="block p-2 text-xl font-bold tracking-tighter transition duration-500 ease-in-out transform cursor-pointer text-neutral-200 hover:text-neutral-200 uppercase">Sams Management</h2>
 						</Link>
 						<button class="hidden rounded-lg focus:outline-none focus:shadow-outline">
 							<svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
