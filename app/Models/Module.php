@@ -53,4 +53,9 @@ class Module extends Model
     {
         return $this->students()->detach($student->id);
     }
+
+    public function removeStudents(array $student_ids) : bool
+    {
+        return $this->students()->detach($student_ids);
+    }
 }

@@ -45,3 +45,20 @@ test('A student can be removed from a module ', function() {
     expect($module->students()->count())->toBe(0);
 });
 
+
+
+test('List of students can be removed from a module', function() {
+    actingAs($this->admin);
+
+    $students = Student::factory()->count(3)->create();
+
+    $module = Module::factory()->create();
+
+    $module->enrollStudents($students->pluck('id')->toArray());
+
+    expect($module->students()->count())->toBe(3);
+
+    $module->removeStudents($students->pluck('id')->toArray());
+
+    expect($module->students()->count())->toBe(0);
+});
