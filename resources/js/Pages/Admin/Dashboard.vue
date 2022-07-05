@@ -35,7 +35,36 @@ const props = defineProps({
 		</template>
 
 		<div class="py-12">
-			<div class="items-center flex flex-wrap">
+            <article class="p-2 rounded-2xl">
+  <a href="" class="flex flex-col justify-end h-full p-6 bg-white sm:p-8 rounded-xl hover:bg-opacity-90">
+    <div class="mt-16">
+      <p class="text-xs font-medium text-gray-500">
+        26/05/2021
+      </p>
+      <h5 class="mt-2 text-xl font-bold text-white">
+        Custom Helper to Improve the Rails phone_to Helper
+      </h5>
+      <div class="flex items-center justify-between mt-6">
+        <p class="text-lg font-medium text-transparent bg-clip-text bg-gradient-to-r from-red-400 to-red-600">
+          Rails
+        </p>
+        <ul class="flex space-x-1">
+          <li class="inline-block rounded-full text-white text-xs font-medium px-3 py-1.5 bg-gray-800">
+            Snippet
+          </li>
+          <li class="inline-block rounded-full text-white text-xs font-medium px-3 py-1.5 bg-gray-800">
+            Info
+          </li>
+          <li class="inline-block rounded-full text-white text-xs font-medium px-3 py-1.5 bg-gray-800">
+            Tip
+          </li>
+        </ul>
+      </div>
+    </div>
+  </a>
+</article>
+			<div class="items-center flex flex-wrap mt-8">
+
 				<div class="px-3 mb-6 w-full md:w-1/2">
 					<div class="bg-white shadow rounded-lg h-150">
 						<div class="px-6 py-4">
