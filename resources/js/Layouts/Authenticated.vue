@@ -72,7 +72,7 @@ const showingNavigationDropdown = ref(false);
 								</li>
 
 								<li>
-									<Link class="inline-flex items-center w-full px-4 py-2 mt-1 text-base transition duration-500 ease-in-out transform border rounded-lg text-neutral-200 border-neutral-800 hover:border-neutral-800 focus:shadow-outline hover:bg-neutral-900" href="#">
+									<Link :class="route().current('admin.enrollments.*') ? 'text-neutral-200 bg-neutral-900 border-neutral-900' : 'text-neutral-200 border-neutral-800 hover:border-neutral-800'" :href="route('admin.enrollments.index')" class="inline-flex items-center w-full px-4 py-2 mt-1 text-base transition duration-500 ease-in-out transform border rounded-lg focus:shadow-outline hover:bg-neutral-900">
 										<svg class="w-6 h-6" fill="none" viewBox="0 0 24 24">
 											<circle cx="12" cy="8" r="3.25" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" />
 											<path d="M12.25 19.25H6.94953C5.77004 19.25 4.88989 18.2103 5.49085 17.1954C6.36247 15.7234 8.23935 14 12.25 14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" />
