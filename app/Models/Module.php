@@ -30,12 +30,14 @@ class Module extends Model
 
     public function students() : BelongsToMany
     {
-        return $this->belongsToMany(Student::class, 'enrollments', 'module_id', 'student_id');
+        return $this->belongsToMany(Student::class, 'enrollments', 'module_id', 'student_id')
+                    ->withTimestamps()
+                    ->withPivot('enrolled_at');
     }
 
-    public function enrollStudents(array $students) : void
+    public function enrollStudents(array $student_ids) : void
     {
-        $this->students()->syncWithPivotValues($students, [
+        $this->students()->syncWithPivotValues($student_ids, [
             'enrolled_at' => Carbon::now(),
         ]);
     }
@@ -45,5 +47,10 @@ class Module extends Model
         $this->students()->attach($student->id, [
             'enrolled_at' => Carbon::now(),
         ]);
+    }
+
+    public function removeStudent(Student $student) : bool
+    {
+        return $this->students()->detach($student->id);
     }
 }

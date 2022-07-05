@@ -22,7 +22,7 @@ class ModuleFactory extends Factory
         return [
             'name' => $this->faker->domainWord(),
             'module_code' => $this->faker->unique()->numberBetween(1000, 9999),
-            'description' => $this->faker->text,
+            'description' => $this->faker->text(),
             'type' => $this->faker->randomElement(['core', 'practical', 'tutorial']),
         ];
     }
