@@ -10,11 +10,12 @@ use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 use Illuminate\Testing\TestResponse;
 use PHPUnit\Framework\Assert;
 use App\Models\User;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Arr;
 
 abstract class TestCase extends BaseTestCase
 {
-    use CreatesApplication, DatabaseMigrations, DatabaseTransactions;
+    use CreatesApplication, DatabaseMigrations, RefreshDatabase;
 
     protected $admin;
     protected $teacher;

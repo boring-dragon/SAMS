@@ -8,7 +8,7 @@ import { Head } from '@inertiajs/inertia-vue3';
 
     <BreezeAuthenticatedLayout>
         <template #header>
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            <h2 class="font-semibold text-4compxl text-gray-800 leading-tight">
                 Attendance
             </h2>
         </template>
