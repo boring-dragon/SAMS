@@ -11,6 +11,7 @@ import { Head, Link, useForm } from '@inertiajs/inertia-vue3';
 const form = useForm({
     name: '',
     email: '',
+    role: '',
     password: '',
     password_confirmation: '',
     terms: false,
