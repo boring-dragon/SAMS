@@ -22,6 +22,7 @@ defineProps({
 
 				<div class="flex flex-wrap justify-center gap-4 mt-8">
 					<a class="block w-full px-12 py-3 text-sm font-medium text-white bg-green-600 rounded shadow sm:w-auto active:bg-green-500 hover:bg-green-700 focus:outline-none focus:ring" href="/register">Get Started</a>
+                    <a class="block w-full px-12 py-3 text-sm font-medium text-white bg-green-600 rounded shadow sm:w-auto active:bg-green-500 hover:bg-green-700 focus:outline-none focus:ring" href="/login">Login</a>
 				</div>
 			</div>
 		</div>
