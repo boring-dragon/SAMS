@@ -12,10 +12,10 @@ const showingNavigationDropdown = ref(false);
 </script>
 
 <template>
-	<div class="flex overflow-hidden bg-white h-screen">
+	<div class="flex overflow-hidden bg-gray-50 h-screen">
 		<div class="hidden md:flex md:flex-shrink-0">
 			<div class="flex flex-col w-64">
-				<div class="flex flex-col flex-grow pt-5 overflow-y-auto border-r bg-gray-100">
+				<div class="flex flex-col flex-grow pt-5 overflow-y-auto border-r bg-white">
 					<div class="flex flex-col items-center flex-shrink-0 px-4">
 						<Link :href="route('admin.dashboard')" class="px-8 text-left focus:outline-none">
 							<h2 class="block p-2 text-xl font-bold tracking-tighter transition duration-500 ease-in-out transform cursor-pointer text-gray-600 hover:text-gray-700 uppercase">Sams Management</h2>
@@ -103,7 +103,7 @@ const showingNavigationDropdown = ref(false);
 							</ul>
 						</nav>
 					</div>
-					<div class="flex flex-shrink-0 p-4 px-4 bg-white border-r-4 border-green-500">
+					<div class="flex flex-shrink-0 p-4 px-4 bg-gray-100 border-r-4 border-green-500">
 						<a class="flex-shrink-0 block w-full group" href="#">
 							<div class="flex items-center">
 								<div>
