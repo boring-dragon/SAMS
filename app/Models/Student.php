@@ -47,7 +47,7 @@ class Student extends Model
     }
 
 
-    public function getAllOccuringClasses()
+    public function getAllOccuringClasses() : ?array
     {
         $currentlyOccuringModules = [];
 
@@ -66,5 +66,26 @@ class Student extends Model
         });
 
         return $currentlyOccuringModules;
+    }
+
+    public function getUpComingClasses() : ?array
+    {
+        $upComingModules = [];
+
+
+        collect($this->modules)->each(function ($module, $key) use (&$upComingModules) {
+
+            collect($module->time_slots)->filter()->each(function ($timeSlot, $key) use (&$upComingModules, $module) {
+                $startTime = Carbon::parse($key.$timeSlot['start']);
+                $currentTime = Carbon::now();
+
+                if ($currentTime->lt($startTime) && $startTime->diffInDays($currentTime) <= 7) {
+                    $upComingModules[] = $module;
+                }
+
+            });
+        });
+
+        return $upComingModules;
     }
 }
