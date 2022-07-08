@@ -33,6 +33,12 @@ const showingNavigationDropdown = ref(false);
 
                                 <BreezeNavLink :href="route('student.modules.index')" :active="route().current('student.modules.index')">
                                     Modules
+
+                                </BreezeNavLink>
+
+
+                                <BreezeNavLink :href="route('student.classes.index')" :active="route().current('student.classes.index')">
+                                    Classes
                                 </BreezeNavLink>
 
                                    <BreezeNavLink :href="route('student.attendance.index')" :active="route().current('student.attendance.index')">
@@ -87,6 +93,10 @@ const showingNavigationDropdown = ref(false);
 
                           <BreezeResponsiveNavLink :href="route('student.modules.index')" :active="route().current('student.modules.index')">
                             Modules
+                        </BreezeResponsiveNavLink>
+
+                          <BreezeResponsiveNavLink :href="route('student.modules.index')" :active="route().current('student.modules.index')">
+                            Classes
                         </BreezeResponsiveNavLink>
 
                            <BreezeResponsiveNavLink :href="route('student.attendance.index')" :active="route().current('student.attendance.index')">

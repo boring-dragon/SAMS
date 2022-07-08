@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\EnrollmentController;
 use App\Http\Controllers\ModuleController;
+use App\Http\Controllers\Student\ClassesIndexController;
 use App\Http\Controllers\Student\ModulesIndexController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TeacherController;
@@ -39,6 +40,7 @@ Route::group(['middleware' => ['auth:sanctum', 'role:student'], 'prefix' => 'das
     })->name('dashboard');
 
     Route::get('/modules', ModulesIndexController::class)->name('modules.index');
+    Route::get('/classes', ClassesIndexController::class)->name('classes.index');
 
     Route::get('/attendance', function () {
         return Inertia::render('Student/Attendance/Index');
