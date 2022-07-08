@@ -36,6 +36,14 @@ Route::group(['middleware' => ['auth:sanctum', 'role:student'], 'prefix' => 'das
     Route::get('/', function () {
         return Inertia::render('Student/Dashboard');
     })->name('dashboard');
+
+    Route::get('/modules', function () {
+        return Inertia::render('Student/Modules/Index');
+    })->name('modules.index');
+
+    Route::get('/attendance', function () {
+        return Inertia::render('Student/Attendance/Index');
+    })->name('attendance.index');
 });
 
 
