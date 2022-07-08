@@ -20,6 +20,11 @@ class Module extends Model
         'description',
         'teacher_id',
         'type',
+        'time_slots'
+    ];
+
+    protected $casts = [
+        'time_slots' => 'array',
     ];
 
 

@@ -24,6 +24,7 @@ class ModuleFactory extends Factory
             'module_code' => $this->faker->unique()->numberBetween(1000, 9999),
             'description' => $this->faker->text(),
             'type' => $this->faker->randomElement(['core', 'practical', 'tutorial']),
+            'time_slots' => []
         ];
     }
 }

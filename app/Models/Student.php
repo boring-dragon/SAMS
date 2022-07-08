@@ -5,6 +5,9 @@ namespace App\Models;
 use App\Filters\Filterable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\MorphOne;
+use Illuminate\Support\Carbon;
 
 class Student extends Model
 {
@@ -25,14 +28,43 @@ class Student extends Model
         'full_name',
     ];
 
-    public function user()
+    public function user() : MorphOne
     {
         return $this->morphOne(User::class, 'typable', 'typable_type', 'typable_id', 'id');
+    }
+
+    public function modules() : BelongsToMany
+    {
+        return $this->belongsToMany(Module::class, 'enrollments', 'student_id', 'module_id')
+            ->withTimestamps()
+            ->withPivot('enrolled_at');
     }
 
 
     public function getFullNameAttribute()
     {
         return $this->first_name . ' ' . $this->last_name;
+    }
+
+
+    public function getAllOccuringClasses()
+    {
+        $currentlyOccuringModules = [];
+
+        collect($this->modules)->each(function ($module, $key) use (&$currentlyOccuringModules) {
+
+            collect($module->time_slots)->filter()->each(function ($timeSlot, $key) use (&$currentlyOccuringModules, $module) {
+                $startTime = Carbon::parse($key.$timeSlot['start']);
+                $endTime = Carbon::parse($key.$timeSlot['end']);
+                $currentTime = Carbon::now();
+
+                if ($currentTime->between($startTime, $endTime)) {
+                    $currentlyOccuringModules[] = $module;
+                }
+
+            });
+        });
+
+        return $currentlyOccuringModules;
     }
 }
