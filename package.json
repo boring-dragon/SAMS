@@ -26,6 +26,7 @@
     "dependencies": {
         "chart.js": "^3.8.0",
         "moment": "^2.29.3",
+        "momentum-modal": "^0.1.9",
         "vue-chartjs": "^4.1.1",
         "vue-flatpickr-component": "^9.0.6"
     }

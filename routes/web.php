@@ -13,16 +13,6 @@ use App\Models\Teacher;
 use App\Models\Module;
 use Inertia\Inertia;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
@@ -33,18 +23,12 @@ Route::get('/', function () {
     ]);
 });
 
-
 Route::group(['middleware' => ['auth:sanctum', 'role:student'], 'prefix' => 'dashboard', 'as' => 'student.'], function () {
-    Route::get('/', function () {
-        return Inertia::render('Student/Dashboard');
-    })->name('dashboard');
 
+    Route::get('/', fn () => Inertia::render('Student/Dashboard'))->name('dashboard');
     Route::get('/modules', ModulesIndexController::class)->name('modules.index');
     Route::get('/classes', ClassesIndexController::class)->name('classes.index');
-
-    Route::get('/attendance', function () {
-        return Inertia::render('Student/Attendance/Index');
-    })->name('attendance.index');
+    Route::get('/attendance', fn () => Inertia::render('Student/Attendance/Index'))->name('attendance.index');
 });
 
 
@@ -59,7 +43,6 @@ Route::group(['middleware' => ['auth:sanctum', 'role:teacher|admin'], 'prefix' =
             'total_modules' => Module::count(),
         ]);
     })->name('dashboard');
-
 
     Route::resource('modules', ModuleController::class);
     Route::resource('students', StudentController::class);
