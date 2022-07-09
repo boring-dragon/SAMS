@@ -24,7 +24,20 @@ class ModuleFactory extends Factory
             'module_code' => $this->faker->unique()->numberBetween(1000, 9999),
             'description' => $this->faker->text(),
             'type' => $this->faker->randomElement(['core', 'practical', 'tutorial']),
-            'time_slots' => []
+            'time_slots' => [
+                "sunday" => [
+                    "start" => "09:00",
+                    "end" => "11:00"
+                ],
+                "tuesday" => [
+                    "start" => "10:00",
+                    "end" => "11:00"
+                ],
+                "friday" => [
+                    "start" => "05:00",
+                    "end" => "07:00"
+                ],
+            ]
         ];
     }
 }

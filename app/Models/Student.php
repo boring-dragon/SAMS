@@ -77,10 +77,11 @@ class Student extends Model
 
             collect($module->time_slots)->filter()->each(function ($timeSlot, $key) use (&$upComingModules, $module) {
                 $startTime = Carbon::parse($key.$timeSlot['start']);
+                $endTime = Carbon::parse($key.$timeSlot['end']);
                 $currentTime = Carbon::now();
 
                 if ($currentTime->lt($startTime) && $startTime->diffInDays($currentTime) <= 7) {
-                    $upComingModules[] = $module;
+                    $upComingModules[] = array_merge(['at' =>  Carbon::parse($key.$timeSlot['start']), 'duration' => $startTime->diffInHours($endTime) ], $module->toArray());
                 }
 
             });
