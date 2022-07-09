@@ -11,7 +11,7 @@ class ClassesIndexController extends Controller
     {
 
         if($request->has('filter') && $request->filter == 'upcoming') {
-            $classes = auth()->user()->typable->getUpComingClasses();
+            $classes = collect(auth()->user()->typable->getUpComingClasses())->sortBy('at')->values();
         } else {
             $classes = auth()->user()->typable->getAllOccuringClasses();
         }
