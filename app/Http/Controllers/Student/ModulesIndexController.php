@@ -6,7 +6,7 @@ use Inertia\Inertia;
 
 class ModulesIndexController extends Controller
 {
-    public function __invoke()
+    public function __invoke() : \Inertia\Response
     {
         return Inertia::render('Student/Modules/Index', [
             'modules' => auth()->user()->typable->modules,

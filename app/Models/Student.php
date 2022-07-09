@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Collection;
 
 class Student extends Model
 {
@@ -68,7 +69,7 @@ class Student extends Model
         return $currentlyOccuringModules;
     }
 
-    public function getUpComingClasses() : ?array
+    public function getUpComingClasses() : ?Collection
     {
         $upComingModules = [];
 
@@ -87,6 +88,6 @@ class Student extends Model
             });
         });
 
-        return $upComingModules;
+        return Collection::make($upComingModules);
     }
 }

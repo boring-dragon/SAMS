@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers\Student;
 
 use App\Http\Controllers\Controller;
@@ -7,11 +8,15 @@ use Inertia\Inertia;
 
 class ClassesIndexController extends Controller
 {
-    public function __invoke(Request $request)
+    public function __invoke(Request $request) : \Inertia\Response
     {
 
-        if($request->has('filter') && $request->filter == 'upcoming') {
-            $classes = collect(auth()->user()->typable->getUpComingClasses())->sortBy('at')->values();
+        if ($request->has('filter') && $request->filter == 'upcoming') {
+            $classes = auth()->user()
+                ->typable
+                ->getUpComingClasses()
+                ->sortBy('at')
+                ->values();
         } else {
             $classes = auth()->user()->typable->getAllOccuringClasses();
         }
