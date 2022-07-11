@@ -2,12 +2,11 @@
 import { reactive, onMounted, onBeforeMount } from "vue";
 import BreezeAuthenticatedLayout from "@/Layouts/Authenticated.vue";
 import Loader from "@/Shared/Loader.vue";
-import DateInput from "@/Shared/DateInput.vue";
 import { Head } from "@inertiajs/inertia-vue3";
 import { useForm } from "@inertiajs/inertia-vue3";
 
 const props = defineProps({
-    student: Object,
+    enrollmenet: Object,
     errors: Object,
 });
 
@@ -15,14 +14,9 @@ const state = reactive({
     sending: false,
     form: useForm(
         {
-            first_name: null,
-            last_name: null,
-            email: null,
-            phone_number: null,
-            profile_photo_url: null,
-            bio: null,
-            dob: null,
-            password: null,
+            module_id: null,
+            student_id: null,
+            enrolled_at: null
         },
         { resetOnSuccess: false }
     ),
@@ -38,16 +32,16 @@ function onSubmit() {
         preserveScroll: true,
     };
 
-    if (props.student && props.student.id) {
-        state.form.put(route("admin.students.update", props.student), config);
+    if (props.enrollmenet && props.enrollmenet.id) {
+        state.form.put(route("admin.enrollments.update", props.enrollmenet), config);
     } else {
-        state.form.post(route("admin.students.store"), config);
+        state.form.post(route("admin.enrollments.store"), config);
     }
 }
 
 onBeforeMount(() => {
-    if (props.student) {
-        _.assign(state.form, props.student);
+    if (props.enrollment) {
+        _.assign(state.form, props.enrollment);
     }
 });
 </script>
@@ -60,7 +54,7 @@ onBeforeMount(() => {
                     <label class="sr-only" for="user">Select User</label>
                     <select
                         class="py-3 px-4 pr-9 block w-full border-gray-200 rounded-md text-sm focus:border-green-500 focus:ring-green-500"
-                        placeholder="Select User">
+                        placeholder="Select User" v-model="state.form.student_id">
                         <option value="jinas">Jinas</option>
                     </select>
                 </div>
@@ -69,7 +63,7 @@ onBeforeMount(() => {
                     <label class="sr-only" for="select_module">Select Module</label>
                     <select
                         class="py-3 px-4 pr-9 block w-full border-gray-200 rounded-md text-sm focus:border-green-500 focus:ring-green-500"
-                        placeholder="Select Module">
+                        placeholder="Select Module" v-model="state.form.module_id">
                         <option value="web-dev">Web development</option>
                     </select>
                 </div>
