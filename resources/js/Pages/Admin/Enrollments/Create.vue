@@ -1,10 +1,12 @@
 <script setup>
 import BreezeAuthenticatedLayout from "@/Layouts/Authenticated.vue";
 import { Head, Link } from "@inertiajs/inertia-vue3";
-import StudentForm from "./Form.vue";
+import Form from "./Form.vue";
 
 const props = defineProps({
   errors: Object,
+  modules: Object,
+  students: Object
 });
 </script>
 
@@ -18,6 +20,6 @@ const props = defineProps({
 
 		<Link :href="route('admin.enrollments.index')" class="text-sm text-gray-600">&#8592; Go back to Enrollments</Link>
 
-		<StudentForm :errors="props.errors" />
+		<Form :students="props.students" :modules="props.modules" :errors="props.errors" />
 	</BreezeAuthenticatedLayout>
 </template>

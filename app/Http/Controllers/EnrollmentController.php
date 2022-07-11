@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Enrollment;
+use App\Models\Module;
+use App\Models\Student;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Inertia\Inertia;
 
 class EnrollmentController extends Controller
@@ -16,7 +19,7 @@ class EnrollmentController extends Controller
     public function index()
     {
         return Inertia::render('Admin/Enrollments/Index', [
-            'enrollments' => Enrollment::orderBy('updated_at', 'desc')->paginate(8),
+            'enrollments' => Enrollment::with('student', 'module')->orderBy('updated_at', 'desc')->paginate(8),
         ]);
     }
 
@@ -27,7 +30,10 @@ class EnrollmentController extends Controller
      */
     public function create()
     {
-        return Inertia::render('Admin/Enrollments/Create');
+        return Inertia::render('Admin/Enrollments/Create', [
+            'modules' => Module::all(),
+            'students' => Student::all(),
+        ]);
     }
 
     /**
@@ -39,63 +45,19 @@ class EnrollmentController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'user' => 'required',
-            'module' => 'required'
+            'module_id' => 'required|exists:modules,id',
+            'student_id' => 'required|exists:students,id',
         ]);
 
-        $enrollment = Enrollment::create($request->all());
-
-        $user = User::create([
-            'user' => 'required',
-            'module' => 'required'
+        Enrollment::create([
+            'module_id' => $request->module_id,
+            'student_id' => $request->student_id,
+            'enrolled_at' => Carbon::now()
         ]);
-
-        $enrollment->user()->save($user);
 
         return redirect()->route('admin.enrollments.index')->with('success', 'Enrollment created successfully.');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Enrollment  $enrollment
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Enrollment $enrollment)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Enrollment  $enrollment
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Enrollment $enrollment)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Enrollment  $enrollment
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Enrollment $enrollment)
-    {
-        $request->validate([
-            'module_id' => 'required',
-            'student_id' => 'required',
-            'enrolled_at' => 'required'
-        ]);
-
-        $enrollment->update($request->all());
-
-        return back()->with('success', 'Enrollment updated successfully.');
-    }
 
     /**
      * Remove the specified resource from storage.
@@ -105,6 +67,8 @@ class EnrollmentController extends Controller
      */
     public function destroy(Enrollment $enrollment)
     {
-        //
+        $enrollment->delete();
+
+        return redirect()->route('admin.enrollments.index')->with('success', 'Enrollment deleted successfully');
     }
 }
