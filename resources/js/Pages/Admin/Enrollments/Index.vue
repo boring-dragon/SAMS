@@ -32,9 +32,7 @@ import { Head } from "@inertiajs/inertia-vue3";
 
 					<div class="mt-4">
 						<button class="inline-flex items-center justify-center w-full px-5 py-3 text-white bg-black rounded-lg sm:w-auto" type="submit">
-							<span class="font-medium mr-3">Enroll</span>
-
-
+						   <span class="font-medium mr-3">Enroll</span>
 						</button>
 					</div>
 				</form>
