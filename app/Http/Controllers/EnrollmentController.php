@@ -27,7 +27,7 @@ class EnrollmentController extends Controller
      */
     public function create()
     {
-        //
+        return Inertia::render('Admin/Enrollments/Create');
     }
 
     /**
@@ -38,7 +38,21 @@ class EnrollmentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'user' => 'required',
+            'module' => 'required'
+        ]);
+
+        $enrollment = Enrollment::create($request->all());
+
+        $user = User::create([
+            'user' => 'required',
+            'module' => 'required'
+        ]);
+
+        $enrollment->user()->save($user);
+
+        return redirect()->route('admin.enrollments.index')->with('success', 'Enrollment created successfully.');
     }
 
     /**
@@ -72,7 +86,15 @@ class EnrollmentController extends Controller
      */
     public function update(Request $request, Enrollment $enrollment)
     {
-        //
+        $request->validate([
+            'module_id' => 'required',
+            'student_id' => 'required',
+            'enrolled_at' => 'required'
+        ]);
+
+        $enrollment->update($request->all());
+
+        return back()->with('success', 'Enrollment updated successfully.');
     }
 
     /**
