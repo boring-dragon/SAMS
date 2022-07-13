@@ -11,7 +11,7 @@ const props = defineProps({
 
 function destroy(enrollment) {
     if (confirm("Are you sure you want to delete this enrollment?")) {
-        Inertia.delete(route("admin.enrollments.destroy", enrollment.id));
+        Inertia.delete(route("admin.enrollments.destroy", enrollment));
     }
 }
 </script>

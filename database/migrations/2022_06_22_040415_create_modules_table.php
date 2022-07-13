@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('attendance_code')->nullable();
             $table->json('time_slots')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('status')->default('pending');
             $table->dateTime('enrolled_at');
             $table->timestamps();
+
         });
     }
 

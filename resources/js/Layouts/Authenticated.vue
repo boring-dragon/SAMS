@@ -7,8 +7,11 @@ import BreezeNavLink from "@/Components/NavLink.vue";
 import BreezeResponsiveNavLink from "@/Components/ResponsiveNavLink.vue";
 import FlashMessages from "@/Shared/FlashMessages.vue";
 import { Link } from "@inertiajs/inertia-vue3";
+import Gate from "@/Composables/Gate";
 
 const showingNavigationDropdown = ref(false);
+
+const { isAdmin, isTeacher } = Gate();
 </script>
 
 <template>
@@ -41,7 +44,7 @@ const showingNavigationDropdown = ref(false);
 										<span class="ml-4">Dashboard</span>
 									</Link>
 								</li>
-								<li>
+								<li v-if="isAdmin">
 									<Link :class="route().current('admin.modules.*') ? 'text-green-500 bg-white border-l-2 border-green-400' : 'text-gray-600 hover:text-green-500'" :href="route('admin.modules.index')" class="inline-flex items-center w-full px-4 py-2 mt-1 text-base transition duration-500 ease-in-out transform focus:shadow-outline">
 										<svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
 											<path d="M19.25 15.25V5.75C19.25 5.19772 18.8023 4.75 18.25 4.75H6.75C5.64543 4.75 4.75 5.64543 4.75 6.75V16.75" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" />
@@ -127,6 +130,10 @@ const showingNavigationDropdown = ref(false);
 					<div class="px-4 mx-auto max-w-7xl sm:px-6 md:px-8">
 						<flash-messages />
 						<slot />
+
+                        <footer class="text-center text-gray-400">
+                            <p>Copyright shits</p>
+                        </footer>
 					</div>
 				</div>
 			</main>
