@@ -80,7 +80,7 @@ const { isAdmin, isTeacher } = Gate();
 							<span class="flex-1">Enrollments</span>
 						</Link>
 
-						<Link :class="route().current('admin.attendances.*') ? 'bg-indigo-800 text-white' : 'text-indigo-100 hover:bg-indigo-600 hover:bg-opacity-75'" :href="route('admin.attendances.index')" class="group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+						<Link v-if="isTeacher()"  :class="route().current('admin.attendances.*') ? 'bg-indigo-800 text-white' : 'text-indigo-100 hover:bg-indigo-600 hover:bg-opacity-75'" :href="route('admin.attendances.index')" class="group flex items-center px-2 py-2 text-sm font-medium rounded-md">
 							<svg class="mr-3 flex-shrink-0 h-6 w-6 text-indigo-300" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
 								<path d="M7.25 4.75V19.25M12.25 4.75H5.75C5.19772 4.75 4.75 5.19771 4.75 5.75V18.25C4.75 18.8023 5.19772 19.25 5.75 19.25H13.25M14.75 16.25V6.75C14.75 5.64543 15.6454 4.75 16.75 4.75H17.25C18.3546 4.75 19.25 5.64543 19.25 6.75V16.25L17 19.25L14.75 16.25Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" />
 							</svg>

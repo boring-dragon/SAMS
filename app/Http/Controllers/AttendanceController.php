@@ -25,14 +25,14 @@ class AttendanceController extends Controller
     {
         $module->generateAttendance();
 
-        return redirect()->route('admin.attendances.index');
+        return redirect()->route('admin.attendances.index')->with('success', 'Attendance generated successfully');
     }
 
     public function stopAttendance(Module $module)
     {
         $module->stopAttendance();
 
-        return redirect()->route('admin.attendances.index');
+        return redirect()->route('admin.attendances.index')->with('success', 'Attendance stopped successfully');
     }
 
 
