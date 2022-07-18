@@ -1,0 +1,1 @@
+import{_ as t}from"./Student.dd342d5b.js";import{o as a,c as s,a as e,u as n,H as o,w as r,F as c,d as _}from"./app.c2979c7d.js";const l=_("h2",{class:"font-semibold text-xl text-gray-800 leading-tight"}," Attendance ",-1),p={__name:"Index",setup(d){return(i,m)=>(a(),s(c,null,[e(n(o),{title:"Attendance"}),e(t,null,{header:r(()=>[l]),_:1})],64))}};export{p as default};

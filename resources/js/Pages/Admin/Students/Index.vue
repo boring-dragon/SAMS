@@ -41,18 +41,13 @@ watch(
 	<Head title="Students" />
 
 	<BreezeAuthenticatedLayout>
+    	<template #header>Students</template>
+
+		<template #actions>
+			<Link :href="route('admin.students.create')" class="ml-3 inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-500 hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-indigo-500">Add Student</Link>
+		</template>
 		<div class="py-12">
 			<div class="px-4 sm:px-6 lg:px-8">
-				<div class="sm:flex sm:items-center">
-					<div class="sm:flex-auto">
-						<h1 class="text-4xl font-semibold text-gray-900">Students</h1>
-						<p class="mt-2 text-sm text-gray-700">A list of all the students.</p>
-					</div>
-
-					<div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
-						<Link :href="route('admin.students.create')" class="inline-flex items-center justify-center rounded-md border border-transparent bg-green-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 sm:w-auto">Add Student</Link>
-					</div>
-				</div>
 				<div class="my-4">
 					<search v-model="state.form.search" />
 				</div>

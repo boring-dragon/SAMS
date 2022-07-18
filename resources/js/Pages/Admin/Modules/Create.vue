@@ -14,7 +14,7 @@ const props = defineProps({
 
 	<BreezeAuthenticatedLayout>
 		<template #header>
-			<h2 class="font-semibold text-xl text-gray-800 leading-tight mb-3">Create Module</h2>
+			Create Module
 		</template>
 
 		<Link :href="route('admin.modules.index')" class="text-sm text-gray-600">&#8592; Go back to Modules</Link>

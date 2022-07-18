@@ -15,7 +15,7 @@ const props = defineProps({
 
 	<BreezeAuthenticatedLayout>
 		<template #header>
-			<h2 class="font-semibold text-xl text-gray-800 leading-tight mb-3">Create Enrollment</h2>
+			Create Enrollment
 		</template>
 
 		<Link :href="route('admin.enrollments.index')" class="text-sm text-gray-600">&#8592; Go back to Enrollments</Link>

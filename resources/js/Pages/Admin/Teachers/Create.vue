@@ -13,7 +13,7 @@ const props = defineProps({
 
 	<BreezeAuthenticatedLayout>
 		<template #header>
-			<h2 class="font-semibold text-xl text-gray-800 leading-tight mb-3">Create Teacher</h2>
+		Create Teacher
 		</template>
 
 		<Link :href="route('admin.teachers.index')" class="text-sm text-gray-600">&#8592; Go back to Teachers</Link>

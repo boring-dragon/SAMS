@@ -15,10 +15,10 @@ const props = defineProps({
 
 	<BreezeAuthenticatedLayout>
 		<template #header>
-			<h2 class="font-semibold text-xl text-gray-800 leading-tight mb-3">Edit Module</h2>
+			Edit Module
 		</template>
 
-		<Link :href="route('admin.modules.index')" class="text-sm text-gray-600">&#8592; Go back to Modules</Link>
+		<Link :href="route('admin.modules.index')" class="text-sm text-gray-600 ">&#8592; Go back to Modules</Link>
 
 		<ModuleForm :module="props.module" :teachers="props.teachers" :errors="props.errors" />
 	</BreezeAuthenticatedLayout>

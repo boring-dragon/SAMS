@@ -31,16 +31,16 @@ const props = defineProps({
 
 	<BreezeAuthenticatedLayout>
 		<template #header>
-			<h2 class="font-semibold text-4xl text-gray-800 leading-tight">Dashboard</h2>
+			Dashboard
 		</template>
 
 		<div class="py-12">
 			<article class="p-2 rounded-2xl">
-				<a class="flex flex-col justify-end h-full p-6 bg-white sm:p-8 rounded-xl hover:bg-opacity-90" href>
+				<a class="flex flex-col justify-end h-full p-6 bg-white sm:p-8 rounded-xl hover:bg-opacity-90 shadow">
 					<div>
 						<h5 class="mt-2 text-xl font-bold text-gray-800">Welcome, {{ $page.props.auth.user.name }} 👋</h5>
 						<div class="flex items-center justify-between mt-6">
-							<p class="text-lg font-medium text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-green-600">Account Type: {{ $page.props.auth.user.role }}</p>
+							<p class="text-lg font-medium text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-indigo-600">Account Type: {{ $page.props.auth.user.role }}</p>
 						</div>
 					</div>
 				</a>

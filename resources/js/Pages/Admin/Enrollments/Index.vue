@@ -3,16 +3,16 @@ import BreezeAuthenticatedLayout from "@/Layouts/Authenticated.vue";
 import { Head, Link } from "@inertiajs/inertia-vue3";
 import Pagination from "@/Shared/Pagination.vue";
 import { Inertia } from "@inertiajs/inertia";
-import moment from 'moment';
+import moment from "moment";
 
 const props = defineProps({
   enrollments: Object,
 });
 
 function destroy(enrollment) {
-    if (confirm("Are you sure you want to delete this enrollment?")) {
-        Inertia.delete(route("admin.enrollments.destroy", enrollment));
-    }
+  if (confirm("Are you sure you want to delete this enrollment?")) {
+    Inertia.delete(route("admin.enrollments.destroy", enrollment));
+  }
 }
 </script>
 
@@ -20,19 +20,13 @@ function destroy(enrollment) {
 	<Head title="Enrollments" />
 
 	<BreezeAuthenticatedLayout>
+		<template #header>Enrollments</template>
+
+		<template #actions>
+			<Link :href="route('admin.enrollments.create')" class="ml-3 inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-500 hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-indigo-500">Add Enrollment</Link>
+		</template>
 		<div class="py-12">
 			<div class="px-4 sm:px-6 lg:px-8">
-				<div class="sm:flex sm:items-center">
-					<div class="sm:flex-auto">
-						<h1 class="text-xl font-semibold text-gray-900">Enrollments</h1>
-						<p class="mt-2 text-sm text-gray-700">A list of all the enrollments.</p>
-					</div>
-
-					<div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
-						<Link :href="route('admin.enrollments.create')" class="inline-flex items-center justify-center rounded-md border border-transparent bg-green-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 sm:w-auto">Add Enrollment</Link>
-					</div>
-				</div>
-
 				<div class="mt-8 flex flex-col">
 					<div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
 						<div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
@@ -65,7 +59,7 @@ function destroy(enrollment) {
 									</tbody>
 								</table>
 							</div>
-							<pagination :links="props.enrollments.links" class="mt-6" />
+						<pagination :links="props.enrollments.links" class="mt-6" />
 						</div>
 					</div>
 				</div>

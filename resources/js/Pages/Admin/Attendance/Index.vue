@@ -7,11 +7,7 @@ import { Head } from '@inertiajs/inertia-vue3';
     <Head title="Attendance" />
 
     <BreezeAuthenticatedLayout>
-        <template #header>
-            <h2 class="font-semibold text-4compxl text-gray-800 leading-tight">
-                Attendance
-            </h2>
-        </template>
+        <template #header>Attendance</template>
 
         <div class="py-12">
 
