@@ -17,7 +17,7 @@ class AttendanceController extends Controller
     public function index()
     {
         return Inertia::render('Admin/Attendance/Index', [
-
+            'modules' => Auth::user()->typable->modules
         ]);
     }
 

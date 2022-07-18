@@ -21,6 +21,7 @@ return new class extends Migration
             $table->text('description')->nullable();
             $table->string('type')->default('core');
             $table->string('attendance_code')->nullable();
+            $table->dateTime('attendance_generated_at')->nullable();
             $table->json('time_slots')->nullable();
             $table->timestamps();
             $table->softDeletes();

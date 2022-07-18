@@ -15,7 +15,7 @@ const props = defineProps({
 	<Head title="Attendance" />
 
 	<BreezeAuthenticatedLayout>
-		<template #header>My Modules</template>
+		<template #header>List of Modules Assigned to "{{ $page.props.auth.user.name }}" </template>
 
 		<div class="py-12">
 			<div class="bg-white py-4 md:py-7 px-4 md:px-8 xl:px-10">

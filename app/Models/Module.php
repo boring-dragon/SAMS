@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Str;
 
 class Module extends Model
 {
@@ -53,6 +54,22 @@ class Module extends Model
     {
         $this->students()->attach($student->id, [
             'enrolled_at' => Carbon::now(),
+        ]);
+    }
+
+    public function generateAttendance() : void
+    {
+        $this->update([
+            'attendance_generated_at' => Carbon::now(),
+            'attendance_code' => Str::random(5),
+        ]);
+    }
+
+    public function stopAttendanceCode() : void
+    {
+        $this->update([
+            'attendance_generated_at' => null,
+            'attendance_code' => null,
         ]);
     }
 
