@@ -14,10 +14,13 @@ defineProps({
 	<section>
 		<div class="max-w-5xl px-4 py-32 mx-auto lg:items-center lg:flex">
 			<div class="max-w-3xl mx-auto text-center">
-				<h1 class="text-3xl font-extrabold sm:text-6xl">
+				<!-- <h1 class="text-3xl font-extrabold sm:text-6xl">
 					<strong class="font-extrabold text-primary sm:block">SAMS</strong>
 
-				</h1>
+				</h1> -->
+				<center>
+					<img src="../../img/SAMS-01.png" alt="" width="300" class='rounded-xl mb-9'>
+				</center>
                 <p>The only Attendance System you will ever need.</p>
 
 				<div class="flex flex-wrap justify-center gap-4 mt-8">
