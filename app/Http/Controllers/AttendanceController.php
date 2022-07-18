@@ -21,9 +21,16 @@ class AttendanceController extends Controller
         ]);
     }
 
-    public function generate(Module $module)
+    public function generateAttendance(Module $module)
     {
         $module->generateAttendance();
+
+        return redirect()->route('admin.attendances.index');
+    }
+
+    public function stopAttendance(Module $module)
+    {
+        $module->stopAttendance();
 
         return redirect()->route('admin.attendances.index');
     }

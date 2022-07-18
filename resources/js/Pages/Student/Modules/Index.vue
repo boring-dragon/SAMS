@@ -26,6 +26,7 @@ const props = defineProps({
 						</div>
 					</div>
 					<div class="space-y-8 lg:divide-y lg:divide-gray-100">
+                        <p class="text-md p-2 text-gray-600" v-if="props.modules.length === 0"> No modules yet..</p>
 						<div :key="module.id" class="bg-white group lg:items-end mt-8 p-6 rounded sm:flex" v-for="module in props.modules">
 							<div class="flex-shrink-0 mb-4 sm:mb-0 sm:mr-4">
 								<img alt="text" class="w-full rounded-md h-32 lg:w-32 object-cover" src="/images/neon-1.jpeg" />

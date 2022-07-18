@@ -21,7 +21,7 @@ const showingNavigationDropdown = ref(false);
                             <!-- Logo -->
                             <div class="shrink-0 flex items-center uppercase">
                                 <Link :href="route('student.dashboard')">
-                                    <img src="../../img/SAMS-01.png" alt="" width="80" class='rounded-xl mr-12'>
+                                    <img src="/images/SAMS-01.png" class='rounded w-8'>
                                 </Link>
                             </div>
 
