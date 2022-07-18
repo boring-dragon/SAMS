@@ -3,6 +3,7 @@
 use App\Http\Controllers\EnrollmentController;
 use App\Http\Controllers\ModuleController;
 use App\Http\Controllers\AttendanceController;
+use App\Http\Controllers\MyModulesController;
 use App\Http\Controllers\Student\ClassesIndexController;
 use App\Http\Controllers\Student\ModulesIndexController;
 use App\Http\Controllers\StudentController;
@@ -44,6 +45,8 @@ Route::group(['middleware' => ['auth:sanctum', 'role:teacher|admin'], 'prefix' =
             'total_modules' => Module::count(),
         ]);
     })->name('dashboard');
+
+    Route::get('my-modules', MyModulesController::class)->name('my-modules.index');
 
     Route::resource('modules', ModuleController::class);
     Route::resource('students', StudentController::class);

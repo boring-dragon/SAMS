@@ -55,20 +55,20 @@ onMounted(() => {
 			<form @submit.prevent="onSubmit" class="space-y-4">
 				<div>
 					<label class="sr-only" for="name">Name</label>
-					<input class="w-full p-3 text-sm border-gray-200 rounded-lg focus:border-green-500 focus:ring-green-500" id="name" placeholder="Name" type="text" v-model="state.form.name" />
+					<input class="w-full p-3 text-sm border-gray-200 rounded-lg focus:border-indigo-500 focus:ring-indigo-500" id="name" placeholder="Name" type="text" v-model="state.form.name" />
 					<p class="mt-2 text-sm text-red-600" v-if="props.errors.name">{{ props.errors.name }}</p>
 				</div>
 
 				<div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
 					<div>
 						<label class="sr-only" for="module_code">Module Code</label>
-						<input class="w-full p-3 text-sm border-gray-200 rounded-lg focus:border-green-500 focus:ring-green-500" placeholder="Module Code" type="text" v-model="state.form.module_code" />
+						<input class="w-full p-3 text-sm border-gray-200 rounded-lg focus:border-indigo-500 focus:ring-indigo-500" placeholder="Module Code" type="text" v-model="state.form.module_code" />
 						<p class="mt-2 text-sm text-red-600" v-if="props.errors.module_code">{{ props.errors.module_code }}</p>
 					</div>
 
 					<div>
 						<label class="sr-only" for="type">Type</label>
-						<select class="py-3 px-4 pr-9 block w-full border-gray-200 rounded-md text-sm focus:border-green-500 focus:ring-green-500" placeholder="Type" v-model="state.form.type">
+						<select class="py-3 px-4 pr-9 block w-full border-gray-200 rounded-md text-sm focus:border-indigo-500 focus:ring-indigo-500" placeholder="Type" v-model="state.form.type">
 							<option value="core">Core</option>
 							<option value="tutorial">Tutorial</option>
 							<option value="practical">Practical</option>
@@ -80,7 +80,7 @@ onMounted(() => {
 
                 	<div>
 						<label class="sr-only" for="teacher">Teacher</label>
-						<select class="py-3 px-4 pr-9 block w-full border-gray-200 rounded-md text-sm focus:border-green-500 focus:ring-green-500" placeholder="Type" v-model="state.form.teacher_id">
+						<select class="py-3 px-4 pr-9 block w-full border-gray-200 rounded-md text-sm focus:border-indigo-500 focus:ring-indigo-500" placeholder="Type" v-model="state.form.teacher_id">
                                     <option :value="teacher.id" :key="teacher.id" v-for="teacher in props.teachers">{{ teacher.full_name }}</option>
 						</select>
 
@@ -89,7 +89,7 @@ onMounted(() => {
 
 				<div>
 					<label class="sr-only" for="description">Description</label>
-					<textarea class="w-full p-3 text-sm border-gray-200 rounded-lg focus:border-green-500 focus:ring-green-500" placeholder="Description" rows="8" v-model="state.form.description"></textarea>
+					<textarea class="w-full p-3 text-sm border-gray-200 rounded-lg focus:border-indigo-500 focus:ring-indigo-500" placeholder="Description" rows="8" v-model="state.form.description"></textarea>
 					<p class="mt-2 text-sm text-red-600" v-if="props.errors.description">{{ props.errors.description }}</p>
 				</div>
 

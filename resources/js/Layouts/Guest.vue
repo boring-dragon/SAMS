@@ -7,7 +7,7 @@ import { Link } from "@inertiajs/inertia-vue3";
 	<div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100">
 		<div>
 			<Link href="/">
-				<h4 class="text-green-600 text-5xl font-bold">SAMS</h4>
+				<h2 class="font-extrabold text-6xl text-indigo-500">SAMS</h2>
 			</Link>
 		</div>
 

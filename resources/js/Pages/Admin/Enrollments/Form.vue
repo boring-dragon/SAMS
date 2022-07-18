@@ -43,14 +43,14 @@ function onSubmit() {
 			<form @submit.prevent="onSubmit" class="space-y-4">
 				<div>
 					<label class="block text-sm font-medium text-gray-700" for="student">Select Student</label>
-					<select class="py-3 px-4 pr-9 block w-full border-gray-200 rounded-md text-sm focus:border-green-500 focus:ring-green-500 mt-2" placeholder="Select User" v-model="state.form.student_id">
+					<select class="py-3 px-4 pr-9 block w-full border-gray-200 rounded-md text-sm focus:border-indigo-500 focus:ring-indigo-500 mt-2" placeholder="Select User" v-model="state.form.student_id">
 						<option :key="student.id" :value="student.id" v-for="student in props.students">{{ student.full_name }}</option>
 					</select>
 				</div>
 
 				<div>
 					<label class="block text-sm font-medium text-gray-700" for="module">Select Module</label>
-					<select class="py-3 px-4 pr-9 block w-full border-gray-200 rounded-md text-sm focus:border-green-500 focus:ring-green-500 mt-2" placeholder="Select Module" v-model="state.form.module_id">
+					<select class="py-3 px-4 pr-9 block w-full border-gray-200 rounded-md text-sm focus:border-indigo-500 focus:ring-indigo-500 mt-2" placeholder="Select Module" v-model="state.form.module_id">
 						<option :key="module.id" :value="module.id" v-for="module in props.modules">{{ module.name }}</option>
 					</select>
 				</div>

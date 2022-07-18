@@ -59,13 +59,13 @@ onBeforeMount(() => {
 				<div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
 					<div>
 						<label class="sr-only" for="first_name">First Name</label>
-						<input class="w-full p-3 text-sm border-gray-200 rounded-lg focus:border-green-500 focus:ring-green-500" placeholder="First Name" type="text" v-model="state.form.first_name" />
+						<input class="w-full p-3 text-sm border-gray-200 rounded-lg focus:border-indigo-500 focus:ring-indigo-500" placeholder="First Name" type="text" v-model="state.form.first_name" />
 						<p class="mt-2 text-sm text-red-600" v-if="props.errors.first_name">{{ props.errors.first_name }}</p>
 					</div>
 
 					<div>
 						<label class="sr-only" for="last_name">Last Name</label>
-						<input class="w-full p-3 text-sm border-gray-200 rounded-lg focus:border-green-500 focus:ring-green-500" placeholder="Last Name" type="text" v-model="state.form.last_name" />
+						<input class="w-full p-3 text-sm border-gray-200 rounded-lg focus:border-indigo-500 focus:ring-indigo-500" placeholder="Last Name" type="text" v-model="state.form.last_name" />
 						<p class="mt-2 text-sm text-red-600" v-if="props.errors.last_name">{{ props.errors.last_name }}</p>
 					</div>
 				</div>
@@ -73,12 +73,12 @@ onBeforeMount(() => {
 				<div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
 					<div>
 						<label class="sr-only" for="email">Email</label>
-						<input class="w-full p-3 text-sm border-gray-200 rounded-lg focus:border-green-500 focus:ring-green-500" placeholder="Email" type="text" v-model="state.form.email" />
+						<input class="w-full p-3 text-sm border-gray-200 rounded-lg focus:border-indigo-500 focus:ring-indigo-500" placeholder="Email" type="text" v-model="state.form.email" />
 						<p class="mt-2 text-sm text-red-600" v-if="props.errors.email">{{ props.errors.email }}</p>
 					</div>
 					<div>
 						<label class="sr-only" for="phone_number">Phone No</label>
-						<input class="w-full p-3 text-sm border-gray-200 rounded-lg focus:border-green-500 focus:ring-green-500" placeholder="Phone Number" type="text" v-model="state.form.phone_number" />
+						<input class="w-full p-3 text-sm border-gray-200 rounded-lg focus:border-indigo-500 focus:ring-indigo-500" placeholder="Phone Number" type="text" v-model="state.form.phone_number" />
 						<p class="mt-2 text-sm text-red-600" v-if="props.errors.phone_number">{{ props.errors.phone_number }}</p>
 					</div>
 				</div>
@@ -91,13 +91,13 @@ onBeforeMount(() => {
 
 				<div>
 					<label class="sr-only" for="passwords">Password</label>
-					<input class="w-full p-3 text-sm border-gray-200 rounded-lg focus:border-green-500 focus:ring-green-500" placeholder="Password" type="password" v-model="state.form.password" />
+					<input class="w-full p-3 text-sm border-gray-200 rounded-lg focus:border-indigo-500 focus:ring-indigo-500" placeholder="Password" type="password" v-model="state.form.password" />
 					<p class="mt-2 text-sm text-red-600" v-if="props.errors.password">{{ props.errors.password }}</p>
 				</div>
 
 				<div>
 					<label class="sr-only" for="description">Bio</label>
-					<textarea class="w-full p-3 text-sm border-gray-200 rounded-lg focus:border-green-500 focus:ring-green-500" placeholder="Bio" rows="8" v-model="state.form.bio"></textarea>
+					<textarea class="w-full p-3 text-sm border-gray-200 rounded-lg focus:border-indigo-500 focus:ring-indigo-500" placeholder="Bio" rows="8" v-model="state.form.bio"></textarea>
 					<p class="mt-2 text-sm text-red-600" v-if="props.errors.bio">{{ props.errors.bio }}</p>
 				</div>
 

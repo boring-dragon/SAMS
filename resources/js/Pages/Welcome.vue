@@ -21,8 +21,8 @@ defineProps({
                 <p>The only Attendance System you will ever need.</p>
 
 				<div class="flex flex-wrap justify-center gap-4 mt-8">
-					<a class="block w-full px-12 py-3 text-sm font-medium text-white bg-primary rounded shadow sm:w-auto active:bg-secondary hover:bg-secondary focus:outline-none focus:ring" href="/register">Get Started</a>
-                    <a class="block w-full px-12 py-3 text-sm font-medium text-white bg-primary rounded shadow sm:w-auto active:bg-secondary hover:bg-secondary focus:outline-none focus:ring" href="/login">Login</a>
+					<a class="block w-full px-12 py-3 text-sm font-medium text-white bg-indigo-500 rounded shadow sm:w-auto active:bg-secondary hover:bg-secondary focus:outline-none focus:ring" href="/register">Get Started</a>
+                    <a class="block w-full px-12 py-3 text-sm font-medium text-white bg-indigo-500 rounded shadow sm:w-auto active:bg-secondary hover:bg-secondary focus:outline-none focus:ring" href="/login">Login</a>
 				</div>
 			</div>
 		</div>
