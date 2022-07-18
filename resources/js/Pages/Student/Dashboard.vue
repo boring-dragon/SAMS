@@ -1,9 +1,55 @@
 <script setup>
 import StudentLayout from '@/Layouts/Student.vue';
 import { Head } from '@inertiajs/inertia-vue3';
+import Vue3ChartJs from '@j-t-mcc/vue3-chartjs';
+
+function random_rgba() {
+    var o = Math.round, r = Math.random, s = 255;
+    return 'rgba(' + o(r()*s) + ',' + o(r()*s) + ',' + o(r()*s) + ',' + r().toFixed(1) + ')';
+}
+
+const doughnutChart = {
+    id: 'doughnut',
+    type: 'doughnut',
+    data: {
+        labels: ['Web Development', 'Operating System', 'Computing Project', 'Calculus and Algebra'],
+        datasets: [
+            {
+            backgroundColor: [
+                random_rgba(),
+                random_rgba(),
+                random_rgba(),
+                random_rgba()
+            ],
+            data: [1, 1, 1, 1]
+            }
+        ]
+    }
+}
+
+const pieChart = {
+    id: 'pie',
+    type: 'pie',
+    data: {
+        labels: ['Web Development', 'Operating System', 'Computing Project', 'Calculus and Algebra'],
+        datasets: [
+            {
+            backgroundColor: [
+                random_rgba(),
+                random_rgba(),
+                random_rgba(),
+                random_rgba()
+            ],
+            data: [20, 15, 10, 5]
+            }
+        ]
+    }
+}
 </script>
 
+
 <template>
+
     <Head title="Dashboard" />
 
     <StudentLayout>
@@ -19,6 +65,19 @@ import { Head } from '@inertiajs/inertia-vue3';
                     <div class="p-6 bg-white border-b border-gray-200">
                         You're logged in as a student
                     </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="py-12">
+            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 flex justify-between">
+                <div class="w-1/2 m-5 p-5">
+                    <h1>Enrolled modules</h1>
+                    <vue3-chart-js :id="doughnutChart.id" :type="doughnutChart.type" :data="doughnutChart.data"></vue3-chart-js>
+                </div>
+                <div class="w-1/2 m-5 p-5">
+                    <h1>Attendances record</h1>
+                    <vue3-chart-js :id="pieChart.id" :type="pieChart.type" :data="pieChart.data"></vue3-chart-js>
                 </div>
             </div>
         </div>
