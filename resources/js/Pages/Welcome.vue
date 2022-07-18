@@ -19,7 +19,7 @@ defineProps({
 
 				</h1> -->
 				<center>
-					<img src="../../img/SAMS-01.png" alt="" width="300" class='rounded-xl mb-9'>
+					<img src="/images/SAMS-01.png" alt="" width="300" class='rounded-xl mb-9'>
 				</center>
                 <p>The only Attendance System you will ever need.</p>
 

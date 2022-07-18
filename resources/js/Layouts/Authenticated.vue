@@ -21,7 +21,7 @@ const { isAdmin, isTeacher } = Gate();
 				<div class="flex-1 flex flex-col pt-5 pb-4 overflow-y-auto">
 					<div class="flex items-center flex-shrink-0 px-4">
 						<!-- <h2 class="font-extrabold text-6xl text-white">SAMS</h2> -->
-						<img src="../../img/SAMS-01.png" alt="" class='rounded-xl'>
+						<img src="/images/SAMS-01.png" class='rounded-xl w-[80px]'>
 					</div>
 					<nav aria-label="Sidebar" class="mt-5 flex-1 px-2 space-y-1">
 						<Link :class="route().current('admin.dashboard') ? 'bg-indigo-800 text-white' : 'text-indigo-100 hover:bg-indigo-600 hover:bg-opacity-75'" :href="route('admin.dashboard')" class="group flex items-center px-2 py-2 text-sm font-medium rounded-md">
