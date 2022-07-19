@@ -23,7 +23,9 @@ class Module extends Model
         'description',
         'teacher_id',
         'type',
-        'time_slots'
+        'time_slots',
+        'attendance_code',
+        'attendance_generated_at',
     ];
 
     protected $casts = [

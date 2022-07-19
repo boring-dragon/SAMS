@@ -17,23 +17,28 @@ class AttendanceController extends Controller
     public function index()
     {
         return Inertia::render('Admin/Attendance/Index', [
-            'modules' => Auth::user()->typable->modules
+            'modules' => Auth::user()->typable->modules,
+            'generated_attendances' => Auth::user()->typable
+                ->modules()
+                ->whereNotNull('attendance_code')
+                ->whereNotNull('attendance_generated_at')->get(),
         ]);
     }
 
-    public function generateAttendance(Module $module)
+    public function generateAttendance(Request $request)
     {
+
+        $module = Module::findOrFail($request->module_id);
         $module->generateAttendance();
 
         return redirect()->route('admin.attendances.index')->with('success', 'Attendance generated successfully');
     }
 
-    public function stopAttendance(Module $module)
+    public function stopAttendance(Request $request)
     {
-        $module->stopAttendance();
+        $module = Module::findOrFail($request->module_id);
+        $module->stopAttendanceCode();
 
         return redirect()->route('admin.attendances.index')->with('success', 'Attendance stopped successfully');
     }
-
-
 }

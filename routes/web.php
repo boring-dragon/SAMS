@@ -54,8 +54,8 @@ Route::group(['middleware' => ['auth:sanctum', 'role:teacher|admin'], 'prefix' =
     Route::resource('enrollments', EnrollmentController::class);
 
     Route::get('attendances', [AttendanceController::class , 'index'])->name('attendances.index');
-    Route::post('attendance/{module}/generate', [AttendanceController::class , 'generateAttendance'])->name('attendances.generate');
-    Route::post('attendance/{module}/stop', [AttendanceController::class , 'stopAttendance'])->name('attendances.stop');
+    Route::post('attendance/generate', [AttendanceController::class , 'generateAttendance'])->name('attendances.generate');
+    Route::post('attendance/stop', [AttendanceController::class , 'stopAttendance'])->name('attendances.stop');
 
 });
 
