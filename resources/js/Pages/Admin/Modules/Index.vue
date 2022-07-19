@@ -66,6 +66,18 @@ watch(
 					</div>
 					<div class="mt-7">
 						<table class="w-full whitespace-nowrap">
+                            <thead class="bg-gray-50">
+										<tr>
+											<th class="py-3 pl-4 pr-3 text-left text-xs font-medium uppercase tracking-wide text-gray-500 sm:pl-6" scope="col">Name</th>
+											<th class="px-3 py-3 text-left text-xs font-medium uppercase tracking-wide text-gray-500" scope="col">Module Code</th>
+											<th class="px-3 py-3 text-left text-xs font-medium uppercase tracking-wide text-gray-500" scope="col">Type</th>
+											<th class="px-3 py-3 text-left text-xs font-medium uppercase tracking-wide text-gray-500" scope="col">Created at</th>
+											<th class="px-3 py-3 text-left text-xs font-medium uppercase tracking-wide text-gray-500" scope="col">Actions</th>
+											<th class="relative py-3 pl-3 pr-4 sm:pr-6" scope="col">
+												<span class="sr-only">Edit</span>
+											</th>
+										</tr>
+									</thead>
 							<tbody>
 								<tr :key="module.id" class="focus:outline-none h-16 border border-gray-100 rounded" tabindex="0" v-for="module in props.modules.data">
 									<td>
