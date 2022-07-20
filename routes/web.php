@@ -5,6 +5,7 @@ use App\Http\Controllers\ModuleController;
 use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\MyModulesController;
 use App\Http\Controllers\Student\ClassesIndexController;
+use App\Http\Controllers\Student\DashboardController;
 use App\Http\Controllers\Student\ModulesIndexController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TeacherController;
@@ -28,7 +29,7 @@ Route::get('/', function () {
 
 Route::group(['middleware' => ['auth:sanctum', 'role:student'], 'prefix' => 'dashboard', 'as' => 'student.'], function () {
 
-    Route::get('/', fn () => Inertia::render('Student/Dashboard'))->name('dashboard');
+    Route::get('/', DashboardController::class)->name('dashboard');
     Route::get('/modules', ModulesIndexController::class)->name('modules.index');
     Route::get('/classes', ClassesIndexController::class)->name('classes.index');
     Route::get('/attendance', fn () => Inertia::render('Student/Attendance/Index'))->name('attendance.index');
@@ -38,8 +39,7 @@ Route::group(['middleware' => ['auth:sanctum', 'role:student'], 'prefix' => 'das
         return Inertia::modal('Student/Modals/CreateAttendance')
         ->with([
             'user' => Auth::user()
-        ])
-        ->baseRoute('student.classes.index');
+        ])->baseRoute('student.classes.index');
 
     })->name('attendance.take');
 

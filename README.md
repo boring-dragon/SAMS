@@ -15,8 +15,8 @@ Hosted Live Version At: https://sams.jinas.me
 ## Todo
 
 - [ ] Attendance taking from student side ( Jinas )
-- [ ] Simple Landing Pages ( Kim )
-- [ ] Connect Dashboard Charts to backend
+- [x] Simple Landing Pages ( Kim )
+- [ ] Connect Dashboard Charts to backend ( Kim )
 - [ ] QR Code
 - [ ] Time Slot Selection
 - [ ] Attendance history

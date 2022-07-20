@@ -2,6 +2,18 @@
 import StudentLayout from '@/Layouts/Student.vue';
 import { Head } from '@inertiajs/inertia-vue3';
 import Vue3ChartJs from '@j-t-mcc/vue3-chartjs';
+import { computed, onMounted } from 'vue';
+import { map } from 'lodash';
+
+const props = defineProps({
+    modules: {
+        type: Object,
+    }
+});
+
+const filterLabels = computed(() => {
+
+});
 
 function random_rgba() {
     var o = Math.round, r = Math.random, s = 255;
@@ -45,6 +57,14 @@ const pieChart = {
         ]
     }
 }
+
+onMounted(() => {
+
+    let enrolled_pie_labels = map(props.modules, function(module, key) {
+        return module.name
+    })
+     console.log(enrolled_pie_labels);
+});
 </script>
 
 
@@ -71,7 +91,7 @@ const pieChart = {
 
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white py-4 md:py-7 px-4 md:px-8 xl:px-10 flex justify-between shadow-sm sm:rounded-lg">
-                
+
                 <div class="w-1/2 m-5 p-5">
                     <h1 class="text-lg font-medium text-neutral-600">Enrolled modules</h1>
                     <vue3-chart-js :id="doughnutChart.id" :type="doughnutChart.type" :data="doughnutChart.data"></vue3-chart-js>

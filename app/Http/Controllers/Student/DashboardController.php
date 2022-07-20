@@ -1,8 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Student;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use Inertia\Inertia;
 
 class DashboardController extends Controller
 {
@@ -14,6 +17,10 @@ class DashboardController extends Controller
      */
     public function __invoke(Request $request)
     {
-        //
+        $modules = Auth::user()->typable->modules;
+
+        return Inertia::render('Student/Dashboard', [
+            'modules' => $modules
+        ]);
     }
 }
