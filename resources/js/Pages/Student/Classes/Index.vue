@@ -30,7 +30,7 @@ function closeAttendanceModal() {
 
 	<StudentLayout>
 		<template #header>
-			<h2 class="font-semibold text-xl text-gray-800 leading-tight">Classes</h2>
+			<h2 class="font-semibold text-xl leading-tight">Classes</h2>
 		</template>
 
 		<div class="py-12">

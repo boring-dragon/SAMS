@@ -14,7 +14,7 @@ const props = defineProps({
 
 	<StudentLayout>
 		<template #header>
-			<h2 class="font-semibold text-xl text-gray-800 leading-tight">My Modules</h2>
+			<h2 class="font-semibold text-xl leading-tight">My Modules</h2>
 		</template>
 
 		<div class="py-12">
