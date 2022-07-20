@@ -44,7 +44,7 @@ class Student extends Model
             ->withPivot('enrolled_at');
     }
 
-    public function attendance() : HasMany
+    public function attendances() : HasMany
     {
         return $this->hasMany(Attendance::class);
     }

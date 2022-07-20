@@ -82,7 +82,6 @@ export default {
 
 								<BreezeNavLink :active="route().current('student.medicalCertificate.index')" :href="route('student.medicalCertificate.index')">Medical Certificate</BreezeNavLink>
 
-								<BreezeNavLink :active="route().current('student.profile.index')" :href="route('student.profile.index')">Profile</BreezeNavLink>
 							</div>
 						</div>
 
@@ -102,6 +101,7 @@ export default {
 									</template>
 
 									<template #content>
+                                        <BreezeDropdownLink :href="route('student.profile.index')">Profile</BreezeDropdownLink>
 										<BreezeDropdownLink :href="route('logout')" as="button" method="post">Log Out</BreezeDropdownLink>
 									</template>
 								</BreezeDropdown>
@@ -132,8 +132,6 @@ export default {
 						<BreezeResponsiveNavLink :active="route().current('student.attendance.index')" :href="route('student.attendance.index')">Attendance</BreezeResponsiveNavLink>
 
 						<BreezeNavLink :active="route().current('student.medicalCertificate.index')" :href="route('student.medicalCertificate.index')">Medical Certificate</BreezeNavLink>
-
-						<BreezeNavLink :active="route().current('student.profile.index')" :href="route('student.profile.index')">Profile</BreezeNavLink>
 					</div>
 
 					<!-- Responsive Settings Options -->
@@ -144,6 +142,7 @@ export default {
 						</div>
 
 						<div class="mt-3 space-y-1">
+                            <BreezeResponsiveNavLink :href="route('student.profile.index')">Profile</BreezeResponsiveNavLink>
 							<BreezeResponsiveNavLink :href="route('logout')" as="button" method="post">Log Out</BreezeResponsiveNavLink>
 						</div>
 					</div>

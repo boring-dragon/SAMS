@@ -21,7 +21,7 @@ class DashboardController extends Controller
 
         return Inertia::render('Student/Dashboard', [
             'modules' => $modules,
-            'classes' => 3
+            'classes' => Auth::user()->typable->attendances()->count()
         ]);
     }
 

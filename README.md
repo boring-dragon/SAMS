@@ -17,6 +17,7 @@ Hosted Live Version At: https://sams.jinas.me
 - [x] Simple Landing Pages ( Kim )
 - [x] Connect Dashboard Charts to backend ( Kim )
 - [x] Total Count cards on Student Dashboard
+- [x] Update the total classes attended card
 - [ ] Attendance taking from student side ( Jinas )
 - [ ] QR Code
 - [ ] Time Slot Selection

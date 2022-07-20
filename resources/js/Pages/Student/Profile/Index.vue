@@ -102,13 +102,6 @@ function onSubmit() {
                             <!-- <p class="mt-2 text-sm text-red-600" v-if="props.errors.name">{{ props.errors.name }}</p> -->
                         </div>
 
-                        <div>
-                            <input
-                                class="w-full p-3 text-sm border-gray-200 rounded-lg focus:border-indigo-500 focus:ring-indigo-500"
-                                id="name" placeholder="Password Check" type="password" v-model="state.form.passwordCheck" />
-                            <!-- <p class="mt-2 text-sm text-red-600" v-if="props.errors.name">{{ props.errors.name }}</p> -->
-                        </div>
-
                         <div class="mt-4">
                             <button
                                 class="inline-flex items-center justify-center w-full px-5 py-3 text-white bg-black rounded-lg sm:w-auto"
