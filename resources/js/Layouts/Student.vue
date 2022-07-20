@@ -44,6 +44,10 @@ const showingNavigationDropdown = ref(false);
                                    <BreezeNavLink :href="route('student.attendance.index')" :active="route().current('student.attendance.index')">
                                     Attendance
                                 </BreezeNavLink>
+
+                                <BreezeNavLink :href="route('student.medicalCertificate.index')" :active="route().current('student.medicalCertificate.index')">
+                                    Medical Certificate
+                                </BreezeNavLink>
                             </div>
                         </div>
 
@@ -102,6 +106,10 @@ const showingNavigationDropdown = ref(false);
                            <BreezeResponsiveNavLink :href="route('student.attendance.index')" :active="route().current('student.attendance.index')">
                             Attendance
                         </BreezeResponsiveNavLink>
+
+                        <BreezeNavLink :href="route('student.medicalCertificate.index')" :active="route().current('student.medicalCertificate.index')">
+                                    Medical Certificate
+                                </BreezeNavLink>
                     </div>
 
                     <!-- Responsive Settings Options -->

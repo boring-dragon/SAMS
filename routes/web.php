@@ -31,6 +31,8 @@ Route::group(['middleware' => ['auth:sanctum', 'role:student'], 'prefix' => 'das
     Route::get('/modules', ModulesIndexController::class)->name('modules.index');
     Route::get('/classes', ClassesIndexController::class)->name('classes.index');
     Route::get('/attendance', fn () => Inertia::render('Student/Attendance/Index'))->name('attendance.index');
+    Route::get('/medicalCertificate', fn () => Inertia::render('Student/MedicalCertificate/Index'))->name('medicalCertificate.index');
+
 });
 
 
