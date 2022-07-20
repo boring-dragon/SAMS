@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('enrollments', function (Blueprint $table) {
-            $table->primary(['module_id', 'student_id']);
+            $table->id();
             $table->unsignedBigInteger('student_id');
             $table->unsignedBigInteger('module_id');
             $table->dateTime('enrolled_at');

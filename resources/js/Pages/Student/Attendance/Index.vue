@@ -4,20 +4,6 @@ import { Head } from '@inertiajs/inertia-vue3';
 import { reactive, watch } from "vue";
 import Search from "@/Shared/Search.vue";
 
-const props = defineProps({
-    enrollments: {
-        type: Object,
-        required: true
-    },
-    filters: Object,
-});
-
-const state = reactive({
-    form: {
-        // search: props.filters.search
-    },
-});
-
 const propsExample = [
     { module: 'Web Development', id: 1, description: 'Lecture 07', created_at: '13:22:46', date: '15.07.2022' },
     { module: 'Operating System', id: 2, description: 'Lecture 07', created_at: '11:22:46', date: '15.07.2022' },
@@ -40,11 +26,7 @@ const propsExample = [
             </h2>
         </template>
 
-        <div class="px-4 sm:px-6 lg:px-8">
-
-            <div class="my-4 rounded-md">
-                <search v-model="state.form.search" />
-            </div>
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
 
             <div class="mt-8 flex flex-col">
                 <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -102,7 +84,7 @@ const propsExample = [
                                     </tbody>
                                 </table>
                             </div>
-                            <pagination class="mt-6" />
+
                         </div>
 
                     </div>
