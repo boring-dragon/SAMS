@@ -33,15 +33,7 @@ Route::group(['middleware' => ['auth:sanctum', 'role:student'], 'prefix' => 'das
     Route::get('/modules', ModulesIndexController::class)->name('modules.index');
     Route::get('/classes', ClassesIndexController::class)->name('classes.index');
     Route::get('/attendance', fn () => Inertia::render('Student/Attendance/Index'))->name('attendance.index');
-    Route::get('/medicalCertificate', fn () => Inertia::render('Student/MedicalCertificate/Index'))->name('medicalCertificate.index');
-
-    Route::get('/attendance/take', function() {
-        return Inertia::modal('Student/Modals/CreateAttendance')
-        ->with([
-            'user' => Auth::user()
-        ])->baseRoute('student.classes.index');
-
-    })->name('attendance.take');
+    Route::get('/mc', fn () => Inertia::render('Student/MedicalCertificate/Index'))->name('medicalCertificate.index');
 
 });
 

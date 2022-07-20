@@ -718,11 +718,6 @@ moment@^2.29.3:
   resolved "https://registry.npmjs.org/moment/-/moment-2.29.3.tgz"
   integrity sha512-c6YRvhEo//6T2Jz/vVtYzqBzwvPT95JBQ+smCytzf7c50oMZRsR/a4w88aD34I+/QVSfnoAnSBFPJHItlOMJVw==
 
-momentum-modal@^0.1.9:
-  version "0.1.10"
-  resolved "https://registry.npmjs.org/momentum-modal/-/momentum-modal-0.1.10.tgz"
-  integrity sha512-rYx8yC6a9Elw5nGrGpGLdgd7nMErLPG5a9Yw1i7tCuhUZYjwXhMVXc2AZSvwCrVJBCJ1CxvasYrJon09ljrWxg==
-
 nanoid@^3.3.4:
   version "3.3.4"
   resolved "https://registry.npmjs.org/nanoid/-/nanoid-3.3.4.tgz"
