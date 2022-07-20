@@ -1,42 +1,30 @@
 <script setup>
 import StudentLayout from '@/Layouts/Student.vue';
 import { Head } from '@inertiajs/inertia-vue3';
+import { reactive, watch } from "vue";
+import Search from "@/Shared/Search.vue";
 
-// const props = [
-//     { module: 'Web Development', id: 1, description: 'Lecture 07', created_at: '13:22:46', date: '15.07.2022' },
-//     { module: 'Operating System', id: 2, description: 'Lecture 07', created_at: '11:22:46', date: '15.07.2022' },
-//     { module: 'Calculus and Algebra', id: 3, description: 'Lecture 07', created_at: '15:22:46', date: '15.07.2022' },
-//     { module: 'Computing Project', id: 4, description: 'Lecture 07', created_at: '18:22:46', date: '14.07.2022' },
-//     { module: 'Web Development', id: 5, description: 'Lecture 07', created_at: '16:22:46', date: '14.07.2022' },
-//     { module: 'Operating System', id: 6, description: 'Lecture 07', created_at: '19:22:46', date: '13.07.2022' }
-// ]
+const props = defineProps({
+    enrollments: {
+        type: Object,
+        required: true
+    },
+    filters: Object,
+});
 
-// ex) sorted by dates
-const sortedProps = [
-    {
-        date: '15.07.2022',
-        modules: [
-            { moduleId: 'ITS42604', moduleName: 'Web Development', created_at: '13:22:46', description: 'Lecture 07'},
-            { moduleId: 'ITS42604', moduleName: 'Operating System', created_at: '13:22:46', description: 'Lecture 07' },
-            { moduleId: 'ITS42604', moduleName: 'Calculus and Algebra', created_at: '13:22:46', description: 'Lecture 07' },
-            { moduleId: 'ITS42604', moduleName: 'Operating System', created_at: '13:22:46', description: 'Lecture 07' },
-            { moduleId: 'ITS42604', moduleName: 'Calculus and Algebra', created_at: '13:22:46', description: 'Lecture 07' }
-        ]
+const state = reactive({
+    form: {
+        // search: props.filters.search
     },
-    {
-        date: '14.07.2022',
-        modules: [
-            { moduleId: 'ITS42604', moduleName: 'Web Development', created_at: '13:22:46', description: 'Lecture 07' },
-            { moduleId: 'ITS42604', moduleName: 'Web Development', created_at: '13:22:46', description: 'Lecture 07' },
-            { moduleId: 'ITS42604', moduleName: 'Web Development', created_at: '13:22:46', description: 'Lecture 07' }
-        ]
-    },
-    {
-        date: '13.07.2022',
-        modules: [
-            { moduleId: 'ITS42604', moduleName: 'Web Development', created_at: '13:22:46', description: 'Lecture 07' }
-        ]
-    }
+});
+
+const propsExample = [
+    { module: 'Web Development', id: 1, description: 'Lecture 07', created_at: '13:22:46', date: '15.07.2022' },
+    { module: 'Operating System', id: 2, description: 'Lecture 07', created_at: '11:22:46', date: '15.07.2022' },
+    { module: 'Calculus and Algebra', id: 3, description: 'Lecture 07', created_at: '15:22:46', date: '15.07.2022' },
+    { module: 'Computing Project', id: 4, description: 'Lecture 07', created_at: '18:22:46', date: '14.07.2022' },
+    { module: 'Web Development', id: 5, description: 'Lecture 07', created_at: '16:22:46', date: '14.07.2022' },
+    { module: 'Operating System', id: 6, description: 'Lecture 07', created_at: '19:22:46', date: '13.07.2022' }
 ]
 
 </script>
@@ -52,35 +40,73 @@ const sortedProps = [
             </h2>
         </template>
 
-        <div class="py-12">
-            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <section>
-                    <div class="relative">
-                        <span class="pr-3 text-lg font-medium text-neutral-600">Diploma in IT</span><br>
-                        <span class="pr-3 text-lg font-medium text-neutral-600">Semester: 4 (Apr-2022 - Jul-2022)</span>
-                    </div>
-                    <div class="space-y-8 lg:divide-y lg:divide-gray-100">
-                        <div :key="attendance.date" class="bg-white group lg:items-end mt-8 p-6 rounded" v-for="attendance in sortedProps">
-                            <div>
-                                <span class="text-sm text-gray-500">{{ attendance.date }}</span>
-                            </div><hr>
-                            <table class="w-4/5 h-auto m-auto">
-                                <thead class="p-5 m-5">
-                                    <th>Module ID</th>
-                                    <th>Module Name</th>
-                                    <th>Time</th>
-                                    <th>Description</th>
-                                </thead>
-                                <tbody class="p-5 m-5" :key="key.module" v-for="key in attendance.modules">
-                                    <th class="text-center text-neutral-600">{{ key.moduleId }}</th>
-                                    <th class="text-center text-neutral-600">{{ key.moduleName }}</th>
-                                    <td class="text-center text-neutral-600">{{ key.created_at }}</td>
-                                    <td class="text-center text-neutral-600">{{ key.description }}</td>
-                                </tbody>
-                            </table>
+        <div class="px-4 sm:px-6 lg:px-8">
+
+            <div class="my-4 rounded-md">
+                <search v-model="state.form.search" />
+            </div>
+
+            <div class="mt-8 flex flex-col">
+                <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                    <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
+
+                        <div class="bg-white py-4 md:py-7 px-4 md:px-8 xl:px-10 rounded-md">
+
+                            <div class="sm:flex items-center justify-between">
+                                <div class="flex items-center">
+                                    <a class="rounded-full focus:outline-none focus:ring-2 focus:bg-indigo-50 focus:ring-indigo-800"
+                                        href=" javascript:void(0)">
+                                        <div class="py-2 px-8 bg-indigo-100 text-indigo-700 rounded-full">
+                                            <p>All</p>
+                                        </div>
+                                    </a>
+
+                                </div>
+                            </div>
+                            <div class="mt-7">
+                                <table class="w-full whitespace-nowrap">
+                                    <thead class="bg-gray-50">
+                                        <tr>
+                                            <th class="py-3 pl-4 pr-3 text-center text-xs font-medium uppercase tracking-wide text-gray-500 sm:pl-6"
+                                                scope="col">Module ID</th>
+                                            <th class="px-3 py-3 text-center text-xs font-medium uppercase tracking-wide text-gray-500"
+                                                scope="col">Description</th>
+                                            <th class="px-3 py-3 text-center text-xs font-medium uppercase tracking-wide text-gray-500"
+                                                scope="col">Enrolled At</th>
+                                            <th class="px-3 py-3 text-center text-xs font-medium uppercase tracking-wide text-gray-500"
+                                                scope="col">date</th>
+                                            <th class="relative py-3 pl-3 pr-4 sm:pr-6" scope="col">
+                                                <span class="sr-only">Edit</span>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr :key="module.id"
+                                            class="focus:outline-none h-16 border border-gray-100 rounded" tabindex="0"
+                                            v-for="module in propsExample">
+
+                                            <td
+                                                class="whitespace-nowrap py-4 pl-4 pr-3 text-center text-sm font-medium text-gray-900 sm:pl-6">
+                                                {{ module.module }}</td>
+                                            <td
+                                                class="whitespace-nowrap py-4 pl-4 pr-3 text-center text-sm font-medium text-gray-900 sm:pl-6">
+                                                {{ module.description }}</td>
+                                            <td
+                                                class="whitespace-nowrap py-4 pl-4 pr-3 text-center text-sm font-medium text-gray-900 sm:pl-6">
+                                                {{ module.created_at }}</td>
+                                            <td
+                                                class="whitespace-nowrap py-4 pl-4 pr-3 text-center text-sm font-medium text-gray-900 sm:pl-6">
+                                                {{ module.date }}</td>
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <pagination class="mt-6" />
                         </div>
+
                     </div>
-                </section>
+                </div>
             </div>
         </div>
     </StudentLayout>
