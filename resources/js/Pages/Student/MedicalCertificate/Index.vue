@@ -6,9 +6,8 @@ import { useForm } from "@inertiajs/inertia-vue3";
 import Loader from "@/Shared/Loader.vue";
 
 const props = defineProps({
-    medicalCertificate: {
+    modules: {
         type: Object,
-        required: true,
     },
     filters: Object,
 });
@@ -66,15 +65,15 @@ function onSubmit() {
                             <label class="block text-sm font-medium text-gray-700" for="module">Select Module</label>
                             <select
                                 class="py-3 px-4 pr-9 block w-full border-gray-200 rounded-md text-sm focus:border-indigo-500 focus:ring-indigo-500 mt-2"
-                                placeholder="Select Module" v-model="state.form.mc_id">
-                                <option :key="mc.id" :value="mc.id" v-for="mc in props.medicalCertificate">{{ mc.name
+                                placeholder="Select Module" v-model="state.form.module">
+                                <option :key="module.id" :value="module.name" v-for="module in props.modules">{{ module.name
                                 }}</option>
                             </select>
                         </div>
 
                         <div>
                             <label class="block text-sm font-medium text-gray-700" for="reason">Reason</label>
-                            <input
+                            <textarea
                                 class="py-3 px-4 pr-9 block w-full border-gray-200 rounded-md text-sm focus:border-indigo-500 focus:ring-indigo-500 mt-2"
                                 placeholder="Reason" type="text" v-model="state.form.reaason" />
                         </div>

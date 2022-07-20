@@ -6,6 +6,7 @@ use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\MyModulesController;
 use App\Http\Controllers\Student\AttendanceController as StudentAttendanceController;
 use App\Http\Controllers\Student\ClassesIndexController;
+use App\Http\Controllers\Student\MedicalCertificateIndexController;
 use App\Http\Controllers\Student\DashboardController;
 use App\Http\Controllers\Student\ModulesIndexController;
 use App\Http\Controllers\StudentController;
@@ -34,7 +35,8 @@ Route::group(['middleware' => ['auth:sanctum', 'role:student'], 'prefix' => 'das
     Route::get('/modules', ModulesIndexController::class)->name('modules.index');
     Route::get('/classes', ClassesIndexController::class)->name('classes.index');
     Route::get('/attendance', [StudentAttendanceController::class, 'index'])->name('attendance.index');
-    Route::get('/mc', fn () => Inertia::render('Student/MedicalCertificate/Index'))->name('medicalCertificate.index');
+    Route::get('/medicalCertificate', MedicalCertificateIndexController::class)->name('medicalCertificate.index');
+    Route::get('/profile', fn () => Inertia::render('Student/Profile/Index'))->name('profile.index');
 
 });
 
