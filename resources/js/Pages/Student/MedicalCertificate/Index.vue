@@ -1,5 +1,5 @@
 <script setup>
-import { reactive, watch } from "vue";
+import { onMounted, reactive, watch } from "vue";
 import StudentLayout from '@/Layouts/Student.vue';
 import { Head } from '@inertiajs/inertia-vue3';
 import { useForm } from "@inertiajs/inertia-vue3";
@@ -42,7 +42,30 @@ function onSubmit() {
 }
 
 </script>
+<script>
+// https://github.com/pqina/vue-filepond
+import vueFilePond from 'vue-filepond';
+import 'filepond/dist/filepond.min.css';
+import FilePondPluginImagePreview from 'filepond-plugin-image-preview';
+import 'filepond-plugin-image-preview/dist/filepond-plugin-image-preview.min.css';
 
+export default {
+  name: 'app',
+  data: function () {
+    return { mcFile: [] };
+  },
+  methods: {
+    handleFilePondInit: function () {
+      console.log("FilePond has initialized");
+
+      // FilePond instance methods are available on `this.$refs.pond`
+    },
+  },
+  components: {
+    FilePond: vueFilePond(FilePondPluginImagePreview)
+  }
+}
+</script>
 <template>
 
     <Head title="Medical Certificate" />
@@ -75,14 +98,12 @@ function onSubmit() {
                             <label class="block text-sm font-medium text-gray-700" for="reason">Reason</label>
                             <textarea
                                 class="py-3 px-4 pr-9 block w-full border-gray-200 rounded-md text-sm focus:border-indigo-500 focus:ring-indigo-500 mt-2"
-                                placeholder="Reason" type="text" v-model="state.form.reaason" />
+                                placeholder="Reason" type="text" v-model="state.form.reaason"/>
                         </div>
 
                         <div>
                             <label class="block text-sm font-medium text-gray-700" for="file">File</label>
-                            <input
-                                class='py-3 px-4 pr-9 block w-full border-gray-200 rounded-md text-sm focus:border-indigo-500 focus:ring-indigo-500 mt-2'
-                                type="file" ref="file" />
+                            <FilePond allowMultiple="true" v-bind:files="mcFile"/>
                         </div>
 
                         <div class="mt-4">
