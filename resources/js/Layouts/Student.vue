@@ -6,6 +6,7 @@ import BreezeDropdownLink from '@/Components/DropdownLink.vue';
 import BreezeNavLink from '@/Components/NavLink.vue';
 import BreezeResponsiveNavLink from '@/Components/ResponsiveNavLink.vue';
 import { Link } from '@inertiajs/inertia-vue3';
+import { Modal } from 'momentum-modal'
 
 const showingNavigationDropdown = ref(false);
 </script>
@@ -21,7 +22,8 @@ const showingNavigationDropdown = ref(false);
                             <!-- Logo -->
                             <div class="shrink-0 flex items-center uppercase">
                                 <Link :href="route('student.dashboard')">
-                                    <img src="/images/SAMS-01.png" class='rounded w-8'>
+
+                                    <h2 class="text-5xl font-extrabold text-indigo-500">SAMS</h2>
                                 </Link>
                             </div>
 
@@ -139,6 +141,7 @@ const showingNavigationDropdown = ref(false);
             <main>
                 <slot />
             </main>
+            <Modal />
         </div>
     </div>
 </template>

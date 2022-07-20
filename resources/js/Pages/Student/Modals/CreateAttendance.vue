@@ -1,0 +1,3 @@
+<template>
+    Take attendance
+</template>
