@@ -2,7 +2,7 @@
 import StudentLayout from '@/Layouts/Student.vue';
 import { Head } from '@inertiajs/inertia-vue3';
 import Vue3ChartJs from '@j-t-mcc/vue3-chartjs';
-import { computed, onMounted } from 'vue';
+import { computed, onBeforeMount, onMounted } from 'vue';
 import { map } from 'lodash';
 
 const props = defineProps({
@@ -17,23 +17,18 @@ const filterLabels = computed(() => {
 
 function random_rgba() {
     var o = Math.round, r = Math.random, s = 255;
-    return 'rgba(' + o(r()*s) + ',' + o(r()*s) + ',' + o(r()*s) + ',' + r().toFixed(1) + ')';
+    return 'rgba(' + o(r() * s) + ',' + o(r() * s) + ',' + o(r() * s) + ',' + r().toFixed(1) + ')';
 }
 
 const doughnutChart = {
     id: 'doughnut',
     type: 'doughnut',
     data: {
-        labels: ['Web Development', 'Operating System', 'Computing Project', 'Calculus and Algebra'],
+        labels: [],
         datasets: [
             {
-            backgroundColor: [
-                random_rgba(),
-                random_rgba(),
-                random_rgba(),
-                random_rgba()
-            ],
-            data: [1, 1, 1, 1]
+                backgroundColor: [],
+                data: []
             }
         ]
     }
@@ -46,24 +41,28 @@ const pieChart = {
         labels: ['Web Development', 'Operating System', 'Computing Project', 'Calculus and Algebra'],
         datasets: [
             {
-            backgroundColor: [
-                random_rgba(),
-                random_rgba(),
-                random_rgba(),
-                random_rgba()
-            ],
-            data: [20, 15, 10, 5]
+                backgroundColor: [
+                    random_rgba(),
+                    random_rgba(),
+                    random_rgba()
+                ],
+                data: [20, 15, 10]
             }
         ]
     }
 }
 
-onMounted(() => {
-
-    let enrolled_pie_labels = map(props.modules, function(module, key) {
+onBeforeMount(() => {
+    let enrolled_pie_labels = map(props.modules, function (module, key) {
         return module.name
     })
-     console.log(enrolled_pie_labels);
+
+    enrolled_pie_labels.forEach(key => {
+        doughnutChart.data.labels.push(key)
+        doughnutChart.data.datasets[0].backgroundColor.push(random_rgba())
+        doughnutChart.data.datasets[0].data.push(1)
+    })
+
 });
 </script>
 
@@ -94,7 +93,8 @@ onMounted(() => {
 
                 <div class="w-1/2 m-5 p-5">
                     <h1 class="text-lg font-medium text-neutral-600">Enrolled modules</h1>
-                    <vue3-chart-js :id="doughnutChart.id" :type="doughnutChart.type" :data="doughnutChart.data"></vue3-chart-js>
+                    <vue3-chart-js :id="doughnutChart.id" :type="doughnutChart.type" :data="doughnutChart.data">
+                    </vue3-chart-js>
                 </div>
                 <div class="w-1/2 m-5 p-5">
                     <h1 class="text-lg font-medium text-neutral-600">Attendances record</h1>
