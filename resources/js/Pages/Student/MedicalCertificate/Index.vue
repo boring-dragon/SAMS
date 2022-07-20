@@ -3,6 +3,7 @@ import { reactive, watch } from "vue";
 import StudentLayout from '@/Layouts/Student.vue';
 import { Head } from '@inertiajs/inertia-vue3';
 import { useForm } from "@inertiajs/inertia-vue3";
+import Loader from "@/Shared/Loader.vue";
 
 const props = defineProps({
     medicalCertificate: {
@@ -49,7 +50,7 @@ function onSubmit() {
 
     <StudentLayout>
         <template #header>
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            <h2 class="font-semibold text-xl leading-tight">
                 Medical Certificate
             </h2>
         </template>
