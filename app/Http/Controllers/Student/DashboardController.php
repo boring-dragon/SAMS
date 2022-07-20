@@ -20,7 +20,10 @@ class DashboardController extends Controller
         $modules = Auth::user()->typable->modules;
 
         return Inertia::render('Student/Dashboard', [
-            'modules' => $modules
+            'modules' => $modules,
+            'classes' => 3
         ]);
     }
+
+
 }
