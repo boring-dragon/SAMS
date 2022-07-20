@@ -8,7 +8,11 @@ import { map } from 'lodash';
 const props = defineProps({
     modules: {
         type: Object,
+    },
+    classes: {
+        type: Number,
     }
+
 });
 
 const filterLabels = computed(() => {
@@ -57,6 +61,7 @@ onBeforeMount(() => {
         return module.name
     })
 
+
     enrolled_pie_labels.forEach(key => {
         doughnutChart.data.labels.push(key)
         doughnutChart.data.datasets[0].backgroundColor.push(random_rgba())
@@ -80,13 +85,34 @@ onBeforeMount(() => {
 
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                    <div class="p-6 bg-white border-b border-gray-200">
-                        You're logged in as a student
+                <div class="grid grid-cols-2 gap-6">
+
+
+                    <div class=" mb-6 w-full ">
+                        <div class="bg-white shadow rounded-lg h-150 bg-white">
+                            <div class="px-6 py-4">
+                                <div class="flex justify-between items-center mb-2">
+                                    <h3 class="mr-3 text-base text-gray-700 font-bold">Total Modules</h3>
+                                </div>
+                                <p class="flex items-center text-4xl mb-4">{{ props.modules.length }}</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class=" mb-6 w-full">
+                        <div class="bg-white shadow rounded-lg h-150 bg-white">
+                            <div class="px-6 py-4">
+                                <div class="flex justify-between items-center mb-2">
+                                    <h3 class="mr-3 text-base text-gray-700 font-bold">Total Classes Attended</h3>
+                                </div>
+                                <p class="flex items-center text-4xl mb-4">{{ props.classes }}</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+
 
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white py-4 md:py-7 px-4 md:px-8 xl:px-10 flex justify-between shadow-sm sm:rounded-lg">
