@@ -32,5 +32,5 @@ Hosted Live Version At: https://sams.jinas.me
 - [x] Update the welcome page frameworks and technologies used area
 - [x] Update the tables to new design ( Student Attendance & Admin Enrollment)
 - [x] Medical Certificate Selection option to load the currently enrolled modules (Logged in student)
-- [ ] Profile Page for Student
+- [x] Profile Page for Student
 - [ ] Update MC file input to ( Filepond or any other cool looking field)

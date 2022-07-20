@@ -81,6 +81,8 @@ export default {
 								<BreezeNavLink :active="route().current('student.attendance.index')" :href="route('student.attendance.index')">Attendance</BreezeNavLink>
 
 								<BreezeNavLink :active="route().current('student.medicalCertificate.index')" :href="route('student.medicalCertificate.index')">Medical Certificate</BreezeNavLink>
+
+								<BreezeNavLink :active="route().current('student.profile.index')" :href="route('student.profile.index')">Profile</BreezeNavLink>
 							</div>
 						</div>
 
@@ -130,6 +132,8 @@ export default {
 						<BreezeResponsiveNavLink :active="route().current('student.attendance.index')" :href="route('student.attendance.index')">Attendance</BreezeResponsiveNavLink>
 
 						<BreezeNavLink :active="route().current('student.medicalCertificate.index')" :href="route('student.medicalCertificate.index')">Medical Certificate</BreezeNavLink>
+
+						<BreezeNavLink :active="route().current('student.profile.index')" :href="route('student.profile.index')">Profile</BreezeNavLink>
 					</div>
 
 					<!-- Responsive Settings Options -->
