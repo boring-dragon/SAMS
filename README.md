@@ -22,3 +22,14 @@ Hosted Live Version At: https://sams.jinas.me
 - [ ] Time Slot Selection
 - [ ] Attendance history
 - [ ] Medical Certificate submission
+
+
+
+
+( Kim )
+
+- [ ] Update the welcome page frameworks and technologies used area
+- [ ] Update the tables to new design ( Student Attendance & Admin Enrollment)
+- [ ] Profile Page for Student
+- [ ] Medical Certificate Selection option to load the currently enrolled modules ( Logged in student)
+- [ ] Update MC file input to ( Filepond or any other cool looking field)

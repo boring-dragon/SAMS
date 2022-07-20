@@ -3,6 +3,7 @@ import { reactive, watch } from "vue";
 import StudentLayout from '@/Layouts/Student.vue';
 import { Head } from '@inertiajs/inertia-vue3';
 import { useForm } from "@inertiajs/inertia-vue3";
+import Loader from "@/Shared/Loader.vue";
 
 const props = defineProps({
     medicalCertificate: {
