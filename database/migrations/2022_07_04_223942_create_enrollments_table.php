@@ -17,7 +17,6 @@ return new class extends Migration
             $table->primary(['module_id', 'student_id']);
             $table->unsignedBigInteger('student_id');
             $table->unsignedBigInteger('module_id');
-            $table->string('status')->default('pending');
             $table->dateTime('enrolled_at');
             $table->timestamps();
 

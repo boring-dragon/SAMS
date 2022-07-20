@@ -13,17 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('students', function (Blueprint $table) {
+        Schema::create('student_mcs', function (Blueprint $table) {
             $table->id();
-            $table->string('first_name');
-            $table->string('last_name');
-            $table->string('profile_photo_url')->nullable();
-            $table->string('phone_number');
-            $table->string('email')->unique();
-            $table->text('bio')->nullable();
-            $table->dateTime('dob');
+            $table->foreignId('student_id');
+            $table->foreignId('module_id');
+            $table->text('reason');
+            $table->dateTime('class_date');
+            $table->string('medical_file_url');
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 
@@ -34,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('students');
+        Schema::dropIfExists('student_mcs');
     }
 };
