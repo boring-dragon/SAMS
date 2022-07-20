@@ -130,15 +130,7 @@ defineProps({
 										<dd class="text-3xl font-extrabold tracking-tight text-gray-900">4</dd>
 									</div>
 
-									<!-- <div class="border-t-2 border-gray-100 pt-6">
-										<dt class="text-base font-medium text-gray-500">Beta Users</dt>
-										<dd class="text-3xl font-extrabold tracking-tight text-gray-900">0</dd>
-									</div>
 
-									<div class="border-t-2 border-gray-100 pt-6">
-										<dt class="text-base font-medium text-gray-500">Raised</dt>
-										<dd class="text-3xl font-extrabold tracking-tight text-gray-900">$0M</dd>
-									</div> -->
 								</dl>
 								<div class="mt-10">
 									<a class="text-base font-medium text-rose-500" href="#">Learn more about how we're
@@ -157,8 +149,8 @@ defineProps({
 							<div class="mt-20">
 								<div class="mt-6 sm:max-w-xl">
 									<h1 class="text-4xl font-extrabold text-gray-900 tracking-tight sm:text-5xl">Functionalities</h1>
-									
-									<div class="mt-6 text-xl text-gray-500">
+
+									<div class="mt-6 text-xl text-gray-500 space-y-6">
 										<li>Dashboard shows statistical graphs and students overview.</li>
 										<li>Generate a random attendance code that expires after a certain period of time.</li>
 										<li>Open and close buttons to keen attendance for the class.</li>
@@ -246,7 +238,7 @@ defineProps({
 								</div>
 							</div>
 
-							
+
 						</div>
 					</div>
 				</div>
@@ -258,49 +250,30 @@ defineProps({
 					<div class="mx-auto max-w-md px-4 sm:max-w-3xl sm:px-6 lg:px-8 lg:max-w-7xl">
 						<div class="lg:grid lg:grid-cols-2 lg:gap-24 lg:items-center">
 							<div>
-								<h2 class="text-3xl font-extrabold text-gray-900 tracking-tight sm:text-4xl">Frameworks</h2>
+								<h2 class="text-3xl font-extrabold text-gray-900 tracking-tight sm:text-4xl">Frameworks & Technologies Used</h2>
 								<p class="mt-6 max-w-3xl text-lg leading-7 text-gray-500">
-									<li>Larabel</li>
-									<li>Vue 3</li>
+
 								</p>
 								<div class="mt-6">
-									<a class="text-base font-medium text-rose-500" href="#">See the frameworks&nbsp&rarr;</a>
+									<a class="text-base font-medium text-rose-500" href="#">See the frameworks & technologies used in the project &nbsp&rarr;</a>
 								</div>
 							</div>
-							<div>
-								<img src="/images/vueLaravel.jpeg" alt="" class="rounded-3xl">
+			                <div class="mt-12 grid grid-cols-2 gap-0.5 md:grid-cols-3 lg:mt-0 lg:grid-cols-2">
+								<div class="col-span-1 flex justify-center py-8 px-8 bg-gray-50">
+									<img alt="Laravel" class="max-h-18"
+										src="https://laravelnews.imgix.net/images/laravel-featured.png" />
+								</div>
+
+                                	<div class="col-span-1 flex justify-center py-8 px-8 bg-gray-50">
+									<img alt="Laravel" class="max-h-18"
+										src="https://www.vectorlogo.zone/logos/vuejs/vuejs-ar21.png" />
+								</div>
+
+
+
+
 							</div>
-							<!-- <div class="mt-12 grid grid-cols-2 gap-0.5 md:grid-cols-3 lg:mt-0 lg:grid-cols-2">
-								<div class="col-span-1 flex justify-center py-8 px-8 bg-gray-50">
-									<img alt="Transistor" class="max-h-12"
-										src="https://tailwindui.com/img/logos/transistor-logo-gray-400.svg" />
-								</div>
 
-								<div class="col-span-1 flex justify-center py-8 px-8 bg-gray-50">
-									<img alt="Mirage" class="max-h-12"
-										src="https://tailwindui.com/img/logos/mirage-logo-gray-400.svg" />
-								</div>
-
-								<div class="col-span-1 flex justify-center py-8 px-8 bg-gray-50">
-									<img alt="Tuple" class="max-h-12"
-										src="https://tailwindui.com/img/logos/tuple-logo-gray-400.svg" />
-								</div>
-
-								<div class="col-span-1 flex justify-center py-8 px-8 bg-gray-50">
-									<img alt="Laravel" class="max-h-12"
-										src="https://tailwindui.com/img/logos/laravel-logo-gray-400.svg" />
-								</div>
-
-								<div class="col-span-1 flex justify-center py-8 px-8 bg-gray-50">
-									<img alt="StaticKit" class="max-h-12"
-										src="https://tailwindui.com/img/logos/statickit-logo-gray-400.svg" />
-								</div>
-
-								<div class="col-span-1 flex justify-center py-8 px-8 bg-gray-50">
-									<img alt="Workcation" class="max-h-12"
-										src="https://tailwindui.com/img/logos/workcation-logo-gray-400.svg" />
-								</div>
-							</div> -->
 						</div>
 					</div>
 				</div>
