@@ -69,17 +69,20 @@ const pieChart = {
             </div>
         </div>
 
-        <div class="py-12">
-            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 flex justify-between">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white py-4 md:py-7 px-4 md:px-8 xl:px-10 flex justify-between shadow-sm sm:rounded-lg">
+                
                 <div class="w-1/2 m-5 p-5">
-                    <h1>Enrolled modules</h1>
+                    <h1 class="text-lg font-medium text-neutral-600">Enrolled modules</h1>
                     <vue3-chart-js :id="doughnutChart.id" :type="doughnutChart.type" :data="doughnutChart.data"></vue3-chart-js>
                 </div>
                 <div class="w-1/2 m-5 p-5">
-                    <h1>Attendances record</h1>
+                    <h1 class="text-lg font-medium text-neutral-600">Attendances record</h1>
                     <vue3-chart-js :id="pieChart.id" :type="pieChart.type" :data="pieChart.data"></vue3-chart-js>
                 </div>
+
             </div>
         </div>
+
     </StudentLayout>
 </template>
