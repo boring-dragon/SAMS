@@ -6,7 +6,6 @@ import BreezeDropdownLink from "@/Components/DropdownLink.vue";
 import BreezeNavLink from "@/Components/NavLink.vue";
 import BreezeResponsiveNavLink from "@/Components/ResponsiveNavLink.vue";
 import { Link } from "@inertiajs/inertia-vue3";
-import { Modal } from "momentum-modal";
 import { useToast } from "vue-toastification";
 
 export default {
@@ -16,8 +15,7 @@ export default {
     BreezeDropdownLink,
     BreezeNavLink,
     BreezeResponsiveNavLink,
-    Link,
-    Modal
+    Link
   },
   watch: {
     "$page.props.flash": {
@@ -159,7 +157,6 @@ export default {
 			<main>
 				<slot />
 			</main>
-			<Modal />
 		</div>
 	</div>
 </template>
