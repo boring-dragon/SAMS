@@ -26,16 +26,22 @@ class ModuleFactory extends Factory
             'type' => $this->faker->randomElement(['core', 'practical', 'tutorial']),
             'time_slots' => [
                 "sunday" => [
+                    [
                     "start" => "09:00",
                     "end" => "11:00"
+                    ]
                 ],
                 "tuesday" => [
+                    [
                     "start" => "10:00",
                     "end" => "11:00"
+                    ]
                 ],
                 "friday" => [
+                    [
                     "start" => "05:00",
                     "end" => "07:00"
+                    ]
                 ],
             ]
         ];
