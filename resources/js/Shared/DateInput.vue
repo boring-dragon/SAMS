@@ -88,7 +88,7 @@ export default {
 <style>
 .flatpickr-day.selected,
 .flatpickr-day.selected:hover {
-  border-color: #22c55e;
-  background: #22c55e;
+  border-color: #6366F1;
+  background: #6366F1;
 }
 </style>

@@ -4,6 +4,7 @@ import StudentLayout from "@/Layouts/Student.vue";
 import { Head, usePage } from "@inertiajs/inertia-vue3";
 import { useForm } from "@inertiajs/inertia-vue3";
 import Loader from "@/Shared/Loader.vue";
+import DateInput from "@/Shared/DateInput.vue";
 
 import vueFilePond from "vue-filepond";
 import "filepond/dist/filepond.min.css";
@@ -20,7 +21,9 @@ const props = defineProps({
   modules: {
     type: Object,
   },
-  filters: Object,
+  errors: {
+    type: Object,
+  }
 });
 
 const state = reactive({
@@ -29,6 +32,7 @@ const state = reactive({
     {
       module: null,
       reason: null,
+      class_date: null,
       medical_file_url: null,
     },
     { resetOnSuccess: false }
@@ -58,14 +62,7 @@ function onSubmit() {
     preserveScroll: true,
   };
 
-  if (props.teacher && props.teacher.id) {
-    state.form.put(
-      route("student.medicalCertificate.index", props.teacher),
-      config
-    );
-  } else {
-    state.form.post(route("student.medicalCertificate.index"), config);
-  }
+  state.form.post(route("student.medicalCertificate.store"), config);
 }
 </script>
 <template>
@@ -85,12 +82,20 @@ function onSubmit() {
 							<select class="py-3 px-4 pr-9 block w-full border-gray-200 rounded-md text-sm focus:border-indigo-500 focus:ring-indigo-500 mt-2" placeholder="Select Module" v-model="state.form.module">
 								<option :key="module.id" :value="module.name" v-for="module in props.modules">{{ module.name }}</option>
 							</select>
+                            <p class="mt-2 text-sm text-red-600" v-if="props.errors.module_id">{{ props.errors.module_id }}</p>
 						</div>
 
 						<div>
 							<label class="block text-sm font-medium text-gray-700" for="reason">Reason</label>
 							<textarea class="py-3 px-4 pr-9 block w-full border-gray-200 rounded-md text-sm focus:border-indigo-500 focus:ring-indigo-500 mt-2" placeholder="Reason" type="text" v-model="state.form.reaason" />
-						</div>
+						<p class="mt-2 text-sm text-red-600" v-if="props.errors.reason">{{ props.errors.reason }}</p>
+                        </div>
+
+                        	<div>
+					<label class="block text-sm font-medium text-gray-700 mb-2" for="dob">Class Date</label>
+					<date-input placeholder="Class Date" v-model="state.form.class_date"></date-input>
+					<p class="mt-2 text-sm text-red-600" v-if="props.errors.class_date">{{ props.errors.class_date }}</p>
+				</div>
 
 						<div>
 							<label class="block text-sm font-medium text-gray-700" for="file">Mc File</label>
