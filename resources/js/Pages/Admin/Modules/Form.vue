@@ -35,7 +35,7 @@ const state = reactive({
 });
 
 function addSlot(day) {
-  state.form.time_slots[day].push({ from: "", to: "" });
+  state.form.time_slots[day].push({ start: "", end: "" });
 }
 
 function removeSlot(day, index) {
@@ -127,12 +127,12 @@ onMounted(() => {
 								</div>
 								<div class="grid grid-cols-1 gap-x-4 gap-y-8 sm:grid-cols-2">
 									<div class="sm:col-span-1">
-										<label class="block text-sm font-medium text-gray-700" for="from">From</label>
-										<input class="w-full p-3 text-sm border-gray-200 rounded-lg focus:border-indigo-500 focus:ring-indigo-500" placeholder="From" type="time" v-model="state.form.time_slots[day][key].from" />
+										<label class="block text-sm font-medium text-gray-700" for="from">Start</label>
+										<input class="w-full p-3 text-sm border-gray-200 rounded-lg focus:border-indigo-500 focus:ring-indigo-500" placeholder="From" type="time" v-model="state.form.time_slots[day][key].start" />
 									</div>
 									<div class="sm:col-span-1">
-										<label class="block text-sm font-medium text-gray-700" for="from">To</label>
-										<input class="w-full p-3 text-sm border-gray-200 rounded-lg focus:border-indigo-500 focus:ring-indigo-500" placeholder="To" type="time" v-model="state.form.time_slots[day][key].to" />
+										<label class="block text-sm font-medium text-gray-700" for="from">End</label>
+										<input class="w-full p-3 text-sm border-gray-200 rounded-lg focus:border-indigo-500 focus:ring-indigo-500" placeholder="To" type="time" v-model="state.form.time_slots[day][key].end" />
 									</div>
 								</div>
 							</div>

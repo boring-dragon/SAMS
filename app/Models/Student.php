@@ -32,24 +32,24 @@ class Student extends Model
         'full_name',
     ];
 
-    public function user() : MorphOne
+    public function user(): MorphOne
     {
         return $this->morphOne(User::class, 'typable', 'typable_type', 'typable_id', 'id');
     }
 
-    public function modules() : BelongsToMany
+    public function modules(): BelongsToMany
     {
         return $this->belongsToMany(Module::class, 'enrollments', 'student_id', 'module_id')
             ->withTimestamps()
             ->withPivot('enrolled_at');
     }
 
-    public function attendances() : HasMany
+    public function attendances(): HasMany
     {
         return $this->hasMany(Attendance::class);
     }
 
-    public function student_mcs() : HasMany
+    public function student_mcs(): HasMany
     {
         return $this->hasMany(StudentMc::class);
     }
@@ -61,43 +61,49 @@ class Student extends Model
     }
 
 
-    public function getAllOccuringClasses() : ?array
+    public function getAllOccuringClasses(): ?array
     {
         $currentlyOccuringModules = [];
 
         collect($this->modules)->each(function ($module, $key) use (&$currentlyOccuringModules) {
 
-            collect($module->time_slots)->filter()->each(function ($timeSlot, $key) use (&$currentlyOccuringModules, $module) {
-                $startTime = Carbon::parse($key.$timeSlot['start']);
-                $endTime = Carbon::parse($key.$timeSlot['end']);
-                $currentTime = Carbon::now();
+            collect($module->time_slots)->filter()->each(function ($timeSlot, $day) use (&$currentlyOccuringModules, $module) {
 
-                if ($currentTime->between($startTime, $endTime)) {
-                    $currentlyOccuringModules[] = $module;
-                }
+                collect($timeSlot)->each(function ($time, $key) use (&$currentlyOccuringModules, $module, $day) {
 
+                    $startTime = Carbon::parse($day . $time['start']);
+                    $endTime = Carbon::parse($day . $time['end']);
+                    $currentTime = Carbon::now();
+
+                    if ($currentTime->between($startTime, $endTime)) {
+                        $currentlyOccuringModules[] = $module;
+                    }
+                });
             });
         });
 
         return $currentlyOccuringModules;
     }
 
-    public function getUpComingClasses() : ?Collection
+    public function getUpComingClasses(): ?Collection
     {
         $upComingModules = [];
 
 
         collect($this->modules)->each(function ($module, $key) use (&$upComingModules) {
 
-            collect($module->time_slots)->filter()->each(function ($timeSlot, $key) use (&$upComingModules, $module) {
-                $startTime = Carbon::parse($key.$timeSlot['start']);
-                $endTime = Carbon::parse($key.$timeSlot['end']);
-                $currentTime = Carbon::now();
+            collect($module->time_slots)->filter()->each(function ($timeSlot, $day) use (&$upComingModules, $module) {
 
-                if ($currentTime->lt($startTime) && $startTime->diffInDays($currentTime) <= 7) {
-                    $upComingModules[] = array_merge(['at' =>  Carbon::parse($key.$timeSlot['start']), 'duration' => $startTime->diffInHours($endTime) ], $module->toArray());
-                }
+                collect($timeSlot)->each(function ($time, $key) use (&$currentlyOccuringModules, $module, $day) {
 
+                    $startTime = Carbon::parse($day . $time['start']);
+                    $endTime = Carbon::parse($day . $time['end']);
+                    $currentTime = Carbon::now();
+
+                    if ($currentTime->lt($startTime) && $startTime->diffInDays($currentTime) <= 7) {
+                        $upComingModules[] = array_merge(['at' =>  Carbon::parse($key . $time['start']), 'duration' => $startTime->diffInHours($endTime)], $module->toArray());
+                    }
+                });
             });
         });
 
