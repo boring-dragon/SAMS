@@ -49,6 +49,11 @@ class Student extends Model
         return $this->hasMany(Attendance::class);
     }
 
+    public function student_mcs() : HasMany
+    {
+        return $this->hasMany(StudentMc::class);
+    }
+
 
     public function getFullNameAttribute()
     {

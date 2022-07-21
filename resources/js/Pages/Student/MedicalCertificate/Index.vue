@@ -23,14 +23,14 @@ const props = defineProps({
   },
   errors: {
     type: Object,
-  }
+  },
 });
 
 const state = reactive({
   sending: false,
   form: useForm(
     {
-      module: null,
+      module_id: null,
       reason: null,
       class_date: null,
       medical_file_url: null,
@@ -79,27 +79,28 @@ function onSubmit() {
 					<form @submit.prevent="onSubmit" class="space-y-4">
 						<div>
 							<label class="block text-sm font-medium text-gray-700" for="module">Select Module</label>
-							<select class="py-3 px-4 pr-9 block w-full border-gray-200 rounded-md text-sm focus:border-indigo-500 focus:ring-indigo-500 mt-2" placeholder="Select Module" v-model="state.form.module">
-								<option :key="module.id" :value="module.name" v-for="module in props.modules">{{ module.name }}</option>
+							<select class="py-3 px-4 pr-9 block w-full border-gray-200 rounded-md text-sm focus:border-indigo-500 focus:ring-indigo-500 mt-2" placeholder="Select Module" v-model="state.form.module_id">
+								<option :key="module.id" :value="module.id" v-for="module in props.modules">{{ module.name }}</option>
 							</select>
-                            <p class="mt-2 text-sm text-red-600" v-if="props.errors.module_id">{{ props.errors.module_id }}</p>
+							<p class="mt-2 text-sm text-red-600" v-if="props.errors.module_id">{{ props.errors.module_id[0] }}</p>
 						</div>
 
 						<div>
 							<label class="block text-sm font-medium text-gray-700" for="reason">Reason</label>
 							<textarea class="py-3 px-4 pr-9 block w-full border-gray-200 rounded-md text-sm focus:border-indigo-500 focus:ring-indigo-500 mt-2" placeholder="Reason" type="text" v-model="state.form.reaason" />
-						<p class="mt-2 text-sm text-red-600" v-if="props.errors.reason">{{ props.errors.reason }}</p>
-                        </div>
-
-                        	<div>
-					<label class="block text-sm font-medium text-gray-700 mb-2" for="dob">Class Date</label>
-					<date-input placeholder="Class Date" v-model="state.form.class_date"></date-input>
-					<p class="mt-2 text-sm text-red-600" v-if="props.errors.class_date">{{ props.errors.class_date }}</p>
-				</div>
+							<p class="mt-2 text-sm text-red-600" v-if="props.errors.reason">{{ props.errors.reason[0] }}</p>
+						</div>
 
 						<div>
-							<label class="block text-sm font-medium text-gray-700" for="file">Mc File</label>
-							<file-pond accepted-file-types="image/jpeg, image/png" label-idle="Drop files here Or Upload" :server="serverConfig()" v-bind:allow-multiple="false" v-bind:files="state.form.medical_file_url" />
+							<label class="block text-sm font-medium text-gray-700 mb-2" for="dob">Class Date</label>
+							<date-input placeholder="Class Date" v-model="state.form.class_date"></date-input>
+							<p class="mt-2 text-sm text-red-600" v-if="props.errors.class_date">{{ props.errors.class_date[0] }}</p>
+						</div>
+
+						<div>
+							<label class="block text-sm font-medium text-gray-700 mb-2" for="file">Mc File</label>
+							<file-pond :server="serverConfig()" accepted-file-types="application/pdf" label-idle="Drop files here Or Upload" v-bind:allow-multiple="false" v-bind:files="state.form.medical_file_url" />
+                            <p class="mt-2 text-sm text-red-600" v-if="props.errors.medical_file_url">{{ props.errors.medical_file_url[0] }}</p>
 						</div>
 
 						<div class="mt-4">

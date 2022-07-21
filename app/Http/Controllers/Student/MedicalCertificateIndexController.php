@@ -17,6 +17,13 @@ class MedicalCertificateIndexController extends Controller
 
     public function store(Request $request): void
     {
-        # code...
+        $request->validate([
+            'module_id' => 'required|exists:modules,id',
+            'reason' => 'required',
+            'class_date' => 'required',
+            'medical_file_url' => 'required',
+        ]);
+
+        auth()->user()->typable->student_mcs()->create($request->all());
     }
 }
