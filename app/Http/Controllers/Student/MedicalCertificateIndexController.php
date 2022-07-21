@@ -15,15 +15,24 @@ class MedicalCertificateIndexController extends Controller
         ]);
     }
 
-    public function store(Request $request): void
+    public function store(Request $request)
     {
         $request->validate([
             'module_id' => 'required|exists:modules,id',
             'reason' => 'required',
             'class_date' => 'required',
-            'medical_file_url' => 'required',
+            'mc' => 'required',
         ]);
 
-        auth()->user()->typable->student_mcs()->create($request->all());
+
+
+       auth()->user()->typable->student_mcs()->create([
+            'module_id' => $request->module_id,
+            'reason' => $request->reason,
+            'class_date' => $request->class_date,
+            'medical_file_url' => $request->mc->store('student_mcs', 'public'),
+        ]);
+
+        return redirect()->route('student.dashboard')->with('success', 'Medical certificate created successfully.');
     }
 }

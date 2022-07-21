@@ -5,8 +5,8 @@ import BreezeDropdown from "@/Components/Dropdown.vue";
 import BreezeDropdownLink from "@/Components/DropdownLink.vue";
 import BreezeNavLink from "@/Components/NavLink.vue";
 import BreezeResponsiveNavLink from "@/Components/ResponsiveNavLink.vue";
+import FlashMessages from "@/Shared/FlashMessages.vue";
 import { Link } from "@inertiajs/inertia-vue3";
-import { useToast } from "vue-toastification";
 
 export default {
   components: {
@@ -15,37 +15,11 @@ export default {
     BreezeDropdownLink,
     BreezeNavLink,
     BreezeResponsiveNavLink,
-    Link
-  },
-  watch: {
-    "$page.props.flash": {
-      handler() {
-        const timeout = 1000;
-        if (this.$page.props.flash.success) {
-          this.toast.success(this.$page.props.flash.success, {
-            timeout: timeout,
-          });
-        }
-
-        if (this.$page.props.flash.info) {
-          this.toast.info(this.$page.props.flash.info, { timeout: timeout });
-        }
-
-        if (
-          this.$page.props.flash.error ||
-          Object.keys(this.$page.props.errors).length > 0
-        ) {
-          if (this.$page.props.flash.error) {
-            this.toast.error(this.$page.props.flash.error, {
-              timeout: timeout,
-            });
-          }
-        }
-      },
-      deep: true,
-    },
+    Link,
+    FlashMessages
   },
   setup() {
+
     const showingNavigationDropdown = ref(false);
 
     return {
@@ -158,6 +132,10 @@ export default {
 
 			<!-- Page Content -->
 			<main>
+                <div class="container flex justify-center mx-auto mt-4">
+                    <flash-messages />
+                </div>
+
 				<slot />
 			</main>
 		</div>

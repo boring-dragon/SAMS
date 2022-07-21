@@ -4,7 +4,7 @@ import BreezeAuthenticatedLayout from "@/Layouts/Authenticated.vue";
 import { Head } from "@inertiajs/inertia-vue3";
 import { useForm } from "@inertiajs/inertia-vue3";
 import Loader from "@/Shared/Loader.vue";
-import moment from 'moment';
+import moment from "moment";
 
 const props = defineProps({
   modules: Object,
@@ -15,7 +15,7 @@ const props = defineProps({
 	<Head title="Attendance" />
 
 	<BreezeAuthenticatedLayout>
-		<template #header>List of Modules Assigned to "{{ $page.props.auth.user.name }}" </template>
+		<template #header>List of Modules Assigned to "{{ $page.props.auth.user.name }}"</template>
 
 		<div class="py-12">
 			<div class="bg-white py-4 md:py-7 px-4 md:px-8 xl:px-10">
@@ -30,6 +30,14 @@ const props = defineProps({
 				</div>
 				<div class="mt-7">
 					<table class="w-full whitespace-nowrap">
+						<thead class="bg-gray-50">
+							<tr>
+								<th class="py-3 pl-4 pr-3 text-left text-xs font-medium uppercase tracking-wide text-gray-500 sm:pl-6" scope="col">Module Name</th>
+								<th class="px-3 py-3 text-left text-xs font-medium uppercase tracking-wide text-gray-500" scope="col">Module Code</th>
+								<th class="px-3 py-3 text-left text-xs font-medium uppercase tracking-wide text-gray-500" scope="col">Type</th>
+								<th class="px-3 py-3 text-left text-xs font-medium uppercase tracking-wide text-gray-500" scope="col">Created At</th>
+							</tr>
+						</thead>
 						<tbody>
 							<tr class="text-xl text-gray-600" v-if="modules.length === 0">No modules Found.</tr>
 							<tr :key="module.id" class="focus:outline-none h-16 border border-gray-100 rounded" tabindex="0" v-for="module in props.modules">

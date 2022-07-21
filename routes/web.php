@@ -10,6 +10,7 @@ use App\Http\Controllers\Student\MedicalCertificateIndexController;
 use App\Http\Controllers\Student\DashboardController;
 use App\Http\Controllers\Student\ModulesIndexController;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\StudentMcController;
 use App\Http\Controllers\TeacherController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -63,6 +64,7 @@ Route::group(['middleware' => ['auth:sanctum', 'role:teacher|admin'], 'prefix' =
     Route::resource('teachers', TeacherController::class);
     Route::resource('enrollments', EnrollmentController::class);
 
+    Route::get('/student_mc', StudentMcController::class)->name('student_mc.index');
     Route::get('attendances', [AttendanceController::class , 'index'])->name('attendances.index');
     Route::post('attendance/generate', [AttendanceController::class , 'generateAttendance'])->name('attendances.generate');
     Route::post('attendance/stop', [AttendanceController::class , 'stopAttendance'])->name('attendances.stop');

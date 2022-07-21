@@ -33,9 +33,9 @@ const state = reactive({
       module_id: null,
       reason: null,
       class_date: null,
-      medical_file_url: null,
+      mc: null,
     },
-    { resetOnSuccess: false }
+    { resetOnSuccess: true }
   ),
 });
 
@@ -87,7 +87,7 @@ function onSubmit() {
 
 						<div>
 							<label class="block text-sm font-medium text-gray-700" for="reason">Reason</label>
-							<textarea class="py-3 px-4 pr-9 block w-full border-gray-200 rounded-md text-sm focus:border-indigo-500 focus:ring-indigo-500 mt-2" placeholder="Reason" type="text" v-model="state.form.reaason" />
+							<textarea class="py-3 px-4 pr-9 block w-full border-gray-200 rounded-md text-sm focus:border-indigo-500 focus:ring-indigo-500 mt-2" placeholder="Reason" type="text" v-model="state.form.reason" />
 							<p class="mt-2 text-sm text-red-600" v-if="props.errors.reason">{{ props.errors.reason[0] }}</p>
 						</div>
 
@@ -99,7 +99,7 @@ function onSubmit() {
 
 						<div>
 							<label class="block text-sm font-medium text-gray-700 mb-2" for="file">Mc File</label>
-							<file-pond :server="serverConfig()" accepted-file-types="application/pdf" label-idle="Drop files here Or Upload" v-bind:allow-multiple="false" v-bind:files="state.form.medical_file_url" />
+							<input type="file" @input="state.form.mc = $event.target.files[0]" />
                             <p class="mt-2 text-sm text-red-600" v-if="props.errors.medical_file_url">{{ props.errors.medical_file_url[0] }}</p>
 						</div>
 

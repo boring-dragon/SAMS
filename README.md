@@ -22,8 +22,9 @@ Hosted Live Version At: https://sams.jinas.me
 - [ ] QR Code
 - [x] Time Slot Selection
 - [ ] Attendance history
-- [ ] Medical Certificate submission
-- [ ] Medical Ceriticate Viewing on Teacher Dashboard
+- [x] Medical Certificate submission
+- [x] Medical Ceriticate Viewing on Teacher Dashboard
+- [ ] Download the MC PDF from the teacher dashboard
 
 
 
