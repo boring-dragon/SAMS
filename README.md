@@ -1,6 +1,6 @@
 # SAMS
 
-Student Attendance Management System
+Student Attendance Management System ( Part of the web dev competition at taylors)
 
 
 Hosted Live Version At: https://sams.jinas.me
