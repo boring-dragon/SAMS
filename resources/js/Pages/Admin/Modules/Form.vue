@@ -19,11 +19,28 @@ const state = reactive({
       module_code: null,
       description: null,
       type: null,
-      teacher_id: null
+      teacher_id: null,
+      time_slots: {
+        sunday: [],
+        monday: [],
+        tuesday: [],
+        wednesday: [],
+        thursday: [],
+        friday: [],
+        saturday: [],
+      },
     },
     { resetOnSuccess: false }
   ),
 });
+
+function addSlot(day) {
+  state.form.time_slots[day].push({ from: "", to: "" });
+}
+
+function removeSlot(day, index) {
+  state.form.time_slots[day].splice(index, 1);
+}
 
 function onSubmit() {
   let config = {
@@ -54,21 +71,21 @@ onMounted(() => {
 		<div class="p-8 bg-white rounded-lg shadow-lg lg:p-12 lg:col-span-3">
 			<form @submit.prevent="onSubmit" class="space-y-4">
 				<div>
-					<label class="sr-only" for="name">Name</label>
-					<input class="w-full p-3 text-sm border-gray-200 rounded-lg focus:border-indigo-500 focus:ring-indigo-500" id="name" placeholder="Name" type="text" v-model="state.form.name" />
+					<label class="block text-sm font-medium text-gray-700" for="name">Name</label>
+					<input class="mt-2 w-full p-3 text-sm border-gray-200 rounded-lg focus:border-indigo-500 focus:ring-indigo-500" id="name" placeholder="Name" type="text" v-model="state.form.name" />
 					<p class="mt-2 text-sm text-red-600" v-if="props.errors.name">{{ props.errors.name }}</p>
 				</div>
 
 				<div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
 					<div>
-						<label class="sr-only" for="module_code">Module Code</label>
-						<input class="w-full p-3 text-sm border-gray-200 rounded-lg focus:border-indigo-500 focus:ring-indigo-500" placeholder="Module Code" type="text" v-model="state.form.module_code" />
+						<label class="block text-sm font-medium text-gray-700" for="module_code">Module Code</label>
+						<input class="mt-2 w-full p-3 text-sm border-gray-200 rounded-lg focus:border-indigo-500 focus:ring-indigo-500" placeholder="Module Code" type="text" v-model="state.form.module_code" />
 						<p class="mt-2 text-sm text-red-600" v-if="props.errors.module_code">{{ props.errors.module_code }}</p>
 					</div>
 
 					<div>
-						<label class="sr-only" for="type">Type</label>
-						<select class="py-3 px-4 pr-9 block w-full border-gray-200 rounded-md text-sm focus:border-indigo-500 focus:ring-indigo-500" placeholder="Type" v-model="state.form.type">
+				        <label class="block text-sm font-medium text-gray-700">Type</label>
+						<select class="mt-2 py-3 px-4 pr-9 block w-full border-gray-200 rounded-md text-sm focus:border-indigo-500 focus:ring-indigo-500" placeholder="Type" v-model="state.form.type">
 							<option value="core">Core</option>
 							<option value="tutorial">Tutorial</option>
 							<option value="practical">Practical</option>
@@ -78,19 +95,51 @@ onMounted(() => {
 					</div>
 				</div>
 
-                	<div>
-						<label class="sr-only" for="teacher">Teacher</label>
-						<select class="py-3 px-4 pr-9 block w-full border-gray-200 rounded-md text-sm focus:border-indigo-500 focus:ring-indigo-500" placeholder="Type" v-model="state.form.teacher_id">
-                                    <option :value="teacher.id" :key="teacher.id" v-for="teacher in props.teachers">{{ teacher.full_name }}</option>
-						</select>
+				<div>
+					<label class="block text-sm font-medium text-gray-700" for="teacher">Teacher</label>
+					<select class="mt-2 py-3 px-4 pr-9 block w-full border-gray-200 rounded-md text-sm focus:border-indigo-500 focus:ring-indigo-500" placeholder="Type" v-model="state.form.teacher_id">
+						<option :key="teacher.id" :value="teacher.id" v-for="teacher in props.teachers">{{ teacher.full_name }}</option>
+					</select>
 
-						<p class="mt-2 text-sm text-red-600" v-if="props.errors.teacher">{{ props.errors.teacher }}</p>
-					</div>
+					<p class="mt-2 text-sm text-red-600" v-if="props.errors.teacher">{{ props.errors.teacher }}</p>
+				</div>
 
 				<div>
-					<label class="sr-only" for="description">Description</label>
-					<textarea class="w-full p-3 text-sm border-gray-200 rounded-lg focus:border-indigo-500 focus:ring-indigo-500" placeholder="Description" rows="8" v-model="state.form.description"></textarea>
+					<label class="block text-sm font-medium text-gray-700" for="description">Description</label>
+					<textarea class="mt-2 w-full p-3 text-sm border-gray-200 rounded-lg focus:border-indigo-500 focus:ring-indigo-500" placeholder="Description" rows="8" v-model="state.form.description"></textarea>
 					<p class="mt-2 text-sm text-red-600" v-if="props.errors.description">{{ props.errors.description }}</p>
+				</div>
+
+				<div class="bg-white rounded-lg w-full p-6 shadow-lg">
+					<div v-for="(v,day) in state.form.time_slots">
+						<span class="text-gray-700 relative text-xl date uppercase font-bold tracking-widest mb-4">{{ day }}</span>
+
+						<div class="grid grid-cols-2 gap-8">
+							<div :key="key" v-for="(i, key) in v">
+								<div class="flex justify-between">
+									<span class="text-gray-600 relative inline-block date uppercase font-medium tracking-widest mb-2 text-xs">Slot: {{ key + 1 }}</span>
+
+									<button @click=" removeSlot(day,key)" class="focus:outline-none" type="button">
+										<svg class="w-5 h-5 text-red-500 transform scale-100 hover:scale-125" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+											<path d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
+										</svg>
+									</button>
+								</div>
+								<div class="grid grid-cols-1 gap-x-4 gap-y-8 sm:grid-cols-2">
+									<div class="sm:col-span-1">
+										<label class="block text-sm font-medium text-gray-700" for="from">From</label>
+										<input class="w-full p-3 text-sm border-gray-200 rounded-lg focus:border-indigo-500 focus:ring-indigo-500" placeholder="From" type="time" v-model="state.form.time_slots[day][key].from" />
+									</div>
+									<div class="sm:col-span-1">
+										<label class="block text-sm font-medium text-gray-700" for="from">To</label>
+										<input class="w-full p-3 text-sm border-gray-200 rounded-lg focus:border-indigo-500 focus:ring-indigo-500" placeholder="To" type="time" v-model="state.form.time_slots[day][key].to" />
+									</div>
+								</div>
+							</div>
+						</div>
+						<button @click="addSlot(day)" class="flex justify-center text-indigo-500 font-semibold text-sm mt-2" type="button">Add Slot</button>
+						<div class="border-b mb-2 mt-2"></div>
+					</div>
 				</div>
 
 				<div class="mt-4">

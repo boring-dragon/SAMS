@@ -46,8 +46,9 @@ class ModuleController extends Controller
         $request->validate([
             'name' => 'required',
             'module_code' => 'required|unique:modules',
-            'description' => 'required',
+            'description' => 'nullable',
             'teacher_id' => 'nullable',
+            'time_slots' => 'nullable|array',
             'type' => 'required',
         ]);
 
@@ -95,8 +96,9 @@ class ModuleController extends Controller
         $request->validate([
             'name' => 'required',
             'module_code' => 'required|unique:modules,module_code,'.$module->id,
-            'description' => 'required',
+            'description' => 'nullable',
             'teacher_id' => 'nullable',
+            'time_slots' => 'nullable|array',
             'type' => 'required',
         ]);
 

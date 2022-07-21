@@ -20,7 +20,7 @@ Hosted Live Version At: https://sams.jinas.me
 - [x] Update the total classes attended card
 - [ ] Attendance taking from student side ( Jinas )
 - [ ] QR Code
-- [ ] Time Slot Selection
+- [x] Time Slot Selection
 - [ ] Attendance history
 - [ ] Medical Certificate submission
 
