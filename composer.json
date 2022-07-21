@@ -7,14 +7,15 @@
     "require": {
         "php": "^8.0.2",
         "chillerlan/php-qrcode": "^4.3",
+        "fakerphp/faker": "^1.9.1",
         "guzzlehttp/guzzle": "^7.2",
         "inertiajs/inertia-laravel": "^0.5.4",
         "laravel/breeze": "^1.10",
         "laravel/framework": "^9.19",
         "laravel/sanctum": "^2.8",
         "laravel/tinker": "^2.7",
-        "tightenco/ziggy": "^1.0",
-        "fakerphp/faker": "^1.9.1"
+        "sopamo/laravel-filepond": "^1.1",
+        "tightenco/ziggy": "^1.0"
     },
     "require-dev": {
         "laravel/sail": "^1.15",

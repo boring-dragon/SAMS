@@ -23,6 +23,7 @@ Hosted Live Version At: https://sams.jinas.me
 - [x] Time Slot Selection
 - [ ] Attendance history
 - [ ] Medical Certificate submission
+- [ ] Medical Ceriticate Viewing on Teacher Dashboard
 
 
 

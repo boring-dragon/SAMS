@@ -1,15 +1,26 @@
 <script setup>
 import { onMounted, reactive, watch } from "vue";
-import StudentLayout from '@/Layouts/Student.vue';
-import { Head } from '@inertiajs/inertia-vue3';
+import StudentLayout from "@/Layouts/Student.vue";
+import { Head, usePage } from "@inertiajs/inertia-vue3";
 import { useForm } from "@inertiajs/inertia-vue3";
 import Loader from "@/Shared/Loader.vue";
 
+import vueFilePond from "vue-filepond";
+import "filepond/dist/filepond.min.css";
+import FilePondPluginFileValidateType from "filepond-plugin-file-validate-type";
+import FilePondPluginImagePreview from "filepond-plugin-image-preview";
+import "filepond-plugin-image-preview/dist/filepond-plugin-image-preview.min.css";
+
+const FilePond = vueFilePond(
+  FilePondPluginFileValidateType,
+  FilePondPluginImagePreview
+);
+
 const props = defineProps({
-    modules: {
-        type: Object,
-    },
-    filters: Object,
+  modules: {
+    type: Object,
+  },
+  filters: Object,
 });
 
 const state = reactive({
@@ -18,11 +29,24 @@ const state = reactive({
     {
       module: null,
       reason: null,
-      file: null
+      medical_file_url: null,
     },
     { resetOnSuccess: false }
   ),
 });
+
+function serverConfig() {
+  return {
+    url: `/filepond/api`,
+    timeout: 1200000,
+    process: "/process",
+    revert: "/process",
+    patch: "?patch=",
+    headers: {
+      "X-CSRF-TOKEN": usePage().props.value.csrf_token,
+    },
+  };
+}
 
 function onSubmit() {
   let config = {
@@ -35,95 +59,57 @@ function onSubmit() {
   };
 
   if (props.teacher && props.teacher.id) {
-    state.form.put(route("student.medicalCertificate.index", props.teacher), config);
+    state.form.put(
+      route("student.medicalCertificate.index", props.teacher),
+      config
+    );
   } else {
     state.form.post(route("student.medicalCertificate.index"), config);
   }
 }
-
-</script>
-<script>
-// https://github.com/pqina/vue-filepond
-import vueFilePond from 'vue-filepond';
-import 'filepond/dist/filepond.min.css';
-import FilePondPluginImagePreview from 'filepond-plugin-image-preview';
-import 'filepond-plugin-image-preview/dist/filepond-plugin-image-preview.min.css';
-
-export default {
-  name: 'app',
-  data: function () {
-    return { mcFile: [] };
-  },
-  methods: {
-    handleFilePondInit: function () {
-      console.log("FilePond has initialized");
-
-      // FilePond instance methods are available on `this.$refs.pond`
-    },
-  },
-  components: {
-    FilePond: vueFilePond(FilePondPluginImagePreview)
-  }
-}
 </script>
 <template>
+	<Head title="Medical Certificate" />
 
-    <Head title="Medical Certificate" />
+	<StudentLayout>
+		<template #header>
+			<h2 class="font-semibold text-xl leading-tight">Medical Certificate</h2>
+		</template>
 
-    <StudentLayout>
-        <template #header>
-            <h2 class="font-semibold text-xl leading-tight">
-                Medical Certificate
-            </h2>
-        </template>
+		<div class="py-12">
+			<div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+				<div class="bg-white py-4 md:py-7 px-4 md:px-8 xl:px-10 shadow-sm sm:rounded-lg">
+					<form @submit.prevent="onSubmit" class="space-y-4">
+						<div>
+							<label class="block text-sm font-medium text-gray-700" for="module">Select Module</label>
+							<select class="py-3 px-4 pr-9 block w-full border-gray-200 rounded-md text-sm focus:border-indigo-500 focus:ring-indigo-500 mt-2" placeholder="Select Module" v-model="state.form.module">
+								<option :key="module.id" :value="module.name" v-for="module in props.modules">{{ module.name }}</option>
+							</select>
+						</div>
 
-        <div class="py-12">
-            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+						<div>
+							<label class="block text-sm font-medium text-gray-700" for="reason">Reason</label>
+							<textarea class="py-3 px-4 pr-9 block w-full border-gray-200 rounded-md text-sm focus:border-indigo-500 focus:ring-indigo-500 mt-2" placeholder="Reason" type="text" v-model="state.form.reaason" />
+						</div>
 
-                <div class="bg-white py-4 md:py-7 px-4 md:px-8 xl:px-10 shadow-sm sm:rounded-lg">
+						<div>
+							<label class="block text-sm font-medium text-gray-700" for="file">Mc File</label>
+							<file-pond accepted-file-types="image/jpeg, image/png" label-idle="Drop files here Or Upload" :server="serverConfig()" v-bind:allow-multiple="false" v-bind:files="state.form.medical_file_url" />
+						</div>
 
-                    <form @submit.prevent="onSubmit" class="space-y-4">
+						<div class="mt-4">
+							<button class="inline-flex items-center justify-center w-full px-5 py-3 text-white bg-black rounded-lg sm:w-auto" type="submit">
+								<span class="font-medium mr-3">Submit</span>
 
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700" for="module">Select Module</label>
-                            <select
-                                class="py-3 px-4 pr-9 block w-full border-gray-200 rounded-md text-sm focus:border-indigo-500 focus:ring-indigo-500 mt-2"
-                                placeholder="Select Module" v-model="state.form.module">
-                                <option :key="module.id" :value="module.name" v-for="module in props.modules">{{ module.name
-                                }}</option>
-                            </select>
-                        </div>
-
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700" for="reason">Reason</label>
-                            <textarea
-                                class="py-3 px-4 pr-9 block w-full border-gray-200 rounded-md text-sm focus:border-indigo-500 focus:ring-indigo-500 mt-2"
-                                placeholder="Reason" type="text" v-model="state.form.reaason"/>
-                        </div>
-
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700" for="file">File</label>
-                            <FilePond allowMultiple="true" v-bind:files="mcFile"/>
-                        </div>
-
-                        <div class="mt-4">
-                            <button
-                                class="inline-flex items-center justify-center w-full px-5 py-3 text-white bg-black rounded-lg sm:w-auto"
-                                type="submit">
-                                <span class="font-medium mr-3">Submit</span>
-
-                                <Loader v-if="state.sending" />
-                                <svg class="w-5 h-5" fill="none" stroke="currentColor" v-else viewBox="0 0 24 24"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M14 5l7 7m0 0l-7 7m7-7H3" stroke-linecap="round" stroke-linejoin="round"
-                                        stroke-width="2" />
-                                </svg>
-                            </button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-
-        </div>
-    </StudentLayout>
+								<Loader v-if="state.sending" />
+								<svg class="w-5 h-5" fill="none" stroke="currentColor" v-else viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+									<path d="M14 5l7 7m0 0l-7 7m7-7H3" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
+								</svg>
+							</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</StudentLayout>
 </template>
