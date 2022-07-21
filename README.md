@@ -24,7 +24,7 @@ Hosted Live Version At: https://sams.jinas.me
 - [x] Attendance history
 - [x] Medical Certificate submission
 - [x] Medical Ceriticate Viewing on Teacher Dashboard
-- [ ] Download the MC PDF from the teacher dashboard
+- [x] Download the MC PDF from the teacher dashboard
 
 
 

@@ -70,6 +70,18 @@ const props = defineProps({
 										<p class="text-sm leading-none text-gray-600 ml-2">{{ moment(mc.created_at).format("YYYY-MM-DD HH:mm") }}</p>
 									</div>
 								</td>
+
+								<td>
+									<div class="flex items-center pl-5">
+										<a :href="mc.medical_file_url_path" class="inline-flex items-center px-3 py-2 text-white bg-indigo-600 border border-indigo-600 rounded hover:bg-transparent hover:text-indigo-600 active:text-indigo-500 focus:outline-none focus:ring">
+											<span class="text-sm font-medium">Download</span>
+
+											<svg class="w-5 h-5 ml-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+												<path d="M17 8l4 4m0 0l-4 4m4-4H3" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
+											</svg>
+										</a>
+									</div>
+								</td>
 							</tr>
 						</tbody>
 					</table>
