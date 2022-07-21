@@ -58,13 +58,13 @@ onBeforeMount(() => {
 			<form @submit.prevent="onSubmit" class="space-y-4">
 				<div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
 					<div>
-						<label class="sr-only" for="first_name">First Name</label>
+						<label class="block text-sm font-medium text-gray-700 mb-2" for="first_name">First Name</label>
 						<input class="w-full p-3 text-sm border-gray-200 rounded-lg focus:border-indigo-500 focus:ring-indigo-500" placeholder="First Name" type="text" v-model="state.form.first_name" />
 						<p class="mt-2 text-sm text-red-600" v-if="props.errors.first_name">{{ props.errors.first_name }}</p>
 					</div>
 
 					<div>
-						<label class="sr-only" for="last_name">Last Name</label>
+						<label class="block text-sm font-medium text-gray-700 mb-2" for="last_name">Last Name</label>
 						<input class="w-full p-3 text-sm border-gray-200 rounded-lg focus:border-indigo-500 focus:ring-indigo-500" placeholder="Last Name" type="text" v-model="state.form.last_name" />
 						<p class="mt-2 text-sm text-red-600" v-if="props.errors.last_name">{{ props.errors.last_name }}</p>
 					</div>
@@ -72,31 +72,31 @@ onBeforeMount(() => {
 
 				<div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
 					<div>
-						<label class="sr-only" for="email">Email</label>
+						<label class="block text-sm font-medium text-gray-700 mb-2" for="email">Email</label>
 						<input class="w-full p-3 text-sm border-gray-200 rounded-lg focus:border-indigo-500 focus:ring-indigo-500" placeholder="Email" type="text" v-model="state.form.email" />
 						<p class="mt-2 text-sm text-red-600" v-if="props.errors.email">{{ props.errors.email }}</p>
 					</div>
 					<div>
-						<label class="sr-only" for="phone_number">Phone No</label>
+						<label class="block text-sm font-medium text-gray-700 mb-2" for="phone_number">Phone No</label>
 						<input class="w-full p-3 text-sm border-gray-200 rounded-lg focus:border-indigo-500 focus:ring-indigo-500" placeholder="Phone Number" type="text" v-model="state.form.phone_number" />
 						<p class="mt-2 text-sm text-red-600" v-if="props.errors.phone_number">{{ props.errors.phone_number }}</p>
 					</div>
 				</div>
 
 				<div>
-					<label class="sr-only" for="dob">DOB</label>
+					<label class="block text-sm font-medium text-gray-700 mb-2" for="dob">DOB</label>
 					<date-input placeholder="DO" v-model="state.form.dob"></date-input>
 					<p class="mt-2 text-sm text-red-600" v-if="props.errors.dob">{{ props.errors.dob }}</p>
 				</div>
 
 				<div>
-					<label class="sr-only" for="passwords">Password</label>
+					<label class="block text-sm font-medium text-gray-700 mb-2" for="passwords">Password</label>
 					<input class="w-full p-3 text-sm border-gray-200 rounded-lg focus:border-indigo-500 focus:ring-indigo-500" placeholder="Password" type="password" v-model="state.form.password" />
 					<p class="mt-2 text-sm text-red-600" v-if="props.errors.password">{{ props.errors.password }}</p>
 				</div>
 
 				<div>
-					<label class="sr-only" for="description">Bio</label>
+					<label class="block text-sm font-medium text-gray-700 mb-2" for="description">Bio</label>
 					<textarea class="w-full p-3 text-sm border-gray-200 rounded-lg focus:border-indigo-500 focus:ring-indigo-500" placeholder="Bio" rows="8" v-model="state.form.bio"></textarea>
 					<p class="mt-2 text-sm text-red-600" v-if="props.errors.bio">{{ props.errors.bio }}</p>
 				</div>
