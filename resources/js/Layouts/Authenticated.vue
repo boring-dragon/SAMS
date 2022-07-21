@@ -143,7 +143,9 @@ const { isAdmin, isTeacher } = Gate();
 					</div>
 
 					<div class="px-4 mx-auto max-w-7xl sm:px-6 md:px-8">
-						<flash-messages />
+						<div class="justify-center mx-auto mt-4">
+							<flash-messages />
+						</div>
 						<slot />
 					</div>
 

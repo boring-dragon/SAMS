@@ -4,6 +4,7 @@ import BreezeAuthenticatedLayout from "@/Layouts/Authenticated.vue";
 import { Head } from "@inertiajs/inertia-vue3";
 import { useForm } from "@inertiajs/inertia-vue3";
 import Loader from "@/Shared/Loader.vue";
+import DialogModal from "@/Shared/DialogModal.vue";
 
 const props = defineProps({
   modules: Object,
@@ -13,6 +14,8 @@ const props = defineProps({
 
 const state = reactive({
   sending: false,
+  showQrCode: false,
+  currentQrCodeShowing: null,
   form: useForm(
     {
       module_id: null,
@@ -36,6 +39,16 @@ function stop(module) {
     onFinish: () => (state.sending = false),
     preserveScroll: true,
   });
+}
+
+function showQrCode(QrCode) {
+  state.showQrCode = true;
+  state.currentQrCodeShowing = QrCode;
+}
+
+function hideQrCode() {
+  state.showQrCode = false;
+  state.currentQrCodeShowing = null;
 }
 </script>
 
@@ -80,7 +93,6 @@ function stop(module) {
 											<th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase" scope="col">Module</th>
 											<th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase" scope="col">Attendance Code</th>
 											<th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase" scope="col">Generated At</th>
-											<th class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase" scope="col">Action</th>
 										</tr>
 									</thead>
 									<tbody class="divide-y divide-gray-200">
@@ -88,12 +100,24 @@ function stop(module) {
 											<td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">{{ module.name }}</td>
 											<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800">{{ module.attendance_code }}</td>
 											<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800">{{ module.attendance_generated_at }}</td>
-											<td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-												<button class="text-blue-500 hover:text-blue-700" @click="stop(module)">Stop</button>
+											<td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium space-x-5 flex items-center">
+												<button @click="stop(module)" class="inline-flex px-6 py-3 text-sm font-medium text-indigo-600 border border-indigo-600 rounded hover:bg-indigo-600 hover:text-white active:bg-indigo-500 focus:outline-none focus:ring">Stop Attendance</button>
+
+												<button @click="showQrCode(module.qr_code)" class="inline-flex items-center px-6 py-3 text-sm font-medium text-indigo-600 border border-indigo-600 rounded hover:bg-indigo-600 hover:text-white active:bg-indigo-500 focus:outline-none focus:ring">
+													<svg fill="none" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+														<path d="M7.25 4.75H6.75C5.64543 4.75 4.75 5.64543 4.75 6.75V7.25" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" />
+														<path d="M16.75 4.75H17.25C18.3546 4.75 19.25 5.64543 19.25 6.75V7.25" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" />
+														<path d="M7.25 19.25H6.75C5.64543 19.25 4.75 18.3546 4.75 17.25V16.75" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" />
+														<path d="M16.75 19.25H17.25C18.3546 19.25 19.25 18.3546 19.25 17.25V16.75" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" />
+														<path d="M7.75 9V15" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" />
+														<path d="M12 9V15" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" />
+														<path d="M16.25 9V15" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" />
+													</svg>
+
+													<span>Show QR Code</span>
+												</button>
 											</td>
 										</tr>
-
-
 									</tbody>
 								</table>
 							</div>
@@ -101,6 +125,19 @@ function stop(module) {
 					</div>
 				</div>
 			</div>
+			<DialogModal :show="state.showQrCode" @close="hideQrCode()">
+				<template #title>
+					<h2 class="text-md font-semibold text-gray-600 text-center">Qr code</h2>
+				</template>
+
+				<template #content>
+					<div class="flex flex-col items-center justify-center">
+						<img :src="state.currentQrCodeShowing" />
+					</div>
+
+					<p class="text-center text-md text-gray-500">Please scan the QR code above to copy the attendance code</p>
+				</template>
+			</DialogModal>
 		</div>
 	</BreezeAuthenticatedLayout>
 </template>

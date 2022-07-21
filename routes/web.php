@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Route;
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\Module;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 

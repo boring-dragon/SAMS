@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Str;
+use chillerlan\QRCode\QRCode;
 
 class Module extends Model
 {
@@ -33,44 +34,58 @@ class Module extends Model
         'time_slots' => 'array',
     ];
 
+    protected $appends = [
+        'qr_code'
+    ];
 
-    public function teacher() : BelongsTo
+
+    public function getQrCodeAttribute()
+    {
+        if ($this->attendance_code && $this->attendance_generated_at) {
+            return (new QRCode)->render($this->attendance_code);
+        }
+
+        return null;
+    }
+
+
+    public function teacher(): BelongsTo
     {
         return $this->belongsTo(Teacher::class);
     }
 
-    public function students() : BelongsToMany
+    public function students(): BelongsToMany
     {
         return $this->belongsToMany(Student::class, 'enrollments', 'module_id', 'student_id')
-                    ->withTimestamps()
-                    ->withPivot('enrolled_at');
+            ->withTimestamps()
+            ->withPivot('enrolled_at');
     }
 
-    public function attendance() : HasMany
+    public function attendance(): HasMany
     {
         return $this->hasMany(Attendance::class);
     }
 
-    public function student_mcs() : HasMany
+    public function student_mcs(): HasMany
     {
         return $this->hasMany(StudentMc::class);
     }
 
-    public function enrollStudents(array $student_ids) : void
+    public function enrollStudents(array $student_ids): void
     {
         $this->students()->syncWithPivotValues($student_ids, [
             'enrolled_at' => Carbon::now(),
         ]);
     }
 
-    public function enrollStudent(Student $student) : void
+    public function enrollStudent(Student $student): void
     {
         $this->students()->attach($student->id, [
             'enrolled_at' => Carbon::now(),
         ]);
     }
 
-    public function generateAttendance() : void
+    public function generateAttendance(): void
     {
         $this->update([
             'attendance_generated_at' => Carbon::now(),
@@ -78,7 +93,7 @@ class Module extends Model
         ]);
     }
 
-    public function stopAttendanceCode() : void
+    public function stopAttendanceCode(): void
     {
         $this->update([
             'attendance_generated_at' => null,
@@ -86,12 +101,12 @@ class Module extends Model
         ]);
     }
 
-    public function removeStudent(Student $student) : bool
+    public function removeStudent(Student $student): bool
     {
         return $this->students()->detach($student->id);
     }
 
-    public function removeStudents(array $student_ids) : bool
+    public function removeStudents(array $student_ids): bool
     {
         return $this->students()->detach($student_ids);
     }
