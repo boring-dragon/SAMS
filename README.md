@@ -18,10 +18,10 @@ Hosted Live Version At: https://sams.jinas.me
 - [x] Connect Dashboard Charts to backend ( Kim )
 - [x] Total Count cards on Student Dashboard
 - [x] Update the total classes attended card
-- [ ] Attendance taking from student side ( Jinas )
+- [x] Attendance taking from student side ( Jinas )
 - [x] QR Code
 - [x] Time Slot Selection
-- [ ] Attendance history
+- [x] Attendance history
 - [x] Medical Certificate submission
 - [x] Medical Ceriticate Viewing on Teacher Dashboard
 - [ ] Download the MC PDF from the teacher dashboard
