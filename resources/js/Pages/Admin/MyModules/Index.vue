@@ -39,7 +39,7 @@ const props = defineProps({
 							</tr>
 						</thead>
 						<tbody>
-							<tr class="text-xl text-gray-600" v-if="modules.length === 0">No modules Found.</tr>
+							<p class="text-md p-4 text-gray-600" v-if="modules.length === 0">No modules Found.</p>
 							<tr :key="module.id" class="focus:outline-none h-16 border border-gray-100 rounded" tabindex="0" v-for="module in props.modules">
 								<td>
 									<div class="flex items-center pl-5">
