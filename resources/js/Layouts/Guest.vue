@@ -7,8 +7,8 @@ import { Link } from "@inertiajs/inertia-vue3";
 	<div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100">
 		<div>
 			<Link href="/">
-				<!-- <h2 class="font-extrabold text-6xl text-indigo-500">SAMS</h2> -->
-				<img src="/images/SAMS-01.png" class='rounded-xl w-[200px] h-[200px]'>
+				<h2 class="font-extrabold text-7xl text-indigo-500">SAMS</h2>
+
 			</Link>
 		</div>
 

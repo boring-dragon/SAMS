@@ -117,7 +117,7 @@ const { isAdmin, isTeacher } = Gate();
 							</div>
 							<div class="ml-3">
 								<p class="text-sm font-medium text-white">{{ $page.props.auth.user.name}}</p>
-								<p class="text-xs font-medium text-indigo-200 group-hover:text-white">View profile</p>
+
 							</div>
 						</div>
 					</a>
