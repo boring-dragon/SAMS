@@ -101,7 +101,13 @@ function hideQrCode() {
 											<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800">{{ module.attendance_code }}</td>
 											<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800">{{ module.attendance_generated_at }}</td>
 											<td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium space-x-5 flex items-center">
-												<button @click="stop(module)" class="inline-flex px-6 py-3 text-sm font-medium text-indigo-600 border border-indigo-600 rounded hover:bg-indigo-600 hover:text-white active:bg-indigo-500 focus:outline-none focus:ring">Stop Attendance</button>
+												<button @click="stop(module)" class="inline-flex px-6 py-3 text-sm font-medium text-indigo-600 border border-indigo-600 rounded hover:bg-indigo-600 hover:text-white active:bg-indigo-500 focus:outline-none focus:ring items-center">
+													<svg fill="none" height="24" viewBox="0 0 24 24" width="24">
+														<rect height="12.5" rx="1" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" width="12.5" x="5.75" y="5.75" />
+													</svg>
+
+													<span>Stop Attendance</span>
+												</button>
 
 												<button @click="showQrCode(module.qr_code)" class="inline-flex items-center px-6 py-3 text-sm font-medium text-indigo-600 border border-indigo-600 rounded hover:bg-indigo-600 hover:text-white active:bg-indigo-500 focus:outline-none focus:ring">
 													<svg fill="none" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
