@@ -1,6 +1,6 @@
 <script setup>
 import StudentLayout from "@/Layouts/Student.vue";
-import { Head, Link } from "@inertiajs/inertia-vue3";
+import { Head, Link, useForm } from "@inertiajs/inertia-vue3";
 import DialogModal from "@/Shared/DialogModal.vue";
 import Loader from "@/Shared/Loader.vue";
 import moment from "moment";
@@ -13,15 +13,33 @@ const props = defineProps({
 });
 
 const state = reactive({
+  form: useForm(
+    {
+      attendance_code: null,
+    },
+    { resetOnSuccess: true }
+  ),
   openAttendanceModal: false,
+  moduleForAttendance: null,
 });
 
-function showAttendanceModal() {
+function submitAttendance() {
+  state.form.post(
+    route("student.attendance.store", {
+      module: state.moduleForAttendance.id,
+    })
+  );
+   closeAttendanceModal();
+}
+
+function showAttendanceModal(module) {
   state.openAttendanceModal = true;
+  state.moduleForAttendance = module;
 }
 
 function closeAttendanceModal() {
   state.openAttendanceModal = false;
+  state.moduleForAttendance = null;
 }
 </script>
 
@@ -66,11 +84,11 @@ function closeAttendanceModal() {
 								<p class="mt-2 text-sm text-gray-500">Class Duration: {{ module.duration }} hr</p>
 							</div>
 							<div>
-								<button @click="showAttendanceModal" class="flex items-center justify-between px-5 py-3 text-indigo-600 transition-colors border border-current rounded-lg hover:bg-indigo-600 group active:bg-indigo-500 focus:outline-none focus:ring" v-if="module.attendance_code && module.attendance_generated_at">
+								<button @click="showAttendanceModal(module)" class="flex items-center justify-between px-4 py-2 text-white bg-indigo-600 transition-colors border border-current rounded-lg hover:bg-indigo-600 group active:bg-indigo-500 focus:outline-none focus:ring" v-if="module.attendance_code && module.attendance_generated_at">
 									<span class="font-medium transition-colors group-hover:text-white">Take Attendance</span>
 
-									<span class="flex-shrink-0 p-2 ml-4 bg-white border border-indigo-600 rounded-full group-active:border-indigo-500">
-										<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+									<span class="flex-shrink-0 p-2 ml-4 bg-indigo border border-white rounded-full group-active:border-indigo-500">
+										<svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
 											<path d="M17 8l4 4m0 0l-4 4m4-4H3" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
 										</svg>
 									</span>
@@ -80,7 +98,7 @@ function closeAttendanceModal() {
 					</div>
 				</div>
 			</div>
-			<DialogModal :show="state.openAttendanceModal" @close="state.openAttendanceModal = false">
+			<DialogModal :show="state.openAttendanceModal" @close="closeAttendanceModal">
 				<template #title>
 					<h2 class="text-md font-semibold text-gray-600">Take attendance</h2>
 				</template>
@@ -89,13 +107,13 @@ function closeAttendanceModal() {
 					<form class="space-y-4">
 						<div>
 							<label class="block text-sm font-medium text-gray-700" for="attendance">Attendance Code</label>
-							<input class="w-full p-3 text-sm border-gray-200 rounded-lg focus:border-indigo-500 focus:ring-indigo-500 mt-2" placeholder="Attendance Code" type="text" />
+							<input class="w-full p-3 text-sm border-gray-200 rounded-lg focus:border-indigo-500 focus:ring-indigo-500 mt-2" placeholder="Attendance Code" required type="text" v-model="state.form.attendance_code" />
 						</div>
 					</form>
 				</template>
 
 				<template #footer>
-					<button class="inline-flex items-center justify-center w-full px-5 py-2 text-white bg-indigo-500 rounded-lg sm:w-auto" type="submit">
+					<button @click.prevent="submitAttendance()" class="inline-flex items-center justify-center w-full px-5 py-2 text-white bg-indigo-500 rounded-lg sm:w-auto" type="submit">
 						<span class="font-medium mr-3">Submit</span>
 
 						<Loader v-if="state.sending" />

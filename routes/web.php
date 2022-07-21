@@ -37,6 +37,7 @@ Route::group(['middleware' => ['auth:sanctum', 'role:student'], 'prefix' => 'das
     Route::get('/modules', ModulesIndexController::class)->name('modules.index');
     Route::get('/classes', ClassesIndexController::class)->name('classes.index');
     Route::get('/attendance', [StudentAttendanceController::class, 'index'])->name('attendance.index');
+    Route::post('/attendance/{module}', [StudentAttendanceController::class, 'store'])->name('attendance.store');
 
     Route::get('/medicalCertificate', [MedicalCertificateIndexController::class, 'index'])->name('medicalCertificate.index');
     Route::post('/medicalCertificate', [MedicalCertificateIndexController::class, 'store'])->name('medicalCertificate.store');

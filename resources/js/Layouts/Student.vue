@@ -16,10 +16,9 @@ export default {
     BreezeNavLink,
     BreezeResponsiveNavLink,
     Link,
-    FlashMessages
+    FlashMessages,
   },
   setup() {
-
     const showingNavigationDropdown = ref(false);
 
     return {
@@ -55,7 +54,6 @@ export default {
 								<BreezeNavLink :active="route().current('student.attendance.index')" :href="route('student.attendance.index')">Attendance</BreezeNavLink>
 
 								<BreezeNavLink :active="route().current('student.medicalCertificate.index')" :href="route('student.medicalCertificate.index')">Medical Certificate</BreezeNavLink>
-
 							</div>
 						</div>
 
@@ -75,7 +73,7 @@ export default {
 									</template>
 
 									<template #content>
-                                        <BreezeDropdownLink :href="route('student.profile.index')">Profile</BreezeDropdownLink>
+										<BreezeDropdownLink :href="route('student.profile.index')">Profile</BreezeDropdownLink>
 										<BreezeDropdownLink :href="route('logout')" as="button" method="post">Log Out</BreezeDropdownLink>
 									</template>
 								</BreezeDropdown>
@@ -116,7 +114,7 @@ export default {
 						</div>
 
 						<div class="mt-3 space-y-1">
-                            <BreezeResponsiveNavLink :href="route('student.profile.index')">Profile</BreezeResponsiveNavLink>
+							<BreezeResponsiveNavLink :href="route('student.profile.index')">Profile</BreezeResponsiveNavLink>
 							<BreezeResponsiveNavLink :href="route('logout')" as="button" method="post">Log Out</BreezeResponsiveNavLink>
 						</div>
 					</div>
@@ -132,12 +130,17 @@ export default {
 
 			<!-- Page Content -->
 			<main>
-                <div class="container flex justify-center mx-auto mt-4">
-                    <flash-messages />
-                </div>
+				<div class="container flex justify-center mx-auto mt-4">
+					<flash-messages />
+				</div>
 
 				<slot />
 			</main>
 		</div>
+		<footer class="fixed bottom-0 w-full">
+			<div class="max-w-4xl mx-auto py-5 px-4 overflow-hidden sm:px-6 lg:px-8">
+				<p class="mt-8 ml-16 text-base text-gray-400 text-center">&copy; 2022 SAMS, All rights reserved.</p>
+			</div>
+		</footer>
 	</div>
 </template>

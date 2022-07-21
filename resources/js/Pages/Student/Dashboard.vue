@@ -89,7 +89,7 @@ onBeforeMount(() => {
 
 
                     <div class=" mb-6 w-full ">
-                        <div class="bg-white shadow rounded-lg h-150 bg-white">
+                        <div class="bg-white shadow rounded-lg h-150">
                             <div class="px-6 py-4">
                                 <div class="flex justify-between items-center mb-2">
                                     <h3 class="mr-3 text-base text-gray-700 font-bold">Total Modules</h3>
@@ -100,7 +100,7 @@ onBeforeMount(() => {
                     </div>
 
                     <div class=" mb-6 w-full">
-                        <div class="bg-white shadow rounded-lg h-150 bg-white">
+                        <div class="bg-white shadow rounded-lg h-150 ">
                             <div class="px-6 py-4">
                                 <div class="flex justify-between items-center mb-2">
                                     <h3 class="mr-3 text-base text-gray-700 font-bold">Total Classes Attended</h3>
@@ -121,10 +121,6 @@ onBeforeMount(() => {
                     <h1 class="text-lg font-medium text-neutral-600">Enrolled modules</h1>
                     <vue3-chart-js :id="doughnutChart.id" :type="doughnutChart.type" :data="doughnutChart.data">
                     </vue3-chart-js>
-                </div>
-                <div class="w-1/2 m-5 p-5">
-                    <h1 class="text-lg font-medium text-neutral-600">Attendances record</h1>
-                    <vue3-chart-js :id="pieChart.id" :type="pieChart.type" :data="pieChart.data"></vue3-chart-js>
                 </div>
 
             </div>
