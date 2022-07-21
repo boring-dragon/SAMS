@@ -73,7 +73,7 @@ export default {
 									</template>
 
 									<template #content>
-										<BreezeDropdownLink :href="route('student.profile.index')">Profile</BreezeDropdownLink>
+										<BreezeDropdownLink :href="route('student.profile.show')">Profile</BreezeDropdownLink>
 										<BreezeDropdownLink :href="route('logout')" as="button" method="post">Log Out</BreezeDropdownLink>
 									</template>
 								</BreezeDropdown>
@@ -114,7 +114,7 @@ export default {
 						</div>
 
 						<div class="mt-3 space-y-1">
-							<BreezeResponsiveNavLink :href="route('student.profile.index')">Profile</BreezeResponsiveNavLink>
+							<BreezeResponsiveNavLink :href="route('student.profile.show')">Profile</BreezeResponsiveNavLink>
 							<BreezeResponsiveNavLink :href="route('logout')" as="button" method="post">Log Out</BreezeResponsiveNavLink>
 						</div>
 					</div>

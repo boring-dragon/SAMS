@@ -9,6 +9,7 @@ use App\Http\Controllers\Student\ClassesIndexController;
 use App\Http\Controllers\Student\MedicalCertificateIndexController;
 use App\Http\Controllers\Student\DashboardController;
 use App\Http\Controllers\Student\ModulesIndexController;
+use App\Http\Controllers\Student\ProfileController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\StudentMcController;
 use App\Http\Controllers\TeacherController;
@@ -42,7 +43,8 @@ Route::group(['middleware' => ['auth:sanctum', 'role:student'], 'prefix' => 'das
     Route::get('/medicalCertificate', [MedicalCertificateIndexController::class, 'index'])->name('medicalCertificate.index');
     Route::post('/medicalCertificate', [MedicalCertificateIndexController::class, 'store'])->name('medicalCertificate.store');
 
-    Route::get('/profile', fn () => Inertia::render('Student/Profile/Index'))->name('profile.index');
+    Route::get('/profile', [ProfileController::class, 'show'])->name('profile.show');
+    Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');
 
 });
 
