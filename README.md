@@ -1,6 +1,6 @@
 # SAMS
 
-Student Attendance Management System ( Part of the web dev competition at taylors)
+Student Attendance Management System ( Part of the web dev competition & assignment at taylors)
 
 
 Hosted Live Version At: https://sams.jinas.me
@@ -9,6 +9,36 @@ Hosted Live Version At: https://sams.jinas.me
 
 ## Steps to run the application 
 
+Clone the repo
+
+```bash
+composer install
+```
+
+```bash
+
+cp .env.example .env
+```
+
+```
+Setup migrations
+
+
+php artisan migrate
+```
+```bash
+npm i
+```
+
+```bash
+npm run dev
+```
+
+Run the app
+
+```bash
+php artisan serve
+```
 
 
 
