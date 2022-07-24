@@ -38,13 +38,15 @@ const props = defineProps({
 							<tr :key="mc.id" class="focus:outline-none h-16 border border-gray-100 rounded" tabindex="0" v-for="mc in props.student_mcs.data">
 								<td>
 									<div class="flex items-center pl-5">
-										<p class="text-base font-normal leading-none text-gray-700 mr-2 normal-case">{{ mc.student.full_name }}</p>
+                                        <p class="text-sm leading-none text-gray-600 ml-2" v-if="mc.student">{{ mc.student.full_name }}</p>
+                                        <p class="text-sm leading-none text-gray-600 ml-2" v-else>Student removed.</p>
 									</div>
 								</td>
 
 								<td class="pl-5">
 									<div class="flex items-center">
-										<p class="text-sm leading-none text-gray-600 ml-2">{{ mc.module.name }}</p>
+										<p class="text-sm leading-none text-gray-600 ml-2" v-if="mc.module">{{ mc.module.name }}</p>
+                                        <p class="text-sm leading-none text-gray-600 ml-2" v-else>Module removed.</p>
 									</div>
 								</td>
 
