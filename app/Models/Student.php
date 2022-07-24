@@ -32,6 +32,15 @@ class Student extends Model
         'full_name',
     ];
 
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::deleting(function ($item) {
+            $item->modules()->detach();
+        });
+    }
+
     public function user(): MorphOne
     {
         return $this->morphOne(User::class, 'typable', 'typable_type', 'typable_id', 'id');

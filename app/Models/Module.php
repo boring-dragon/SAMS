@@ -38,6 +38,16 @@ class Module extends Model
         'qr_code'
     ];
 
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::deleting(function ($item) {
+            $item->students()->detach();
+        });
+    }
+
+
 
     public function getQrCodeAttribute()
     {
