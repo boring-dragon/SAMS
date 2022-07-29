@@ -2,6 +2,13 @@
 
 Student Attendance Management System ( Part of the web dev competition & assignment at taylors)
 
+![admin](admin.png)
+
+![teacher](teacher.png)
+
+![student](student.png)
+
+![database](database.png)
 
 Hosted Live Version At: https://sams.jinas.me
 
